@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_error.c                                       .::    .:/ .      .::   */
+/*   ft_display.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/24 16:27:16 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/26 10:00:15 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Created: 2020/01/26 09:38:21 by qbarrier     #+#   ##    ##    #+#       */
+/*   Updated: 2020/01/26 10:04:13 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/coreware.h"
 
-char		*ft_chars_error(char *ret, char *str)
+void	ft_display_play(t_player *play)
 {
-	ft_putstr(str);
-	return (ret);
-}
-
-int			ft_error(int ret, char *str)
-{
-	ft_putstr(str);
-	return (ret);
+	while (play)
+	{
+		printf("\nN*[%d]\nName[%s]\nCom[%s]\nCodeSize[%d]\nCode[%s]\n",
+				play->id, play->name, play->comment, play->code_size,
+				play->code);
+		play = play->next;
+	}
 }
