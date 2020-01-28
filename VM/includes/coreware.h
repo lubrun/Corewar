@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/23 18:45:42 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/27 13:25:21 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/28 15:40:58 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,22 +19,44 @@
 # include <fcntl.h>
 # include <stdio.h>
 
+/*
+**	LE CHARIOT POINTE SUR LA MAP A SA "POS"
+**	OP == operateur OPC == Code Operateur pour les args R == registre
+*/
+
+typedef struct			s_chariot
+{
+	int					*r;
+	int					carry;
+	int					player;
+	char				op;
+	char				opc;
+	int					jump;
+	int					pos;
+	struct s_chariot	*next;
+	struct s_chariot	*start;
+}						t_chariot;
+
 typedef struct			s_player
 {
 	int					id;
 	char				*name;
 	char				*comment;
 	int					code_size;
-	char				*code;
+	int					mapped;
+	unsigned char		*code;
 	struct s_player		*next;
 }						t_player;
 
 typedef struct			s_info
 {
+	struct s_chariot	*chariot;
 	struct s_player		*play;
+	unsigned char		*map;
 	int					*preset_player;
 	char				*line;
 	int					*intline;
+	int					nb_players;
 	int					verbose;
 	int					dump_size;
 	int					dump_cycle;
@@ -57,9 +79,17 @@ int						ft_parsing(t_info *info, int num);
 int						ft_parsing_code(t_info *info, t_player *player);
 
 /*
+**		MAP
+*/
+
+int						ft_build_map(t_info *info);
+
+
+/*
 **		UTILS
 */
 
+t_player				*ft_player_by_id(t_player *play, int id);
 unsigned char			ft_xtoc(char str[2]);
 int						ft_xtoi(char str[2]);
 char					*ft_itox(int num, char str[2]);
@@ -79,6 +109,7 @@ char					*ft_chars_error(char *ret, char str[2]);
 **			DISPLAY
 */
 
+void					ft_display_map(t_info *info);
 void					ft_display_play(t_player *play);
 
 

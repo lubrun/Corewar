@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/24 16:52:12 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/26 10:02:49 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/28 15:33:08 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -47,17 +47,21 @@ int			ft_check_code_size(int *tab, t_player *play)
 int			ft_parsing_code(t_info *info, t_player *play)
 {
 	int	index;
-	int	swap;
 	int	len;
+	int	start;
 
+	start = 0;
 	index = (PROG_NAME_LENGTH + COMMENT_LENGTH + 16) * 2;//2192
-	swap = index;
 	len = (int)ft_strlen(&info->line[index]);
 	if (len != (play->code_size * 2))
 		return (ft_error(0, "CODE DU CHAMP INVALIDE\n"));
-	if (!(play->code = malloc(sizeof(char*) * (len + 1))))
+	if (!(play->code = malloc(sizeof(char*) * ((len / 2) + 1))))
 		return (ft_error(0, "ERROR MALLOC player->code\n"));
-	ft_strcpy(play->code, &info->line[index]);
-//	printf("code == [%s]\n" , play->code);
+	index = index / 2;
+	while (start < play->code_size)
+	{
+		play->code[start] = info->intline[index + start];
+		start++;
+	}
 	return (1);
 }

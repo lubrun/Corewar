@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/23 18:45:05 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/27 14:34:33 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/28 14:20:46 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,9 @@ int			ft_number_player(t_info *info)
 {
 	t_player	*play;
 	int			index;
+	int			count;
 
+	count = 0;
 	index = 0;
 	play = info->play;
 	while (play)
@@ -29,8 +31,10 @@ int			ft_number_player(t_info *info)
 			play->id = index + 1;
 			info->preset_player[index] = index + 1;
 		}
+		count++;
 		play = play->next;
 	}
+	info->nb_players = count;
 	return (1);
 }
 
@@ -100,5 +104,6 @@ int			main(int ac, char **av)
 		return (0);
 	ft_number_player(info);
 	ft_display_play(info->play);
+	ft_build_map(info);
 	return (1);
 }
