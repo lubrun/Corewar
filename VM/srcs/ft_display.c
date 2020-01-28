@@ -6,12 +6,25 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/26 09:38:21 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/28 16:12:21 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/28 16:43:07 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/coreware.h"
+
+void	ft_display_chariot(t_info *info)
+{
+	t_chariot *pc;
+
+	pc = info->chariot;
+	while (pc)
+	{
+		printf("CHAR ID[%d] POS [%d]\t STARTID[%d]\n",pc->player, pc->pos, pc->start->pos);
+		pc = pc->next;
+	}
+
+}
 
 void	ft_print_octet(unsigned char *str, int size)
 {
@@ -77,18 +90,7 @@ void	ft_print_map(unsigned char *str, int size)
 void	ft_display_map(t_info *info)
 {
 	ft_print_map(info->map, MEM_SIZE);
-/*	int index;
-	char str[2];
-
-	index = 0;
-	while (index < MEM_SIZE)
-	{
-		printf("%s ",ft_ctox(info->map[index], str));
-		if (index % 64 == 0)
-			printf("\n");
-		index++;
-	}
-*/}
+}
 
 void	ft_display_play(t_player *play)
 {

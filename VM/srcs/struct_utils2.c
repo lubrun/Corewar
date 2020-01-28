@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_build_chariot.c                               .::    .:/ .      .::   */
+/*   struct_utils2.c                                  .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/28 13:59:55 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/28 16:20:51 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Created: 2020/01/28 16:25:57 by qbarrier     #+#   ##    ##    #+#       */
+/*   Updated: 2020/01/28 16:29:27 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/coreware.h"
 
-int		ft_build_chariot(t_info *info, int index, t_player *play)
+void		ft_addchariot(t_chariot **alst, t_chariot *new_chariot)
 {
-	ft_new_chariot(play->id, index, info);
-	return (1);
+	t_chariot *tmp;
+
+	if (*alst == NULL)
+		*alst = new_chariot;
+	else
+	{
+		tmp = *alst;
+		while (tmp->next != NULL)
+			tmp = tmp->next;
+		tmp->next = new_chariot;
+	}
 }

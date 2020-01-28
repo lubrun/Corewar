@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/23 18:45:42 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/28 15:40:58 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/28 16:28:33 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -79,9 +79,11 @@ int						ft_parsing(t_info *info, int num);
 int						ft_parsing_code(t_info *info, t_player *player);
 
 /*
-**		MAP
+**		SET UP
 */
 
+int						ft_build_chariot(t_info *info, int index,
+		t_player *play);
 int						ft_build_map(t_info *info);
 
 
@@ -94,7 +96,9 @@ unsigned char			ft_xtoc(char str[2]);
 int						ft_xtoi(char str[2]);
 char					*ft_itox(int num, char str[2]);
 char					*ft_ctox(unsigned char c, char str[2]);
+void					ft_addchariot(t_chariot **alst, t_chariot *new_chariot);
 void					ft_addplayer(t_player **alst, t_player *new_player);
+t_chariot				*ft_new_chariot(int player, int pos, t_info *info);
 t_player				*ft_new_player(t_player *player);
 t_info					*ft_new_info(t_info *info);
 
@@ -109,6 +113,7 @@ char					*ft_chars_error(char *ret, char str[2]);
 **			DISPLAY
 */
 
+void					ft_display_chariot(t_info *info);
 void					ft_display_map(t_info *info);
 void					ft_display_play(t_player *play);
 
