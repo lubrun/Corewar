@@ -6,7 +6,7 @@
 /*   By: lubrun <lubrun@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/22 21:04:28 by lubrun       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/23 16:48:06 by lubrun      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/29 09:46:42 by lubrun      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,7 +29,7 @@ static int  check_comment_tag(char *str)
     return (str - tmp);
 }
 
-static int  check_prog_comment(char *str, char **name, t_option opt)
+static int  check_comment(char *str, char **name)
 {
     int     index;
     int     tmp;
@@ -54,22 +54,25 @@ static int  check_prog_comment(char *str, char **name, t_option opt)
     return (1);
 }
 
-int         get_prog_comment(t_file *file, char **str, t_option opt)
+int         get_comment(t_file *file, char **str)
 {
     char    *comment;
+	int		magic;
 
-    if (file->header->comment[0])
+    if (file->header.comment[0])
     {
         write(1, "Duplicated token .comment\n", 27);
         return (0);
     }
-    if (!check_prog_comment(*str, &comment, opt))
+    if (!check_comment(*str, &comment))
     {
         write(1, "Prog_comment bad format!\n", 26);
         return (0);
     }
-    ft_memcpy(file->header->comment, comment, ft_strlen(comment));
-    file->header->magic = COREWAR_EXEC_MAGIC;
+    ft_memcpy(file->header.comment, comment, ft_strlen(comment));
+    magic = COREWAR_EXEC_MAGIC;
+	swap_four((unsigned int *)&(magic)); 
+	file->header.magic = magic;
     ft_strdel(str);
     ft_strdel(&comment);
     return (1);

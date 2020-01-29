@@ -6,7 +6,7 @@
 /*   By: lubrun <lubrun@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/22 21:04:28 by lubrun       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/23 16:53:11 by lubrun      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/29 08:36:14 by lubrun      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -58,7 +58,7 @@ int         get_prog_name(t_file *file, char **str)
 {
     char    *name;
 
-    if (file->header->prog_name[0])
+    if (file->header.prog_name[0])
     {
         write(1, "Duplicated token .name\n", 24);
         return (0);
@@ -68,8 +68,8 @@ int         get_prog_name(t_file *file, char **str)
         write(1, "Prog_name bad format!\n", 23);
         return (0);
     }
-    ft_memcpy(file->header->prog_name, name, ft_strlen(name));
-    ft_strdel(str);
+    ft_memcpy(file->header.prog_name, name, ft_strlen(name));
+	ft_strdel(str);
     ft_strdel(&name);
     return (1);
 }

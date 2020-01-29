@@ -6,7 +6,7 @@
 /*   By: lubrun <lubrun@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/02 15:26:08 by lubrun       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/22 21:24:18 by lubrun      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/27 17:22:15 by lubrun      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -72,7 +72,7 @@ int					ft_isascii(int c);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);
-int					ft_str_isdigit(char *str);
+int					ft_str_isdigit(char *str, int len_max);
 int					ft_index(char const *s, int c);
 int					ft_sqrt(int nb);
 int					ft_pow(int n, int pow);

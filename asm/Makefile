@@ -6,7 +6,7 @@
 #    By: lubrun <lubrun@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/12/14 02:04:28 by lubrun       #+#   ##    ##    #+#        #
-#    Updated: 2020/01/23 05:50:02 by lubrun      ###    #+. /#+    ###.fr      #
+#    Updated: 2020/01/29 09:36:18 by lubrun      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -17,7 +17,12 @@ SRCS = 	srcs/main.c \
 		srcs/read.c \
 		srcs/read_name.c \
 		srcs/read_comment.c \
-		srcs/struct_utils.c
+		srcs/read_op.c \
+		srcs/struct_utils.c \
+		srcs/op.c \
+		srcs/op_utils.c \
+		srcs/byte_utils.c \
+		srcs/write.c 
 
 OBJ = $(SRCS:%.c=%.o)
 
