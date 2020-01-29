@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/23 18:45:42 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/28 16:28:33 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/29 14:54:54 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -50,6 +50,7 @@ typedef struct			s_player
 
 typedef struct			s_info
 {
+	int					(*fonction_check[16])(int tab[4]);
 	struct s_chariot	*chariot;
 	struct s_player		*play;
 	unsigned char		*map;
@@ -86,11 +87,24 @@ int						ft_build_chariot(t_info *info, int index,
 		t_player *play);
 int						ft_build_map(t_info *info);
 
+/*
+**	FT_CHECKS_ARGS
+*/
+
+int						ft_check_arg_op_aff(int tab[4]);
+int						ft_check_arg_op_sti(int tab[4]);
+int						ft_check_arg_op_ldi(int tab[4]);
+int						ft_check_arg_op_bits(int tab[4]);
+int						ft_check_arg_op_addsub(int tab[4]);
+int						ft_check_arg_op_st(int tab[4]);
+int						ft_check_arg_op_ld(int tab[4]);
+int						ft_check_arg_op_ljf(int tab[4]);
 
 /*
 **		UTILS
 */
 
+int						ft_opcode(int opc, int op, t_info *info);
 t_player				*ft_player_by_id(t_player *play, int id);
 unsigned char			ft_xtoc(char str[2]);
 int						ft_xtoi(char str[2]);
@@ -101,6 +115,7 @@ void					ft_addplayer(t_player **alst, t_player *new_player);
 t_chariot				*ft_new_chariot(int player, int pos, t_info *info);
 t_player				*ft_new_player(t_player *player);
 t_info					*ft_new_info(t_info *info);
+void					ft_add_fonction_to_info(t_info *info);
 
 /*
 **		ERROR

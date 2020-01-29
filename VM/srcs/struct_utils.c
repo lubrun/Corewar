@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/24 14:06:33 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/28 16:43:01 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/29 14:22:14 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,7 +21,6 @@ t_player		*ft_player_by_id(t_player *play, int id)
 		return (NULL);
 	else
 		return (play);
-
 }
 
 t_chariot		*ft_new_chariot(int player, int pos, t_info *info)
@@ -98,5 +97,6 @@ t_info			*ft_new_info(t_info *info)
 	info->line = NULL;
 	info->intline = NULL;
 	info->play = NULL;
+	ft_add_fonction_to_info(info);
 	return (info);
 }

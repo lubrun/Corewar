@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/27 09:36:21 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/28 15:57:49 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/29 14:11:24 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -89,7 +89,7 @@ char				*ft_itox(int num, char str[2])
 	return (str);
 }
 
-char		*ft_ctox(unsigned char c, char str[2])
+char				*ft_ctox(unsigned char c, char str[2])
 {
 	int	tmp;
 

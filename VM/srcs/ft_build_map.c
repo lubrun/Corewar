@@ -6,14 +6,15 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/28 14:06:07 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/28 16:43:08 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/29 14:11:54 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/coreware.h"
 
-int			ft_add_player_to_map(int index, t_info *info, int id, unsigned char *map)
+int			ft_add_player_to_map(int index, t_info *info, int id,
+		unsigned char *map)
 {
 	t_player	*play;
 	int			index_play;
@@ -24,11 +25,11 @@ int			ft_add_player_to_map(int index, t_info *info, int id, unsigned char *map)
 	while (index_play < play->code_size)
 	{
 		map[index + index_play] = play->code[index_play];
-//		printf("C[%d]I[%d]\n", map[index + index_play], play->code[index_play]);
+//		printf("C[%d]I[%d]\n", map[index + index_play],
+//		play->code[index_play]);
 		index_play++;
 	}
 	return (play->code_size);
-
 }
 
 int			ft_build_map(t_info *info)
