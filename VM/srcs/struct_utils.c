@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/24 14:06:33 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/29 14:22:14 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/30 17:22:40 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -37,17 +37,17 @@ t_chariot		*ft_new_chariot(int player, int pos, t_info *info)
 	new->player = player;
 	new->pos = pos;
 	new->carry = 0;
-	new->op = 0;
-	new->opc = 0;
+	new->cast = 0;
+	new->cycle_live = 0;
 	new->jump = 0;
-	new->r[index++] = 1;
+	new->r[index++] = player;
 	while (index++ < REG_NUMBER)
 		new->r[index] = 0;
 	if (info->chariot)
 		new->start = info->chariot;
 	else
 		new->start = new;
-	return (new);
+	return (ft_new_chariot2(new));
 }
 
 void			ft_addplayer(t_player **alst, t_player *new_player)
@@ -72,6 +72,7 @@ t_player		*ft_new_player(t_player *player)
 	player->name = NULL;
 	player->comment = NULL;
 	player->next = NULL;
+	player->cycle_live = 0;
 	player->code_size = 0;
 	player->mapped = 0;
 	return (player);
@@ -91,8 +92,10 @@ t_info			*ft_new_info(t_info *info)
 	while (index < MAX_PLAYERS)
 		info->preset_player[index++] = 0;
 	info->verbose = 0;
-	info->dump_cycle = 0;
+	info->dump_cycle = -1;
 	info->dump_size = 0;
+	info->cycle_to_die = CYCLE_TO_DIE;
+	info->delta = CYCLE_DELTA;
 	info->chariot = NULL;
 	info->line = NULL;
 	info->intline = NULL;

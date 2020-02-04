@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/28 14:06:07 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/29 14:11:54 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/29 18:57:03 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -57,5 +57,6 @@ int			ft_build_map(t_info *info)
 	info->map = map;
 //	ft_display_map(info);
 	ft_display_chariot(info);
+	ft_parcour_map(info, info->chariot);
 	return (1);
 }

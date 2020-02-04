@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/23 18:45:42 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/29 14:54:54 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/03 17:04:07 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,11 +27,16 @@
 typedef struct			s_chariot
 {
 	int					*r;
+	int					cycle_live;
+	int					cast;
 	int					carry;
 	int					player;
 	char				op;
 	char				opc;
 	int					jump;
+	int					type_arg[4];
+	int					tab_jump[4];
+	int					arg[3];
 	int					pos;
 	struct s_chariot	*next;
 	struct s_chariot	*start;
@@ -43,6 +48,7 @@ typedef struct			s_player
 	char				*name;
 	char				*comment;
 	int					code_size;
+	int					cycle_live;
 	int					mapped;
 	unsigned char		*code;
 	struct s_player		*next;
@@ -50,7 +56,7 @@ typedef struct			s_player
 
 typedef struct			s_info
 {
-	int					(*fonction_check[16])(int tab[4]);
+	int					(*fonction_check[16])(int tab[4], t_chariot *pc);
 	struct s_chariot	*chariot;
 	struct s_player		*play;
 	unsigned char		*map;
@@ -59,6 +65,8 @@ typedef struct			s_info
 	int					*intline;
 	int					nb_players;
 	int					verbose;
+	int					cycle_to_die;
+	int					delta;
 	int					dump_size;
 	int					dump_cycle;
 }						t_info;
@@ -88,23 +96,48 @@ int						ft_build_chariot(t_info *info, int index,
 int						ft_build_map(t_info *info);
 
 /*
-**	FT_CHECKS_ARGS
+**	FT_CHECKS_ARGS_OPC
 */
 
-int						ft_check_arg_op_aff(int tab[4]);
-int						ft_check_arg_op_sti(int tab[4]);
-int						ft_check_arg_op_ldi(int tab[4]);
-int						ft_check_arg_op_bits(int tab[4]);
-int						ft_check_arg_op_addsub(int tab[4]);
-int						ft_check_arg_op_st(int tab[4]);
-int						ft_check_arg_op_ld(int tab[4]);
-int						ft_check_arg_op_ljf(int tab[4]);
+int						ft_size_to_read(int tab[4], int direct, t_chariot *pc);
+int						ft_check_arg_op_aff(int tab[4], t_chariot *pc);
+int						ft_check_arg_op_sti(int tab[4], t_chariot *pc);
+int						ft_check_arg_op_ldi(int tab[4], t_chariot *pc);
+int						ft_check_arg_op_bits(int tab[4], t_chariot *pc);
+int						ft_check_arg_op_addsub(int tab[4], t_chariot *pc);
+int						ft_check_arg_op_st(int tab[4], t_chariot *pc);
+int						ft_check_arg_op_ld(int tab[4], t_chariot *pc);
+int						ft_check_arg_op_jf(int tab[4], t_chariot *pc);
+int						ft_check_arg_op_live(int tab[4], t_chariot *pc);
+
+/*
+**	ALGO
+*/
+
+int						ft_read_arguments_opc(t_info *info, t_chariot *pc);
+int						ft_parcour_map(t_info *info, t_chariot *pc);
+int						ft_opcode(int opc, int op, t_info *info,
+		t_chariot *pc);
+
+/*
+**	FONCTIONS VM
+*/
+
+
+void					ft_sti(t_info *info, t_chariot *pc);
+void					ft_zjmp(t_info *info, t_chariot *pc);
+void					ft_xor(t_info *info, t_chariot *pc);
+void					ft_or(t_info *info, t_chariot *pc);
+void					ft_and(t_info *info, t_chariot *pc);
+void					ft_live(t_info *info, t_chariot *pc);
 
 /*
 **		UTILS
 */
 
-int						ft_opcode(int opc, int op, t_info *info);
+int						ft_indirect_arg(t_info *info, t_chariot *pc, int arg);
+void					ft_write_on_map(t_info *info, int val, int start,
+		int size);
 t_player				*ft_player_by_id(t_player *play, int id);
 unsigned char			ft_xtoc(char str[2]);
 int						ft_xtoi(char str[2]);
@@ -113,6 +146,7 @@ char					*ft_ctox(unsigned char c, char str[2]);
 void					ft_addchariot(t_chariot **alst, t_chariot *new_chariot);
 void					ft_addplayer(t_player **alst, t_player *new_player);
 t_chariot				*ft_new_chariot(int player, int pos, t_info *info);
+t_chariot				*ft_new_chariot2(t_chariot *pc);
 t_player				*ft_new_player(t_player *player);
 t_info					*ft_new_info(t_info *info);
 void					ft_add_fonction_to_info(t_info *info);

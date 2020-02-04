@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/26 08:32:34 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/27 14:34:32 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/29 19:41:43 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,7 +39,7 @@ int		ft_arg_dump(char **av, t_info *info, int index)
 	char	*str;
 	char	*number;
 
-	if (info->dump_cycle != 0)
+	if (info->dump_cycle != -1)
 		return (ft_error(0, "JUST ONE DUMP PLS\n"));
 	str = av[index];
 	if (!av[index + 1])

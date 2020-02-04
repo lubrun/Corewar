@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/29 13:45:04 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/29 14:36:59 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/29 16:52:36 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,7 @@
 **	CHECK FOR AND 6 OR 7 XOR 8
 */
 
-int		ft_check_arg_op_bits(int tab[4])
+int		ft_check_arg_op_bits(int tab[4], t_chariot *pc)
 {
 	int index;
 
@@ -31,14 +31,14 @@ int		ft_check_arg_op_bits(int tab[4])
 	if (tab[2] != 1)
 		return (ft_error(0, "BAD ARG FOR OP\n"));
 	printf("OK 6 7 8\n");
-	return (1);
+	return (ft_size_to_read(tab, 4, pc));
 }
 
 /*
 **	CHECK FOR ADD 4 SUB 5
 */
 
-int		ft_check_arg_op_addsub(int tab[4])
+int		ft_check_arg_op_addsub(int tab[4], t_chariot *pc)
 {
 	int index;
 
@@ -50,14 +50,14 @@ int		ft_check_arg_op_addsub(int tab[4])
 		if (tab[index] != 1)
 			return (ft_error(0, "BAD ARG FOR OP\n"));
 	printf("OK 4 5\n");
-	return (1);
+	return (ft_size_to_read(tab, 0, pc));
 }
 
 /*
 **	CHECK FOR ST 3
 */
 
-int		ft_check_arg_op_st(int tab[4])
+int		ft_check_arg_op_st(int tab[4], t_chariot *pc)
 {
 	int index;
 
@@ -69,14 +69,14 @@ int		ft_check_arg_op_st(int tab[4])
 		if (tab[index] != 0)
 			return (ft_error(0, "TROP DE ARG POUR OP\n"));
 	printf("OK 3\n");
-	return (1);
+	return (ft_size_to_read(tab, 0, pc));
 }
 
 /*
 **	CHECK FOR LD 2 LLD 13
 */
 
-int		ft_check_arg_op_ld(int tab[4])
+int		ft_check_arg_op_ld(int tab[4], t_chariot *pc)
 {
 	int index;
 
@@ -88,24 +88,24 @@ int		ft_check_arg_op_ld(int tab[4])
 		if (tab[index] != 0)
 			return (ft_error(0, "TROP DE ARG POUR OP\n"));
 	printf("OK 2 13\n");
-	return (1);
+	return (ft_size_to_read(tab, 4, pc));
 }
 
 /*
-**	CHECK FOR LIVE 1 ZJUMP 9 FORK 12 LFORK 15
+**	CHECK FOR ZJUMP 9 FORK 12 LFORK 15
 */
 
-int		ft_check_arg_op_ljf(int tab[4])
+int		ft_check_arg_op_jf(int tab[4], t_chariot *pc)
 {
 	int index;
 
-	printf("PASS LIVE JUMP FORKS\n");
+	printf("PASS JUMP FORKS\n");
 	index = 0;
 	if (tab[0] != 2)
 		return (ft_error(0, "BAD ARG FOR OP\n"));
 	while (++index < 4)
 		if (tab[index] != 0)
 			return (ft_error(0, "TROP DE ARG POUR OP\n"));
-	printf("OK 1 9 12 15\n");
-	return (1);
+	printf("OK 9 12 15\n");
+	return (ft_size_to_read(tab, 4, pc));
 }
