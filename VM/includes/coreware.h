@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/23 18:45:42 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/03 17:04:07 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/04 18:23:16 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,7 @@
 
 # define COREWARE_H
 
-# include "../../includes/op.h"
+# include "op.h"
 # include <fcntl.h>
 # include <stdio.h>
 
@@ -56,12 +56,15 @@ typedef struct			s_player
 
 typedef struct			s_info
 {
+	void				(*fonction_op[16])(struct s_info *info, t_chariot *pc);
 	int					(*fonction_check[16])(int tab[4], t_chariot *pc);
 	struct s_chariot	*chariot;
 	struct s_player		*play;
 	unsigned char		*map;
 	int					*preset_player;
+	int					tab_cast[16];
 	char				*line;
+	int					aff;
 	int					*intline;
 	int					nb_players;
 	int					verbose;
@@ -70,7 +73,6 @@ typedef struct			s_info
 	int					dump_size;
 	int					dump_cycle;
 }						t_info;
-
 
 /*
 **		PARSING ARGUMENTS
@@ -123,18 +125,29 @@ int						ft_opcode(int opc, int op, t_info *info,
 **	FONCTIONS VM
 */
 
-
+void					ft_aff(t_info *info, t_chariot *pc);
+void					ft_lfork(t_info *info, t_chariot *pc);
+void					ft_lldi(t_info *info, t_chariot *pc);
+void					ft_lld(t_info *info, t_chariot *pc);
+void					ft_fork(t_info *info, t_chariot *pc);
 void					ft_sti(t_info *info, t_chariot *pc);
+void					ft_ldi(t_info *info, t_chariot *pc);
 void					ft_zjmp(t_info *info, t_chariot *pc);
 void					ft_xor(t_info *info, t_chariot *pc);
 void					ft_or(t_info *info, t_chariot *pc);
 void					ft_and(t_info *info, t_chariot *pc);
+void					ft_sub(t_info *info, t_chariot *pc);
+void					ft_add(t_info *info, t_chariot *pc);
+void					ft_st(t_info *info, t_chariot *pc);
+void					ft_ld(t_info *info, t_chariot *pc);
 void					ft_live(t_info *info, t_chariot *pc);
 
 /*
 **		UTILS
 */
 
+t_chariot				*ft_pc_cpy(t_chariot *dest, t_chariot *source);
+int						ft_read_at(t_info *info, int index);
 int						ft_indirect_arg(t_info *info, t_chariot *pc, int arg);
 void					ft_write_on_map(t_info *info, int val, int start,
 		int size);
@@ -149,7 +162,9 @@ t_chariot				*ft_new_chariot(int player, int pos, t_info *info);
 t_chariot				*ft_new_chariot2(t_chariot *pc);
 t_player				*ft_new_player(t_player *player);
 t_info					*ft_new_info(t_info *info);
+void					ft_add_vm_fonction(t_info *info);
 void					ft_add_fonction_to_info(t_info *info);
+void					ft_add_cast(t_info *info);
 
 /*
 **		ERROR
@@ -165,6 +180,5 @@ char					*ft_chars_error(char *ret, char str[2]);
 void					ft_display_chariot(t_info *info);
 void					ft_display_map(t_info *info);
 void					ft_display_play(t_player *play);
-
 
 #endif

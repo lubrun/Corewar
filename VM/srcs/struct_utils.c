@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/24 14:06:33 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/30 17:22:40 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/04 16:58:58 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -94,6 +94,7 @@ t_info			*ft_new_info(t_info *info)
 	info->verbose = 0;
 	info->dump_cycle = -1;
 	info->dump_size = 0;
+	info->aff = 0;
 	info->cycle_to_die = CYCLE_TO_DIE;
 	info->delta = CYCLE_DELTA;
 	info->chariot = NULL;

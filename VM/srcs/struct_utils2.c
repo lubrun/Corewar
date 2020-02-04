@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/28 16:25:57 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/03 17:00:33 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/04 17:18:23 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -70,6 +70,8 @@ void		ft_add_fonction_to_info(t_info *info)
 	info->fonction_check[13] = ft_check_arg_op_ldi;
 	info->fonction_check[14] = ft_check_arg_op_jf;
 	info->fonction_check[15] = ft_check_arg_op_aff;
+	ft_add_vm_fonction(info);
+	ft_add_cast(info);
 }
 
 //////////////// VIRER LES FT_ERROR ET PRINTF LA ET DANS ft_check_args_op

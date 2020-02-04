@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/29 13:56:57 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/03 16:53:58 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/04 16:00:13 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,7 +39,6 @@ int		ft_size_to_read(int tab[4], int direct, t_chariot *pc)
 			octal += tab[index];
 		}
 	}
-	pc->jump = octal;
 	return (octal);
 }
 

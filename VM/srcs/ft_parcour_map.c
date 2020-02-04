@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/29 18:54:54 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/03 16:55:35 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/04 18:23:12 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,13 +28,13 @@ int		ft_tempo_cast(t_info *info, t_chariot *pc, int op)
 	}
 	printf("PC->POS ENTER OP [%d][%d]\n", pc->op, pc->pos);
 	////// EST-CE QU'ON CHECK SI L'OP A GECHAN ?
-	if (op != 1 && op!= 9 && op != 12 && op != 15)
+	if (op != 1 && op != 9 && op != 12 && op != 15)
 	{
 		pc->opc = info->map[pc->pos];
 		if (!ft_opcode(info->map[pc->pos], op, info, pc))
 		{
 			ft_new_chariot2(pc);
-	//		pc->jump = 0;
+			//pc->jump = 0;
 			return (pc->pos + 1); // ou return jump ?
 		}
 		pc->pos = (pc->pos + 1) % MEM_SIZE;
@@ -44,8 +44,8 @@ int		ft_tempo_cast(t_info *info, t_chariot *pc, int op)
 	else
 		pc->jump = 2;
 	ft_read_arguments_opc(info, pc);
-
-	printf("PC->POS OUT OP[%d][%d]+JUMP[%d]\n\n", pc->op, pc->pos, pc->pos + pc->jump);
+	printf("PC->POS OUT OP[%d][%d]+JUMP[%d]\n\n",
+			pc->op, pc->pos, pc->pos + pc->jump);
 	ft_new_chariot2(pc);
 	return (pc->pos + pc->jump);
 }
@@ -69,8 +69,8 @@ int		ft_parcour_map(t_info *info, t_chariot *pc)
 				pc->pos = (ft_tempo_cast(info, pc, pc->op) % MEM_SIZE);
 			else if (info->map[pc->pos] >= 0x01 && info->map[pc->pos] <= 0x10)
 			{
-				pc->cast = 100;//fonctions.
 				pc->op = info->map[pc->pos];
+				pc->cast = info->tab_cast[pc->op - 1];
 				pc->pos = (pc->pos + 1) % MEM_SIZE;
 			}
 			else

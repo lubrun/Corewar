@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/30 19:14:08 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/03 17:03:48 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/04 16:35:17 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,7 +14,28 @@
 #include "../includes/coreware.h"
 
 /*
-** Zjump renvoi le pc->pos a une position, id 9
+**	Ecrit dans le r[arg2] la valeur a l'adresse r[arg0] + r[arg1] OP 10
+*/
+
+void		ft_ldi(t_info *info, t_chariot *pc)
+{
+	int verbose;
+	int res;
+	int moove;
+
+	verbose = info->verbose;
+	if (pc->type_arg[0] == 1)
+		pc->arg[0] = pc->r[pc->arg[0] - 1];
+	if (pc->type_arg[1] == 1)
+		pc->arg[1] = pc->r[pc->arg[1] - 1];
+	moove = (pc->arg[0] + pc->arg[1]) % IDX_MOD;
+	moove = (pc->pos - 2 + moove) % MEM_SIZE;
+	res = ft_read_at(info, moove);
+	pc->r[pc->arg[2] - 1] = res;
+}
+
+/*
+** Zjump renvoi le pc->pos a une position, OP 9
 */
 
 //	?? doit reverse les bits tout le temps ?
@@ -23,10 +44,9 @@ void	ft_zjmp(t_info *info, t_chariot *pc)
 	int	max;
 	int	res;
 
-	max = ft_pow(16 , DIR_SIZE);
+	max = ft_pow(16, DIR_SIZE);
 	printf("JUMP arg[%d]map[%d]\t", pc->arg[0], info->map[pc->pos]);
 	res = (pc->arg[0] - max) % IDX_MOD;
-
 	if (pc->carry == 1)
 	{
 		pc->jump = 0;
@@ -43,6 +63,10 @@ void	ft_xor(t_info *info, t_chariot *pc)
 {
 	int	norme;
 
+	if (pc->type_arg[0] == 1)
+		pc->arg[0] = pc->r[pc->arg[0] - 1];
+	if (pc->type_arg[1] == 1)
+		pc->arg[1] = pc->r[pc->arg[1] - 1];
 	norme = info->verbose;
 	if ((pc->r[pc->arg[2]] = pc->arg[0] ^ pc->arg[1]) == 0)
 		pc->carry = 1;
@@ -58,6 +82,10 @@ void	ft_or(t_info *info, t_chariot *pc)
 {
 	int	norme;
 
+	if (pc->type_arg[0] == 1)
+		pc->arg[0] = pc->r[pc->arg[0] - 1];
+	if (pc->type_arg[1] == 1)
+		pc->arg[1] = pc->r[pc->arg[1] - 1];
 	norme = info->verbose;
 	if ((pc->r[pc->arg[2]] = pc->arg[0] | pc->arg[1]) == 0)
 		pc->carry = 1;
@@ -73,6 +101,10 @@ void	ft_and(t_info *info, t_chariot *pc)
 {
 	int	norme;
 
+	if (pc->type_arg[0] == 1)
+		pc->arg[0] = pc->r[pc->arg[0] - 1];
+	if (pc->type_arg[1] == 1)
+		pc->arg[1] = pc->r[pc->arg[1] - 1];
 	norme = info->verbose;
 	if ((pc->r[pc->arg[2]] = pc->arg[0] & pc->arg[1]) == 0)
 		pc->carry = 1;

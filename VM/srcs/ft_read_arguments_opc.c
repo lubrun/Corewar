@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/29 18:41:56 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/03 17:01:27 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/04 17:24:43 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,10 +24,9 @@ int			ft_check_register(t_chariot *pc)
 	index = 0;
 	while (index < 3)
 	{
-		if (pc->type_arg[index] == 1 && (pc->arg[index] < 0 || pc->arg[index] > 16))
+		if (pc->type_arg[index] == 1 && (pc->arg[index] < 1 ||
+					pc->arg[index] > 16))
 			return (0);
-		else if (pc->type_arg[index] == 1)
-			pc->arg[index] = pc->r[pc->arg[index] - 1];
 		index++;
 	}
 	return (1);
@@ -64,36 +63,22 @@ int			ft_read_arguments_opc(t_info *info, t_chariot *pc)
 
 	index = pc->pos;
 	if (!pc->opc)
-	{
-		if (pc->op == 1)
-			printf("JUMP [%d]PC_>JUMP[%d]\n", pc->pos, pc->jump);
 		pc->arg[0] = ft_convert(info, &index, pc->jump);
-	}
 	else 
 	{
 		if (pc->type_arg[0] != 0)
 			pc->arg[0] = ft_convert(info, &index, pc->type_arg[0]);
-		if (pc->opc >> 6 == 3 && pc->op != 3 && pc->op != 11)
+		if (pc->opc >> 6 == 3)
 			pc->arg[0] = ft_indirect_arg(info, pc, pc->arg[0]);
 		if (pc->type_arg[1] != 0)
 			pc->arg[1] = ft_convert(info, &index, pc->type_arg[1]);
-		if ((pc->opc >> 4) % 4 == 3 && pc->op != 3 && pc->op != 11)
+		if ((pc->opc >> 4) % 4 == 3)
 			pc->arg[1] = ft_indirect_arg(info, pc, pc->arg[1]);
 		if (pc->type_arg[2] != 0)
 			pc->arg[2] = ft_convert(info, &index, pc->type_arg[2]);
 	}
 	if (ft_check_register(pc))
-	{////////////// quand toutes les fonctions seront tester, remplacer par un pointeur sur f
-		if (pc->op == 1)
-			ft_live(info, pc);
-		if (pc->op == 11)
-			ft_sti(info, pc);
-		if (pc->op == 6)
-			ft_and(info, pc);
-		if (pc->op == 9)
-			ft_zjmp(info, pc);
-	}
-
+		info->fonction_op[pc->op - 1](info, pc);
 	printf("\t------ARGS [%d][%d][%d]\n", pc->arg[0], pc->arg[1], pc->arg[2]);
 	return (1);
 }
