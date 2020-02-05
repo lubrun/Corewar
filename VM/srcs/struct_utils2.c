@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/28 16:25:57 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/05 18:01:12 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/05 18:04:22 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,6 +42,8 @@ t_chariot	*ft_new_chariot2(t_chariot *pc)
 	{
 		pc->tab_jump[index] = 0;
 		pc->type_arg[index] = 0;
+		if (index < 3)
+			pc->arg[index] = 0;
 	}
 	pc->op = 0;
 	pc->opc = 0;

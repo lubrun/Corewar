@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/24 14:06:33 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/05 15:29:36 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/05 18:16:28 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -85,9 +85,9 @@ t_info			*ft_new_info(t_info *info)
 	index = 0;
 	if (!(info = malloc(sizeof(t_info))))
 		return (NULL);
-	if (!(info->preset_player = malloc(sizeof(char) * (MEM_SIZE + 1))))
+	if (!(info->preset_player = malloc(sizeof(char) * (MAX_PLAYERS + 1))))
 		return (NULL);
-	if (!(info->map = malloc(sizeof(int) * (MAX_PLAYERS + 1))))
+	if (!(info->map = malloc(sizeof(unsigned char) * (MEM_SIZE + 1))))
 		return (NULL);
 	while (index < MAX_PLAYERS)
 		info->preset_player[index++] = 0;

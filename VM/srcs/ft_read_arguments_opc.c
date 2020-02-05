@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/29 18:41:56 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/05 18:01:09 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/05 18:59:49 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,18 +39,19 @@ int			ft_check_register(t_chariot *pc)
 int			ft_convert(t_info *info, int *index, int size)
 {
 	int	res;
-	int	max;
 	int	index_modulo;
 
+	printf("");	// si j'enleve le printf, je n'ai plus les meme valeure ...
 	res = 0;
-	max = (*index) + size;
-	while ((*index) < max)
+	while (size > 0)
 	{
 		index_modulo = (*index) % MEM_SIZE;
-		res += (ft_pow(16, ((size * 2) - 2))) * info->map[index_modulo];
+//		printf("\tJUMP arg info->map[%d|%d][%d]\n", *index, index_modulo, info->map[index_modulo]);
+		res = res + ((ft_pow(16, ((size * 2) - 2))) * (info->map[index_modulo]));
 		size--;
-		(*index) = (*index + 1);
+		(*index)++;
 	}
+	(*index) = (*index) % MEM_SIZE;
 	return (res);
 }
 
@@ -66,9 +67,9 @@ int			ft_read_arguments_opc(t_info *info, t_chariot *pc)
 	index = pc->pos;
 	if (!pc->opc)
 	{
-		printf("JUMP arg 0 == [%d]\n", pc->arg[0]);
+//		printf("JUMP arg 0 == [%d] info->map[pc->pos] =[%d], pc->jump {%d]\n", pc->arg[0], info->map[pc->pos], pc->jump);
 		pc->arg[0] = ft_convert(info, &index, pc->jump);
-		printf("JUMP arg 0 == [%d]\n", pc->arg[0]);
+//		printf("JUMP arg 0 == [%d]\n", pc->arg[0]);
 	}
 	else 
 	{
@@ -85,6 +86,6 @@ int			ft_read_arguments_opc(t_info *info, t_chariot *pc)
 	}
 	if (ft_check_register(pc))
 		info->fonction_op[pc->op - 1](info, pc);
-	printf("\t------ARGS [%d][%d][%d]\n", pc->arg[0], pc->arg[1], pc->arg[2]);
+//	printf("\t------ARGS [%d][%d][%d]\n", pc->arg[0], pc->arg[1], pc->arg[2]);
 	return (1);
 }
