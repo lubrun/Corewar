@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/29 18:41:56 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/04 17:24:43 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/05 18:01:09 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -40,14 +40,16 @@ int			ft_convert(t_info *info, int *index, int size)
 {
 	int	res;
 	int	max;
+	int	index_modulo;
 
 	res = 0;
 	max = (*index) + size;
 	while ((*index) < max)
 	{
-		res += (ft_pow(16, ((size * 2) - 2))) * info->map[*index];
+		index_modulo = (*index) % MEM_SIZE;
+		res += (ft_pow(16, ((size * 2) - 2))) * info->map[index_modulo];
 		size--;
-		(*index) = (*index + 1) % MEM_SIZE;
+		(*index) = (*index + 1);
 	}
 	return (res);
 }
@@ -63,7 +65,11 @@ int			ft_read_arguments_opc(t_info *info, t_chariot *pc)
 
 	index = pc->pos;
 	if (!pc->opc)
+	{
+		printf("JUMP arg 0 == [%d]\n", pc->arg[0]);
 		pc->arg[0] = ft_convert(info, &index, pc->jump);
+		printf("JUMP arg 0 == [%d]\n", pc->arg[0]);
+	}
 	else 
 	{
 		if (pc->type_arg[0] != 0)

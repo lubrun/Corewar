@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/30 19:14:08 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/04 16:35:17 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/05 17:53:45 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -45,7 +45,7 @@ void	ft_zjmp(t_info *info, t_chariot *pc)
 	int	res;
 
 	max = ft_pow(16, DIR_SIZE);
-	printf("JUMP arg[%d]map[%d]\t", pc->arg[0], info->map[pc->pos]);
+	printf("JUMP arg[%d]map[%d]carry[%d]\n", pc->arg[0], info->map[pc->pos], pc->carry);
 	res = (pc->arg[0] - max) % IDX_MOD;
 	if (pc->carry == 1)
 	{
@@ -110,4 +110,5 @@ void	ft_and(t_info *info, t_chariot *pc)
 		pc->carry = 1;
 	else
 		pc->carry = 0;
+	printf("AND R == [%d] carry [%d]\n", pc->r[pc->arg[2]], pc->carry);
 }

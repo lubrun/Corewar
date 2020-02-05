@@ -6,12 +6,56 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/29 18:54:54 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/04 18:23:12 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/05 17:43:16 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/coreware.h"
+
+int		ft_check_alive(t_info *info, t_player *play)
+{
+//	printf("CHECK ALIVE\n");
+	if (play->next)
+		ft_check_alive(info, play->next);
+	if (info->nb_players == 1)
+		return (0);
+	if (play->cycle_live == 0)
+	{
+		info->nb_players -= 1;
+		ft_del_chariot(info, play->id);
+	}
+	else
+		play->cycle_live = 0;
+	return (1);
+}
+
+int		ft_check_cycle_to_die(t_info *info)
+{
+	printf("CHECK CYCLE TO DIE[%d]\n", info->cycle_to_die);
+	if (info->cycle_to_die > 0)
+	{
+		info->cycle_to_die--;
+		return (1);
+	}
+	if (ft_check_alive(info, info->play) == 0)
+		return (0);
+	if (info->live_total >= NBR_LIVE || info->max_check >= MAX_CHECKS)
+	{
+		printf("1CTD live_total[%d]\n", info->live_total);
+		info->delta += CYCLE_DELTA;
+		info->cycle_to_die = CYCLE_TO_DIE - info->delta;
+		info->max_check = 0;
+	}
+	else
+	{
+		printf("2CTD max_check[%d] live[%d]\n", info->max_check, info->live_total);
+		info->cycle_to_die = CYCLE_TO_DIE - info->delta;
+		info->max_check++;
+	}
+	info->live_total = 0;
+	return (1);
+}
 
 /*
 ** TANT QUE CAST-- !=0
@@ -26,7 +70,7 @@ int		ft_tempo_cast(t_info *info, t_chariot *pc, int op)
 		--pc->cast;
 		return (pc->pos);
 	}
-	printf("PC->POS ENTER OP [%d][%d]\n", pc->op, pc->pos);
+	printf("PC[%d]->POS ENTER OP [%d][%d]\n", pc->player,  pc->op, pc->pos);
 	////// EST-CE QU'ON CHECK SI L'OP A GECHAN ?
 	if (op != 1 && op != 9 && op != 12 && op != 15)
 	{
@@ -44,7 +88,7 @@ int		ft_tempo_cast(t_info *info, t_chariot *pc, int op)
 	else
 		pc->jump = 2;
 	ft_read_arguments_opc(info, pc);
-	printf("PC->POS OUT OP[%d][%d]+JUMP[%d]\n\n",
+	printf("PC[%d]->POS OUT OP[%d][%d]+JUMP[%d]\n\n", pc->player,
 			pc->op, pc->pos, pc->pos + pc->jump);
 	ft_new_chariot2(pc);
 	return (pc->pos + pc->jump);
@@ -71,17 +115,18 @@ int		ft_parcour_map(t_info *info, t_chariot *pc)
 			{
 				pc->op = info->map[pc->pos];
 				pc->cast = info->tab_cast[pc->op - 1];
+				printf("CAST == [%d] OP[%d]\n", pc->cast, pc->op);
 				pc->pos = (pc->pos + 1) % MEM_SIZE;
 			}
 			else
 				pc->pos = (pc->pos + 1) % MEM_SIZE;
-			ft_player_by_id(info->play, pc->player)->cycle_live++;
-			// les 2 fonctions dessous sont soit la soit dans l'autre while.
-			//fonction decremente cycle to die et le reset en soustrayant cycle delta
-			//fonction check si en vie
 			pc = pc->next;
 		}
+//		if (ft_check_cycle_to_die(info) == 0)
+//			return (0);
+		//fonction decremente cycle to die et le reset en soustrayant cycle delta
+			//fonction check si en vie
 	}
-//		AFFICHE LA MAP DE DUMP SIZE
+//	ft_display_map(info);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/26 09:38:21 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/29 14:12:09 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/05 14:48:05 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -55,14 +55,14 @@ void	ft_print_octet(unsigned char *str, int size)
 	}
 }
 
-void	ft_print_map(unsigned char *str, int size)
+void	ft_print_map(t_info *info, unsigned char *str, int size)
 {
 	int				index;
 	unsigned char	c;
 	unsigned char	tmp;
 
-	index = 0;
-	while (index < size)
+	index = -1;
+	while (++index < size)
 	{
 		c = str[index];
 		if (c >= 16)
@@ -80,15 +80,14 @@ void	ft_print_map(unsigned char *str, int size)
 			printf("%c ", (c + 87));
 		else
 			printf("%c ", (c + 48));
-		if ((index + 1) % 64 == 0 && index > 0)
+		if ((index + 1) % info->dump_size == 0 && index > 0)
 			printf("\n");
-		index++;
 	}
 }
 
 void	ft_display_map(t_info *info)
 {
-	ft_print_map(info->map, MEM_SIZE);
+	ft_print_map(info, info->map, MEM_SIZE);
 }
 
 void	ft_display_play(t_player *play)
