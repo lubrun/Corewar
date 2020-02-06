@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/29 18:41:56 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/05 18:59:49 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 11:20:30 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -40,15 +40,21 @@ int			ft_convert(t_info *info, int *index, int size)
 {
 	int	res;
 	int	index_modulo;
+	int	pow;
 
-	printf("");	// si j'enleve le printf, je n'ai plus les meme valeure ...
 	res = 0;
+	pow = 1;
+	if (size == 2)
+		pow = 256;
+	if (size == 4)
+		pow = 65536;
 	while (size > 0)
 	{
 		index_modulo = (*index) % MEM_SIZE;
 //		printf("\tJUMP arg info->map[%d|%d][%d]\n", *index, index_modulo, info->map[index_modulo]);
-		res = res + ((ft_pow(16, ((size * 2) - 2))) * (info->map[index_modulo]));
+			res += pow * (info->map[index_modulo]);
 		size--;
+		pow = pow / 256;
 		(*index)++;
 	}
 	(*index) = (*index) % MEM_SIZE;
@@ -68,7 +74,12 @@ int			ft_read_arguments_opc(t_info *info, t_chariot *pc)
 	if (!pc->opc)
 	{
 //		printf("JUMP arg 0 == [%d] info->map[pc->pos] =[%d], pc->jump {%d]\n", pc->arg[0], info->map[pc->pos], pc->jump);
-		pc->arg[0] = ft_convert(info, &index, pc->jump);
+//		if (pc->op == 9)
+//		{
+//			pc->arg[0] = ft_convert_for_jump(info, index);
+//		}
+//		else
+			pc->arg[0] = ft_convert(info, &index, pc->jump);
 //		printf("JUMP arg 0 == [%d]\n", pc->arg[0]);
 	}
 	else 
