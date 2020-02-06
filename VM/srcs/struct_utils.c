@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/24 14:06:33 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/05 18:16:28 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 12:12:23 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -91,6 +91,7 @@ t_info			*ft_new_info(t_info *info)
 		return (NULL);
 	while (index < MAX_PLAYERS)
 		info->preset_player[index++] = 0;
+	info->cycle_total = 0;
 	info->verbose = 0;
 	info->dump_cycle = -1;
 	info->dump_size = 0;

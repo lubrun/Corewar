@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/30 19:14:08 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 11:36:45 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 13:01:41 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -110,5 +110,5 @@ void	ft_and(t_info *info, t_chariot *pc)
 		pc->carry = 1;
 	else
 		pc->carry = 0;
-	printf("AND R == [%d] carry [%d]\n", pc->r[pc->arg[2]], pc->carry);
+	printf("\tAND cycle [%d]R == [%d] carry [%d]\n", info->cycle_total, pc->r[pc->arg[2]], pc->carry);
 }

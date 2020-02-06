@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/23 18:45:42 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/05 16:28:43 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 12:46:18 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -68,6 +68,7 @@ typedef struct			s_info
 	int					*intline;
 	int					nb_players;
 	int					verbose;
+	int					cycle_total;
 	int					cycle_to_die;
 	int					max_check;
 	int					live_total;
@@ -148,6 +149,7 @@ void					ft_live(t_info *info, t_chariot *pc);
 **		UTILS
 */
 
+void					ft_tri_player(t_info *info);
 void					ft_del_chariot(t_info *info, int id_player);
 t_chariot				*ft_pc_cpy(t_chariot *dest, t_chariot *source);
 int						ft_read_at(t_info *info, int index);

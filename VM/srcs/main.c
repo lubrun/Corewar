@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/23 18:45:05 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/04 15:07:13 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 12:33:09 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -103,6 +103,7 @@ int			main(int ac, char **av)
 	if (!ft_arguments(ac, av, info))
 		return (0);
 	ft_number_player(info);
+	ft_tri_player(info);
 	ft_display_play(info->play);
 	ft_build_map(info);
 	return (1);

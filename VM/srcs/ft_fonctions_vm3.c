@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/30 17:39:15 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/04 17:01:07 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 12:59:08 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -92,6 +92,7 @@ void		ft_sti(t_info *info, t_chariot *pc)
 	int	val;
 	int	index;
 
+	printf("\tSTI cycle [%d]\n", info->cycle_total);
 	index = 0;
 	while (index < 3)
 	{
