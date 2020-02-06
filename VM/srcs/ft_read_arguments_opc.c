@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/29 18:41:56 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 12:05:09 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 14:48:54 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -89,16 +89,16 @@ int			ft_read_arguments_opc(t_info *info, t_chariot *pc)
 	}
 	else 
 	{
-		if (pc->type_arg[0] != 0)
-			pc->arg[0] = ft_convert(info, &index, pc->type_arg[0]);
+		if (pc->tab_jump[0] != 0)
+			pc->arg[0] = ft_convert(info, &index, pc->tab_jump[0]);
 		if (pc->opc >> 6 == 3)
 			pc->arg[0] = ft_indirect_arg(info, pc, pc->arg[0]);
-		if (pc->type_arg[1] != 0)
-			pc->arg[1] = ft_convert(info, &index, pc->type_arg[1]);
+		if (pc->tab_jump[1] != 0)
+			pc->arg[1] = ft_convert(info, &index, pc->tab_jump[1]);
 		if ((pc->opc >> 4) % 4 == 3)
 			pc->arg[1] = ft_indirect_arg(info, pc, pc->arg[1]);
-		if (pc->type_arg[2] != 0)
-			pc->arg[2] = ft_convert(info, &index, pc->type_arg[2]);
+		if (pc->tab_jump[2] != 0)
+			pc->arg[2] = ft_convert(info, &index, pc->tab_jump[2]);
 	}
 	if (ft_check_register(pc))
 		info->fonction_op[pc->op - 1](info, pc);

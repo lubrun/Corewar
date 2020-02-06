@@ -6,18 +6,20 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/28 16:25:57 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/05 18:04:22 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 16:55:14 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/coreware.h"
 
-void		ft_write_on_map(t_info *info, int val, int start, int size)
+void		ft_write_on_map(t_info *info, int value, int start, int size)
 {
-	int rest;
-	int swap_size;
+	int				rest;
+	int				swap_size;
+	unsigned int	val;
 
+	val = value;
 	rest = 1;
 	swap_size = size;
 	while (--swap_size > 0)
@@ -25,12 +27,12 @@ void		ft_write_on_map(t_info *info, int val, int start, int size)
 	while (size)
 	{
 		info->map[start] = (val / rest);
-		val = val % rest;
+		printf("MAP ==  [%d]/[%d]=[%d]map[%d][%x]\n", val, rest, val / rest, start, info->map[start]);
+		val = (unsigned int)val % rest;
 		rest /= 256;
 		size--;
 		start = (start + 1) % MEM_SIZE;
 	}
-	val = info->nb_players + start + size;
 }
 
 t_chariot	*ft_new_chariot2(t_chariot *pc)
@@ -81,7 +83,9 @@ void		ft_add_fonction_to_info(t_info *info)
 int			ft_opcode(int opc, int op, t_info *info, t_chariot *pc)
 {
 	int		tab[4];
+	int		index;
 
+	index = -1;
 	if ((((opc % 64) % 16) % 4) != 0)
 		return (ft_error(0, "BAD OPC LAST BINARY NOT EMPTY\n"));
 	if (op < 1 || op > 16)
@@ -90,8 +94,17 @@ int			ft_opcode(int opc, int op, t_info *info, t_chariot *pc)
 	tab[1] = (opc >> 4) % 4;
 	tab[2] = ((opc >> 2) % 16) % 4;
 	tab[3] = 0;
+	while (++index < 3)
+	{
+		pc->type_arg[index] = tab[index];
+		printf("\tMAP OP [%d] type[%d] == [%d]\n", op, index, pc->type_arg[index]);
+	}
 	if ((pc->jump = info->fonction_check[op - 1](tab, pc)) == 0)
+	{
+		printf("MAP type [[[%d]]]\n", pc->type_arg[0]);
 		return (0);
+	}
+	printf("MAP type [[[%d]]]\n", pc->type_arg[0]);
 	return (1);
 }
 

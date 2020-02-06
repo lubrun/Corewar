@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/23 18:45:42 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 12:46:18 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 17:47:03 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -119,6 +119,7 @@ int						ft_check_arg_op_live(int tab[4], t_chariot *pc);
 **	ALGO
 */
 
+void					ft_winner(t_info *info, t_player *play);
 int						ft_read_arguments_opc(t_info *info, t_chariot *pc);
 int						ft_parcour_map(t_info *info, t_chariot *pc);
 int						ft_opcode(int opc, int op, t_info *info,
@@ -150,11 +151,11 @@ void					ft_live(t_info *info, t_chariot *pc);
 */
 
 void					ft_tri_player(t_info *info);
-void					ft_del_chariot(t_info *info, int id_player);
+void					ft_del_chariot(t_info *info, t_chariot *pc);
 t_chariot				*ft_pc_cpy(t_chariot *dest, t_chariot *source);
 int						ft_read_at(t_info *info, int index);
 int						ft_indirect_arg(t_info *info, t_chariot *pc, int arg);
-void					ft_write_on_map(t_info *info, int val, int start,
+void					ft_write_on_map(t_info *info, int value, int start,
 		int size);
 t_player				*ft_player_by_id(t_player *play, int id);
 unsigned char			ft_xtoc(char str[2]);

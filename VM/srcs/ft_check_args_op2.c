@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/29 13:56:57 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/04 16:00:13 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 14:51:55 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,6 @@ int		ft_size_to_read(int tab[4], int direct, t_chariot *pc)
 	index = -1;
 	while (tab[++index])
 	{
-		pc->type_arg[index] = pc->tab_jump[index];
 		if (tab[index] == 2)
 		{
 			pc->tab_jump[index] = direct;

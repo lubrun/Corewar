@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/30 17:39:15 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 12:59:08 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 14:59:46 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -94,17 +94,21 @@ void		ft_sti(t_info *info, t_chariot *pc)
 
 	printf("\tSTI cycle [%d]\n", info->cycle_total);
 	index = 0;
+	printf("MAP ID[%d]OP[%d]POS[%d] arg[0] == %d\n", pc->player, pc->op, pc->pos, pc->arg[0]);
 	while (index < 3)
 	{
+//		printf("MAP typearg[%d] = [%d]\n", index, pc->type_arg[index]);
 		if (pc->type_arg[index] == 1)
 			pc->arg[index] = pc->r[pc->arg[index] - 1];
 		index++;
 	}
+//	printf("MAP After arg[0] == %d r[0] [%d]\n", pc->arg[0], pc->r[0]);
 	val = pc->arg[0];
 	moove = (pc->arg[1] + pc->arg[2]) % IDX_MOD;
+	moove += (pc->pos - 2) % MEM_SIZE;
 //	while (index < 4)
 //		printf("\t---MOOVE [%d] octet map = [%x]\n", moove, info->map[(pc->pos + moove + index++) % MEM_SIZE]);
-	ft_write_on_map(info, val, (moove + pc->pos - 2) % MEM_SIZE, REG_SIZE);
+	ft_write_on_map(info, val, moove, REG_SIZE);
 //	while (index < 4)
 //		printf("\t---2MOOVE [%d] octet map = [%x]\n", moove, info->map[(pc->pos + moove + index++) % MEM_SIZE]);
 

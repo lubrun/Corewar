@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/30 16:27:01 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 13:46:14 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 17:35:52 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -94,12 +94,12 @@ void		ft_ld(t_info *info, t_chariot *pc)
 void		ft_live(t_info *info, t_chariot *pc)
 {
 	t_player *play;
-
-//	printf("LIVE OP [%d]P[%d]\n", pc->op, pc->player);
-	if ((play = ft_player_by_id(info->play, pc->player)))
+	
+	if ((play = ft_player_by_id(info->play, (pc->arg[0] * - 1))))
 	{
-		printf("\t Live cycle [%d] PLAYER [%d] live -> [%d]\n", info->cycle_total, play->id, play->cycle_live);
-		play->cycle_live++;
+		printf("\t LIVE cycle [%d] PLAYER [%d] live -> [%d]\n", info->cycle_total, pc->player, pc->cycle_live);
+		pc->cycle_live++;
+		play->cycle_live = info->cycle_total;
 		info->live_total++;
 //		printf("PLAYER [%d] live -> [%d]\n", play->id, play->cycle_live);
 	}

@@ -6,12 +6,33 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/05 15:32:33 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 12:46:04 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 17:49:06 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/coreware.h"
+
+void		ft_winner(t_info *info, t_player *play)
+{
+	int res;
+	t_player *winner;
+
+	res = 0;
+	winner = play;
+	while (play)
+	{
+		printf("BITE\n");
+		if (res < play->cycle_live)
+		{
+			res = play->cycle_live;
+			winner = play;
+		}
+		play = play->next;
+	}
+	printf("BITE2\n");
+	printf("--------WINNER IS [%d] Last cycle live [%d] actual[%d]\n", winner->id, res, info->cycle_total);
+}
 
 void		ft_swap_player(t_player *play1, t_player *play2)
 {
@@ -36,6 +57,9 @@ void		ft_swap_player(t_player *play1, t_player *play2)
 	play2->name = swap_name;
 	play2->comment = swap_comment;
 	play2->code_size = swap_code_size;
+	swap_id = play1->mapped;
+	play1->mapped = play2->mapped;
+	play2->mapped = swap_id;
 }
 
 void		ft_tri_player(t_info *info)
@@ -66,35 +90,36 @@ void		ft_free_chariot(t_chariot *pc)
 	free(pc);
 }
 
-void		ft_del_chariot(t_info *info, int id_player)
+void		ft_del_chariot(t_info *info, t_chariot *pc)
 {
-	t_chariot *pc;
+	t_chariot *start;
 	t_chariot *tmp;
 
-	printf("DEL CHARIOT ID [%d]\n", id_player);
+	printf("DEL CHARIOT ID [%d]\n", pc->player);
 	ft_display_chariot(info);
-	pc = info->chariot;
-	while (pc && pc->player == id_player)
+	start = info->chariot;
+	if (start == pc)
 	{
-		info->chariot = pc->next;
+		tmp = start->next;
 		ft_free_chariot(pc);
-		pc = info->chariot;
-		pc->start = info->chariot;
+		info->chariot = tmp;
 	}
-	while (pc->next)
+	else
 	{
-		if (pc->next->player == id_player)
+		while (start->next)
 		{
-			pc->next->start = info->chariot;
-			if (pc->next->next)
-				tmp = pc->next->next;
-			else
-				tmp = NULL;
-			ft_free_chariot(pc->next);
-			if ((pc->next = tmp) == NULL)
-				break;
+			if (start->next == pc)
+			{
+				if (start->next->next)
+					tmp = start->next->next;
+				else
+					tmp = NULL;
+				ft_free_chariot(pc);
+				if ((start->next = tmp) == NULL)
+					break;
+			}
+			start = start->next;
 		}
-		pc = pc->next;
+		ft_display_chariot(info);
 	}
-	ft_display_chariot(info);
 }

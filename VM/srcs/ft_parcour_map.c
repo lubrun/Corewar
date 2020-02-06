@@ -6,29 +6,26 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/29 18:54:54 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 13:46:12 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 17:49:04 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/coreware.h"
 
-int		ft_check_alive(t_info *info, t_player *play)
+int		ft_check_alive(t_info *info, t_chariot *pc)
 {
-	printf("\nCHECK ALIVE player [%d]live[%d] total cycle[%d]\n", play->id, play->cycle_live, info->cycle_total);
+	printf("\nCHECK ALIVE player [%d]live[%d] total cycle[%d]\n", pc->player, pc->cycle_live, info->cycle_total);
 //	ft_display_play(play);
-	if (play->cycle_live == 0)
-	{
-		info->nb_players -= 1;
-		ft_del_chariot(info, play->id);
-	}
-	else
-		play->cycle_live = 0;
-	if (info->nb_players == 1)
-		return (0);
-	if (play->next)
-		if (ft_check_alive(info, play->next) == 0)
+	if (pc->next)
+		if (ft_check_alive(info, pc->next) == 0)
 			return (0);
+	if (pc->cycle_live == 0)
+		ft_del_chariot(info, pc);
+	else
+		pc->cycle_live = 0;
+	if (info->chariot == NULL)
+		return (0);
 	return (1);
 }
 
@@ -37,7 +34,7 @@ int		ft_check_cycle_to_die(t_info *info)
 //	printf("CHECK CYCLE TO DIE[%d]\n", info->cycle_to_die);
 	if (--info->cycle_to_die > 0)
 		return (1);
-	if (ft_check_alive(info, info->play) == 0)
+	if (ft_check_alive(info, info->chariot) == 0)
 		return (0);
 	if (info->live_total >= NBR_LIVE || info->max_check >= (MAX_CHECKS - 1))
 	{
@@ -123,12 +120,13 @@ int		ft_parcour_map(t_info *info, t_chariot *pc)
 		}
 		if (ft_check_cycle_to_die(info) == 0)
 		{
+			ft_winner(info, info->play);
 			printf("\t\t END CYCLES\n");
 			return (0);
 		}
 		//fonction decremente cycle to die et le reset en soustrayant cycle delta
 			//fonction check si en vie
 	}
-//	ft_display_map(info);
+	ft_display_map(info);
 	return (1);
 }
