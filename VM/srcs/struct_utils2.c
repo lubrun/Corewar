@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/28 16:25:57 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 16:55:14 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/07 19:02:12 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,6 +22,8 @@ void		ft_write_on_map(t_info *info, int value, int start, int size)
 	val = value;
 	rest = 1;
 	swap_size = size;
+	if (start < 0)
+		start += MEM_SIZE;
 	while (--swap_size > 0)
 		rest *= 256;
 	while (size)

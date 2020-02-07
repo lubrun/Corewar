@@ -6,7 +6,7 @@
 /*   By: lubrun <lubrun@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2013/10/04 11:33:27 by zaz          #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/04 15:01:47 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/07 16:49:18 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -60,8 +60,8 @@
 typedef char					t_arg_type;
 
 # define T_REG					1
-# define T_DIR					2
-# define T_IND					4
+# define T_DIR					2 // 4 ?
+# define T_IND					4 // 2 ?
 # define T_LAB					8
 
 /*

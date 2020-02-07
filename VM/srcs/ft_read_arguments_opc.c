@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/29 18:41:56 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 14:48:54 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/07 18:30:33 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,12 +34,20 @@ int			ft_check_register(t_chariot *pc)
 
 /*
 **	CONVERTI SUR SIZE OCTET LA VALEUR EX EN DEC ET LA STOCK DANS ARG
+**	SI ON LIT 2 octets il faut imaginer qu'ils sont signe et qu'il peuvent etre negatif
+**	D'ou la variable max qui permet de savoir si on depasse sa moitie, on devient negatif
 */
 
 int			ft_convert(t_info *info, int *index, int size)
 {
-	int	res;
-	int	index_modulo;
+	int				res;
+	int				index_modulo;
+	unsigned int	max;
+
+	max = ft_pow(256, ((size * 2) - 2));
+	if (size == 4 || size == 1)
+		max = 4294967295;
+//	printf("MAX == [%u]\n", max);
 
 //	printf("");	// si j'enleve le printf, je n'ai plus les meme valeure ...
 	res = 0;
@@ -52,19 +60,12 @@ int			ft_convert(t_info *info, int *index, int size)
 		(*index)++;
 	}
 	(*index) = (*index) % MEM_SIZE;
+//	printf("\tMAX RES === [%d][%u]\n", res, res);
+	if ((int)res > (int)(max / 2))
+		res = res - max;
+//	printf("\tMAX RES === [%d][%d]\n", res, res);
 	return (res);
 }
-
-int			ft_convert_for_jump(t_info *info, int index)
-{
-	int	res;
-
-	res = 0;
-	res = (256 * info->map[index]) + info->map[index + 1];
-	return (res);
-}
-
-
 
 /*
 **	Recuperer les Arguments avec l'opc, checker les registres, envoyer dans la fonction
@@ -102,6 +103,5 @@ int			ft_read_arguments_opc(t_info *info, t_chariot *pc)
 	}
 	if (ft_check_register(pc))
 		info->fonction_op[pc->op - 1](info, pc);
-//	printf("\t------ARGS [%d][%d][%d]\n", pc->arg[0], pc->arg[1], pc->arg[2]);
 	return (1);
 }

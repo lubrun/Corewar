@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/23 18:45:42 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 17:47:03 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/07 19:09:34 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -162,6 +162,7 @@ unsigned char			ft_xtoc(char str[2]);
 int						ft_xtoi(char str[2]);
 char					*ft_itox(int num, char str[2]);
 char					*ft_ctox(unsigned char c, char str[2]);
+void					ft_add_first_chariot(t_chariot **alst, t_chariot *new_chariot);
 void					ft_addchariot(t_chariot **alst, t_chariot *new_chariot);
 void					ft_addplayer(t_player **alst, t_player *new_player);
 t_chariot				*ft_new_chariot(int player, int pos, t_info *info);

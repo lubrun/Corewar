@@ -6,12 +6,26 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/30 19:13:13 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 18:52:40 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/07 19:09:29 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "../includes/coreware.h"
+
+void		ft_add_first_chariot(t_chariot **alst, t_chariot *new_chariot)
+{
+	t_chariot *tmp;
+
+	if (*alst == NULL)
+		*alst = new_chariot;
+	else
+	{
+		tmp = *alst;
+		new_chariot->next = tmp;
+		*alst = new_chariot;
+	}
+}
 
 void		ft_add_cast(t_info *info)
 {
@@ -57,6 +71,8 @@ int			ft_read_at(t_info *info, int index)
 	int	res;
 	int size;
 
+	if (index < 0)
+		index += MEM_SIZE;
 	size = REG_SIZE;
 	res = 0;
 	while (size > 0)
