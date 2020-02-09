@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   coreware.h                                       .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/23 18:45:42 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/07 19:09:34 by qbarrier    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   coreware.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbarrier <qbarrier@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/23 18:45:42 by qbarrier          #+#    #+#             */
+/*   Updated: 2020/02/08 23:28:33 by lelajour         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef COREWARE_H
 
@@ -18,6 +18,8 @@
 # include "op.h"
 # include <fcntl.h>
 # include <stdio.h>
+
+# define CHECK_BIT(var ,pos) (var & (1 << pos))
 
 /*
 **	LE CHARIOT POINTE SUR LA MAP A SA "POS"
@@ -67,7 +69,7 @@ typedef struct			s_info
 	int					aff;
 	int					*intline;
 	int					nb_players;
-	int					verbose;
+	unsigned int		verbose;
 	int					cycle_total;
 	int					cycle_to_die;
 	int					max_check;
@@ -187,5 +189,14 @@ char					*ft_chars_error(char *ret, char str[2]);
 void					ft_display_chariot(t_info *info);
 void					ft_display_map(t_info *info);
 void					ft_display_play(t_player *play);
+
+/*
+**		VERBOSE
+*/
+
+unsigned int			get_number_verbose(char *line);
+unsigned int			ft_unsigned_atoi(char *line);
+
+
 
 #endif

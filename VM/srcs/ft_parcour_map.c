@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   ft_parcour_map.c                                 .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/29 18:54:54 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 17:49:04 by qbarrier    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_parcour_map.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbarrier <qbarrier@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/29 18:54:54 by qbarrier          #+#    #+#             */
+/*   Updated: 2020/02/09 16:17:15 by lelajour         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../includes/coreware.h"
 
@@ -49,7 +49,8 @@ int		ft_check_cycle_to_die(t_info *info)
 		info->cycle_to_die = CYCLE_TO_DIE - info->delta;
 		info->max_check++;
 	}
-	printf("cycle [%d] cycle to die is now %d\n", info->cycle_total, info->cycle_to_die);
+	if (CHECK_BIT(info->verbose, 3) != 0)
+		printf("cycle [%d] cycle to die is now %d\n", info->cycle_total, info->cycle_to_die);
 	info->live_total = 0;
 	return (1);
 }
@@ -101,7 +102,6 @@ int		ft_parcour_map(t_info *info, t_chariot *pc)
 	while (info->dump_cycle-- != 0) // si on a pas de dump il vaut -1 !int min ?
 	{
 		info->cycle_total++;
-		printf("It is now cycle %d\n", info->cycle_total);
 		pc = info->chariot;
 		while (pc)
 		{
@@ -118,6 +118,8 @@ int		ft_parcour_map(t_info *info, t_chariot *pc)
 				pc->pos = (pc->pos + 1) % MEM_SIZE;
 			pc = pc->next;
 		}
+		if (CHECK_BIT(info->verbose, 1) != 0)
+			printf("It is now cycle %d\n", info->cycle_total);
 		if (ft_check_cycle_to_die(info) == 0)
 		{
 			ft_winner(info, info->play);
