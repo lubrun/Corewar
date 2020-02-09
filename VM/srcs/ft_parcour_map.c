@@ -6,7 +6,7 @@
 /*   By: qbarrier <qbarrier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 18:54:54 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/09 16:17:15 by lelajour         ###   ########.fr       */
+/*   Updated: 2020/02/09 18:03:51 by lelajour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		ft_check_cycle_to_die(t_info *info)
 		info->cycle_to_die = CYCLE_TO_DIE - info->delta;
 		info->max_check++;
 	}
-	if (CHECK_BIT(info->verbose, 3) != 0)
+	if (check_bit(info->verbose, 3) != 0)
 		printf("cycle [%d] cycle to die is now %d\n", info->cycle_total, info->cycle_to_die);
 	info->live_total = 0;
 	return (1);
@@ -118,7 +118,7 @@ int		ft_parcour_map(t_info *info, t_chariot *pc)
 				pc->pos = (pc->pos + 1) % MEM_SIZE;
 			pc = pc->next;
 		}
-		if (CHECK_BIT(info->verbose, 1) != 0)
+		if (check_bit(info->verbose, 1) != 0)
 			printf("It is now cycle %d\n", info->cycle_total);
 		if (ft_check_cycle_to_die(info) == 0)
 		{

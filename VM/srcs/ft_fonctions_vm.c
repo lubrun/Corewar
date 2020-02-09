@@ -6,7 +6,7 @@
 /*   By: qbarrier <qbarrier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 16:27:01 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/09 16:02:39 by lelajour         ###   ########.fr       */
+/*   Updated: 2020/02/09 18:10:36 by lelajour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,12 +106,12 @@ void		ft_live(t_info *info, t_chariot *pc)
 
 	pc->cycle_live++;
 	info->live_total++;
-	if (CHECK_BIT(info->verbose, 0) == 0)
+	if (check_bit(info->verbose, 0) == 0)
 		printf("\t LIVE cycle [%d] CHARIOT [%d] live -> [%d] arg[0][%d]\n", info->cycle_total, pc->player, pc->cycle_live, pc->arg[0]);
 	if ((play = ft_player_by_id(info->play, (pc->arg[0] * - 1))))
 	{
 		play->cycle_live = info->cycle_total;
-		if (CHECK_BIT(info->verbose, 0) != 0)
+		if (check_bit(info->verbose, 0) != 0)
 			printf("Player %d (%s) is said to be alive\n", play->id, play->name);
 		else
 			printf("\t LIVE cycle [%d] PLAYER [%d] live -> [%d]\n", info->cycle_total, play->id, play->cycle_live);
