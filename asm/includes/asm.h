@@ -20,6 +20,7 @@ typedef struct      s_label
 typedef struct      s_file
 {
     struct s_label  *label;
+    struct s_label  *error_label;
     char			*file_name;
 	struct s_header header;
     unsigned char   bytes[CHAMP_MAX_SIZE];

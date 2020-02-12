@@ -6,7 +6,7 @@
 /*   By: lubrun <lubrun@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/25 23:13:01 by lubrun       #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/10 17:48:48 by lubrun      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 23:46:51 by lubrun      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,7 +42,7 @@ int     is_valid_reg(char *param)
 {
     int reg;
 
-    if (*param != 'r' && !ft_str_isdigit(param, ft_strlen(param + 1)))
+    if (*param != 'r' || !ft_str_isdigit(param + 1, ft_strlen(param + 1)))
         return (0);
     reg = ft_atoi(param + 1);
     if (reg > 0 && reg <= REG_NUMBER)
@@ -61,8 +61,8 @@ int     is_valid_dir(char *param)
 }
 
 int     is_valid_ind(char *param)
-{;
-	if (*param != LABEL_CHAR && !ft_str_isdigit(param, ft_strlen(param + 1)))
+{
+	if (*param != LABEL_CHAR && !ft_str_isdigit(param, ft_strlen(param)))
         return (0);
     return (1);
 }

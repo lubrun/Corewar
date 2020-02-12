@@ -6,7 +6,7 @@
 /*   By: lubrun <lubrun@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/05 00:30:13 by lubrun       #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/09 21:49:38 by lubrun      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/12 23:24:30 by lubrun      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,8 @@
 
 int         write_error(t_file *file, char *to_write, int ret, int line)
 {
-    char *str;
+    char    *str;
+    int     err_line;
     
     if (!line)
     {
@@ -23,8 +24,12 @@ int         write_error(t_file *file, char *to_write, int ret, int line)
         free(to_write);
         return (ret);
     }
+    if (file->error_label)
+        err_line = file->error_label->use_line[0];
+    else
+        err_line = file->current_line;
     if (!(str = ft_strjoin(to_write, " [line:", 0)) ||
-        !(str = ft_strjoin(str, ft_itoa(file->current_line), 3)) ||
+        !(str = ft_strjoin(str, ft_itoa(err_line), 3)) ||
         !(str = ft_strjoin(str, "]\n", 1)))
         return (0);
     write(1, str, ft_strlen(str));
@@ -44,6 +49,7 @@ static int  check_label_use(t_file *file)
         if (label->byte_def == -1)
         {
             err_str = ft_strjoin("Undefined label ", label->name, 0);
+            file->error_label = label;
             return (write_error(file, err_str, 0, 1));
         }
         label = label->next;
