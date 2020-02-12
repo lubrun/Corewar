@@ -6,7 +6,7 @@
 /*   By: lubrun <lubrun@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/02 15:26:08 by lubrun       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/22 21:24:18 by lubrun      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/10 17:29:52 by lubrun      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -72,7 +72,8 @@ int					ft_isascii(int c);
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);
-int					ft_str_isdigit(char *str);
+int					ft_is_whitespace(char c);
+int					ft_str_isdigit(char *str, int len_max);
 int					ft_index(char const *s, int c);
 int					ft_sqrt(int nb);
 int					ft_pow(int n, int pow);
@@ -114,7 +115,7 @@ char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char				*ft_itoa(int n);
 char				*ft_ulltoa_base(unsigned long long nb, int base);
 char				*ft_lltoa_base(long long nb, int base);
-char				**ft_strsplit(char const *s, char c);
+char				**ft_strsplit(char const *s, char *c);
 char				**ft_create_2dtab(int width, int height, int c);
 char				**ft_realloc_tab(char **tab, int addi, int addj, int c);
 void				*ft_realloc(void *ptr, size_t size);

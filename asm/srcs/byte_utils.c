@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ft_lstlen.c                                      .::    .:/ .      .::   */
+/*   byte_utils.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: lubrun <lubrun@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/12 18:51:06 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/27 17:30:41 by lubrun      ###    #+. /#+    ###.fr     */
+/*   Created: 2020/01/29 09:18:25 by lubrun       #+#   ##    ##    #+#       */
+/*   Updated: 2020/01/29 09:18:36 by lubrun      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdio.h>
+#include "asm.h"
 
-size_t	ft_lstlen(t_list **alst)
+static void		swap_one(unsigned char *a, unsigned char *b)
 {
-	t_list	*lst;
-	size_t	len;
+	unsigned char	tmp;
 
-	if (!alst)
-		return (0);
-	lst = *alst;
-	len = 0;
-	while (lst)
-	{
-		len++;
-		lst = lst->next;
-	}
-	return (len);
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+void			swap_two(unsigned short int *swap)
+{
+	unsigned char	*new;
+
+	new = (unsigned char *)swap;
+	swap_one(new, new + 1);
+}
+
+void			swap_four(unsigned int *swap)
+{
+	unsigned char	*new;
+
+	new = (unsigned char *)swap;
+	swap_one(new, new + 3);
+	swap_one(new + 1, new + 2);
 }

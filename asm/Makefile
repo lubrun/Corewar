@@ -6,7 +6,7 @@
 #    By: lubrun <lubrun@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/12/14 02:04:28 by lubrun       #+#   ##    ##    #+#        #
-#    Updated: 2020/01/23 05:50:02 by lubrun      ###    #+. /#+    ###.fr      #
+#    Updated: 2020/02/10 15:20:50 by lubrun      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -17,7 +17,13 @@ SRCS = 	srcs/main.c \
 		srcs/read.c \
 		srcs/read_name.c \
 		srcs/read_comment.c \
-		srcs/struct_utils.c
+		srcs/read_op.c \
+		srcs/struct_utils.c \
+		srcs/op.c \
+		srcs/op_utils.c \
+		srcs/byte_utils.c \
+		srcs/write_error.c \
+		srcs/write.c 
 
 OBJ = $(SRCS:%.c=%.o)
 
@@ -32,7 +38,7 @@ all: $(LIBFT) $(NAME)
 $(NAME): $(LIBFT) $(OBJ)
 	gcc $(CFLAGS) $^ -o $@
 
-%.o : %.c includes/filler.h
+%.o : %.c includes/asm.h
 	gcc $(CFLAGS) -c $< -o $@
 
 $(LIBFT):

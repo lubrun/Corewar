@@ -6,7 +6,7 @@
 /*   By: lubrun <lubrun@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/16 21:46:31 by lubrun       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/23 16:50:23 by lubrun      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 01:31:06 by lubrun      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,14 +46,14 @@ static t_option     print_error(int code)
     if (code == 0)
         write(1, "syntax error: ./asm [file.s][file1.s]...\noption:\n\t-a\tFor verbose\n", 66);
     else if (code == 1)
-        write(1, "Invalid file\n", 14);
+        write(1, "Can't write output file\n", 24);
     return ((t_option){0, -1, 1});
 }
 
 static t_option     parse_arg(int ac, char **av)
 {
     t_option option;
-    
+
     if (ac <= 2)
     {
         if (is_asm_file(av[1]))
@@ -71,18 +71,22 @@ static t_option     parse_arg(int ac, char **av)
 
 static int      parse_file(int ac, char **av, t_option opt)
 {
-    t_file  file;
-    int index;
-    int fd;
+    t_file	*file;
+    int		index;
 
     index = opt.count + 1;
     while (index < ac)
     {
-        if (!is_asm_file(av[index]) || (fd = open(av[index], O_RDONLY)) == -1)
+		if (!(file = ft_memalloc(sizeof(t_file))))
+			return (0);
+	    ft_bzero(file, sizeof(t_file));
+		if (!is_asm_file(av[index]) || (file->fd = open(av[index], O_RDONLY)) == -1 ||
+			!(file->file_name = ft_strdup(av[index])))
             return (print_error(1).count);
-        if (!parse_header(&file, opt, fd) || !parse_cmd(&file, opt, fd))
-            return (print_error(file.error).count);
-        index++;
+        if (!parse_header(file) || !parse_op(file) ||
+			!write_file(file))
+            return (print_error(file->error).count);
+		index++;
     }
     return (1);
 }

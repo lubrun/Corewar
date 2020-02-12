@@ -1,0 +1,63 @@
+/* ************************************************************************** */
+/*                                                          LE - /            */
+/*                                                              /             */
+/*   write_error.c                                    .::    .:/ .      .::   */
+/*                                                 +:+:+   +:    +:  +:+:+    */
+/*   By: lubrun <lubrun@student.le-101.fr>          +:+   +:    +:    +:+     */
+/*                                                 #+#   #+    #+    #+#      */
+/*   Created: 2020/02/05 00:30:13 by lubrun       #+#   ##    ##    #+#       */
+/*   Updated: 2020/02/09 21:49:38 by lubrun      ###    #+. /#+    ###.fr     */
+/*                                                         /                  */
+/*                                                        /                   */
+/* ************************************************************************** */
+
+#include "asm.h"
+
+int         write_error(t_file *file, char *to_write, int ret, int line)
+{
+    char *str;
+    
+    if (!line)
+    {
+        write(1, to_write, ft_strlen(to_write));
+        free(to_write);
+        return (ret);
+    }
+    if (!(str = ft_strjoin(to_write, " [line:", 0)) ||
+        !(str = ft_strjoin(str, ft_itoa(file->current_line), 3)) ||
+        !(str = ft_strjoin(str, "]\n", 1)))
+        return (0);
+    write(1, str, ft_strlen(str));
+    ft_strdel(&str);
+    free(to_write);
+    return (ret);
+}
+
+static int  check_label_use(t_file *file)
+{
+    t_label *label;
+    char    *err_str;
+
+    label = file->label;
+    while (label)
+    {
+        if (label->byte_def == -1)
+        {
+            err_str = ft_strjoin("Undefined label ", label->name, 0);
+            return (write_error(file, err_str, 0, 1));
+        }
+        label = label->next;
+    }
+    return (1);
+}
+
+int         check_error(t_file *file)
+{
+    if (file->size == 0)
+        return (write_error(file, ft_strdup("No instruction in file !\n"), 0, 0));
+	if (file->size > CHAMP_MAX_SIZE)
+		return (write_error(file, ft_strdup("Champ size too long !\n"), 0, 0));
+	if (!check_label_use(file))
+		return (0);
+	return (1);
+}
