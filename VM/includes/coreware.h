@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/23 18:45:42 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/07 19:09:34 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/10 17:53:42 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,6 +41,18 @@ typedef struct			s_chariot
 	struct s_chariot	*next;
 	struct s_chariot	*start;
 }						t_chariot;
+
+typedef struct			s_op
+{
+	char				*name;
+	int					number_args;
+	int					type_arg[3];
+	int					id;
+	int					cast;
+	char				*def;
+	int					opc;
+	int					long_dir;
+}						t_op;
 
 typedef struct			s_player
 {
@@ -77,6 +89,8 @@ typedef struct			s_info
 	int					dump_cycle;
 }						t_info;
 
+t_op					ft_op_tab[17];
+
 /*
 **		PARSING ARGUMENTS
 */
@@ -105,6 +119,7 @@ int						ft_build_map(t_info *info);
 */
 
 int						ft_size_to_read(int tab[4], int direct, t_chariot *pc);
+int						ft_new_jump(int tab[4], t_chariot *pc);
 int						ft_check_arg_op_aff(int tab[4], t_chariot *pc);
 int						ft_check_arg_op_sti(int tab[4], t_chariot *pc);
 int						ft_check_arg_op_ldi(int tab[4], t_chariot *pc);

@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/29 18:54:54 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 17:49:04 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/17 11:09:26 by qbarrier         ###   ########lyon.fr   */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,7 +20,7 @@ int		ft_check_alive(t_info *info, t_chariot *pc)
 	if (pc->next)
 		if (ft_check_alive(info, pc->next) == 0)
 			return (0);
-	if (pc->cycle_live == 0)
+	if (pc->cycle_live == 0 || info->cycle_to_die < 0)
 		ft_del_chariot(info, pc);
 	else
 		pc->cycle_live = 0;
@@ -73,7 +73,8 @@ int		ft_tempo_cast(t_info *info, t_chariot *pc, int op)
 		{
 			ft_new_chariot2(pc);
 			//pc->jump = 0;
-			return (pc->pos + 1); // ou return jump ?
+			printf("BUG FROM OP [%d]OPC[%d]Cycle[%d] --- jump pos[%d]|%x| TO [%d]|%x|\n", op, pc->opc, info->cycle_total, pc->pos, info->map[pc->pos], pc->pos + pc->jump + 1,  info->map[pc->pos+ pc->jump + 1]);
+			return (pc->pos + pc->jump + 1); // ou return jump ?
 		}
 		pc->pos = (pc->pos + 1) % MEM_SIZE;
 	}
@@ -89,11 +90,11 @@ int		ft_tempo_cast(t_info *info, t_chariot *pc, int op)
 }
 
 /*
-** Faire avancer les chariots chacuns son tour
+** Faire avancer les chariots chacun son tour
 **
 **
 **
-** Conditions d'arret : dump arrive a terme, plus qu'un joueur vivant.
+** Conditions d'arret : dump arrive a terme || tous les CHARIOTS sont morts.
 */
 
 int		ft_parcour_map(t_info *info, t_chariot *pc)
@@ -124,8 +125,6 @@ int		ft_parcour_map(t_info *info, t_chariot *pc)
 			printf("\t\t END CYCLES\n");
 			return (0);
 		}
-		//fonction decremente cycle to die et le reset en soustrayant cycle delta
-			//fonction check si en vie
 	}
 	ft_display_map(info);
 	return (1);

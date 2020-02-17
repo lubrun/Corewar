@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/30 17:39:15 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/07 19:05:55 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/17 11:05:36 by qbarrier         ###   ########lyon.fr   */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,12 +22,14 @@ void		ft_lfork(t_info *info, t_chariot *pc)
 	int			moove;
 	t_chariot	*new;
 	////////////// - 2 ou - 1 ?
-	moove = (pc->pos - 1 + (pc->arg[0]) % MEM_SIZE);
+	printf("LFORK arg == [%d]\n", pc->arg[0]);
+	moove = (pc->pos - 1 + (pc->arg[0]));
 	if (moove < 0)
 		moove += MEM_SIZE;
 	new = ft_new_chariot(pc->player, moove, info);
 	ft_pc_cpy(new, pc);
 	ft_add_first_chariot(&info->chariot, new);
+	printf("LFORK NEW POS == [%d]\n", new->pos);
 }
 /*
 **	Ecrit dans le r[arg2] la valeur a l'adresse r[arg0] + r[arg1] OP 14
@@ -112,7 +114,7 @@ void		ft_sti(t_info *info, t_chariot *pc)
 	int	index;
 
 	index = 0;
-	printf("STI  arg12 : [%d][%d]\n", (pc->arg[1] % MEM_SIZE), pc->arg[2]);
+	printf("STI  arg12 : [%d][%d] CYCLE [%d]\n", (pc->arg[1] % MEM_SIZE), pc->arg[2], info->cycle_total);
 	while (index < 3)
 	{
 		if (pc->type_arg[index] == 1)

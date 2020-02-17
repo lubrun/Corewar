@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/26 09:38:21 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/05 14:48:05 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/10 18:19:35 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -95,12 +95,9 @@ void	ft_display_play(t_player *play)
 	int				index;
 
 	index = 0;
-	while (play)
-	{
-		printf("\nN*[%d]\nName[%s]\nCom[%s]\nCodeSize[%d]\nCode[",
-				play->id, play->name, play->comment, play->code_size);
-		ft_print_octet(play->code, play->code_size);
-		printf("]\n");
-		play = play->next;
-	}
+	if (play->id == 1)
+		printf("Introducing contestants...\n");
+	if (play->next)
+		ft_display_play(play->next);
+	printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n", play->id, play->code_size, play->name, play->comment);
 }

@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/29 13:45:04 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 18:45:48 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/10 16:40:03 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -23,8 +23,8 @@ int		ft_check_arg_op_bits(int tab[4], t_chariot *pc)
 
 	printf("PASS AND OR XOR\n");
 	index = -1;
-	if (tab[3] != 0)
-		return (ft_error(0, "TROP DE ARG POUR OP\n"));
+//	if (tab[3] != 0)
+//		return (ft_error(0, "TROP DE ARG POUR OP\n"));
 	while (++index < 2)
 		if (tab[index] <= 0 || tab[index] > 3)
 			return (ft_error(0, "BAD ARG FOR OP\n"));
@@ -44,8 +44,8 @@ int		ft_check_arg_op_addsub(int tab[4], t_chariot *pc)
 
 	printf("PASS ADD SUB\n");
 	index = -1;
-	if (tab[3] != 0)
-		return (ft_error(0, "TROP DE ARG POUR OP\n"));
+//	if (tab[3] != 0)
+//		return (ft_error(0, "TROP DE ARG POUR OP\n"));
 	while (++index < 3)
 		if (tab[index] != 1)
 			return (ft_error(0, "BAD ARG FOR OP\n"));
@@ -65,9 +65,9 @@ int		ft_check_arg_op_st(int tab[4], t_chariot *pc)
 	index = 1;
 	if (tab[0] != 1 || (tab[1] != 1 && tab[1] != 3))
 		return (ft_error(0, "BAD ARG FOR OP\n"));
-	while (++index < 4)
-		if (tab[index] != 0)
-			return (ft_error(0, "TROP DE ARG POUR OP\n"));
+//	while (++index < 4)
+//		if (tab[index] != 0)
+//			return (ft_error(0, "TROP DE ARG POUR OP\n"));
 	printf("OK 3\n");
 	return (ft_size_to_read(tab, 0, pc));
 }
@@ -84,9 +84,9 @@ int		ft_check_arg_op_ld(int tab[4], t_chariot *pc)
 	index = 1;
 	if (tab[0] <= 1 || tab[1] != 1)
 		return (ft_error(0, "BAD ARG FOR OP\n"));
-	while (++index < 4)
-		if (tab[index] != 0)
-			return (ft_error(0, "TROP DE ARG POUR OP\n"));
+//	while (++index < 4)
+//		if (tab[index] != 0)
+//			return (ft_error(0, "TROP DE ARG POUR OP\n"));
 	printf("OK 2 13\n");
 	return (ft_size_to_read(tab, 4, pc));
 }
@@ -103,9 +103,9 @@ int		ft_check_arg_op_jf(int tab[4], t_chariot *pc)
 	index = 0;
 	if (tab[0] != 2)
 		return (ft_error(0, "BAD ARG FOR OP\n"));
-	while (++index < 4)
-		if (tab[index] != 0)
-			return (ft_error(0, "TROP DE ARG POUR OP\n"));
+//	while (++index < 4)
+//		if (tab[index] != 0)
+//			return (ft_error(0, "TROP DE ARG POUR OP\n"));
 	printf("OK 9 12 15\n");
 	return (ft_size_to_read(tab, 4, pc));
 }

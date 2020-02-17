@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/30 19:14:08 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/07 18:22:18 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/17 10:49:15 by qbarrier         ###   ########lyon.fr   */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -46,12 +46,12 @@ void		ft_ldi(t_info *info, t_chariot *pc)
 //	?? doit reverse les bits tout le temps ?
 void	ft_zjmp(t_info *info, t_chariot *pc)
 {
-	int	max;
+//	int	max;
 	int	res;
 
-	max = ft_pow(16, DIR_SIZE);
-	printf("JUMP arg[%d]max[%d]map[%d]carry[%d]\n", pc->arg[0], max, info->map[pc->pos], pc->carry);
-	res = (pc->arg[0] - max) % IDX_MOD;
+//	max = 0;//ft_pow(16, DIR_SIZE);
+	printf("JUMP arg[%d]max[]map[%d]carry[%d]\n", pc->arg[0]/*, max*/, info->map[pc->pos], pc->carry);
+	res = (pc->arg[0]/* - max*/) % IDX_MOD;
 	if (pc->carry == 1)
 	{
 		pc->jump = 0;

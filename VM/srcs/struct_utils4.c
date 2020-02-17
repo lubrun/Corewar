@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/05 15:32:33 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 17:49:06 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/10 18:24:46 by qbarrier    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,7 +22,6 @@ void		ft_winner(t_info *info, t_player *play)
 	winner = play;
 	while (play)
 	{
-		printf("BITE\n");
 		if (res < play->cycle_live)
 		{
 			res = play->cycle_live;
@@ -30,8 +29,8 @@ void		ft_winner(t_info *info, t_player *play)
 		}
 		play = play->next;
 	}
-	printf("BITE2\n");
-	printf("--------WINNER IS [%d] Last cycle live [%d] actual[%d]\n", winner->id, res, info->cycle_total);
+	printf("Contestant %d, \"%s\", has won !\n", winner->id, winner->name);
+	res = info->verbose;
 }
 
 void		ft_swap_player(t_player *play1, t_player *play2)
