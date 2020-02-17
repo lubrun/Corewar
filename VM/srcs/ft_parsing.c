@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   ft_parsing.c                                     .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/24 14:12:32 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/26 10:05:11 by qbarrier    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_parsing.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/17 14:18:55 by qbarrier          #+#    #+#             */
+/*   Updated: 2020/02/17 15:12:57 by qbarrier         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/coreware.h"
@@ -51,7 +50,7 @@ int			ft_check_comment(int *tab, t_player *play)
 			count++;
 		index++;
 	}
-	if (!(play->comment = malloc(sizeof(char *) * (count + 1))))
+	if (!(play->comment = ft_memalloc(sizeof(char *) * (count + 1))))
 		return (0);
 	index = PROG_NAME_LENGTH + 12;
 	while (tab[index] && index < max)
@@ -85,7 +84,7 @@ int			ft_check_name(int *tab, t_player *play)
 		index++;
 	}
 	index = 4;
-	if (!(play->name = malloc(sizeof(char*) * (count + 1))))
+	if (!(play->name = ft_memalloc(sizeof(char*) * (count + 1))))
 		return (ft_error(0, "ERROR MALLOC NAME\n"));
 	while (tab[index] && index < max)
 	{
@@ -105,16 +104,20 @@ int			ft_check_name(int *tab, t_player *play)
 int			ft_check_header(char *str)
 {
 	int index;
+	char	*lltoa;
 
+	lltoa = ft_lltoa_base(COREWAR_EXEC_MAGIC, 16);
 	index = 0;
 	while (str[index] == '0')
 		index++;
-	if (!ft_strncmp(&str[index], ft_lltoa_base(COREWAR_EXEC_MAGIC, 16),
-		(8 - index)) && (int)ft_strlen(ft_lltoa_base(COREWAR_EXEC_MAGIC, 16))
-			== (8 - index))
+	if (!ft_strncmp(&str[index], lltoa, (8 - index)) &&
+			(int)ft_strlen(lltoa) == (8 - index))
+	{
+		free(lltoa);
 		return (1);
-	else
-		return (ft_error(0, "ERROR MAGIC CODE"));
+	}
+	free(lltoa);
+	return (ft_error(0, "ERROR MAGIC CODE"));
 }
 
 int			ft_parsing(t_info *info, int num)

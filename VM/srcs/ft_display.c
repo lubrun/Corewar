@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/17 11:16:39 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/17 11:16:42 by qbarrier         ###   ########lyon.fr   */
+/*   Created: 2020/02/17 14:18:08 by qbarrier          #+#    #+#             */
+/*   Updated: 2020/02/17 14:42:17 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_display_chariot(t_info *info)
 	t_chariot *pc;
 
 	pc = info->chariot;
-	while (pc != NULL)
+	while (pc)
 	{
 		printf("CHAR ID[%d] POS [%d]\t STARTID[%d]\n",
 				pc->player, pc->pos, pc->start->pos);

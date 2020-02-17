@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fonctions_vm.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qbarrier <qbarrier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/30 16:27:01 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/09 18:10:36 by lelajour         ###   ########.fr       */
+/*   Created: 2020/02/17 14:18:18 by qbarrier          #+#    #+#             */
+/*   Updated: 2020/02/17 14:23:49 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/coreware.h"
 
@@ -28,7 +27,7 @@ void		ft_sub(t_info *info, t_chariot *pc)
 		pc->carry = 1;
 	else
 		pc->carry = 0;
-	printf("SUB arg1 2 3 [%d][%d]r[%d] carry = [%d]\n", pc->arg[0], pc->arg[1], pc->r[pc->arg[2] - 1], pc->carry);
+//	printf("SUB arg1 2 3 [%d][%d]r[%d] carry = [%d]\n", pc->arg[0], pc->arg[1], pc->r[pc->arg[2] - 1], pc->carry);
 }
 
 /*
@@ -46,7 +45,7 @@ void		ft_add(t_info *info, t_chariot *pc)
 		pc->carry = 1;
 	else
 		pc->carry = 0;
-	printf("ADD arg1 2 3 [%d][%d]r[%d] carry = [%d]\n", pc->arg[0], pc->arg[1], pc->r[pc->arg[2] - 1], pc->carry);
+//	printf("ADD arg1 2 3 [%d][%d]r[%d] carry = [%d]\n", pc->arg[0], pc->arg[1], pc->r[pc->arg[2] - 1], pc->carry);
 }
 
 /*
@@ -58,9 +57,9 @@ void		ft_st(t_info *info, t_chariot *pc)
 {
 	int moove;
 
-	printf("ST rg01[%d][%d]\n", pc->arg[0], pc->arg[1]);
+//	printf("ST rg01[%d][%d]\n", pc->arg[0], pc->arg[1]);
 	pc->arg[0] = pc->r[pc->arg[0] - 1];
-	printf("ST r[arg0] = [%d]\n", pc->arg[0]);
+//	printf("ST r[arg0] = [%d]\n", pc->arg[0]);
 	if (pc->type_arg[1] == 1)
 	{
 		pc->r[pc->arg[1] - 1] = pc->arg[0];
@@ -91,7 +90,7 @@ void		ft_ld(t_info *info, t_chariot *pc)
 	else
 		pc->carry = 0;
 	pc->r[pc->arg[1] - 1] = pc->arg[0];
-	printf("PLAYER [%d]LD r[%d] = [%d]\n",pc->player, pc->arg[1], pc->arg[0]);
+///	printf("PLAYER [%d]LD r[%d] = [%d]\n",pc->player, pc->arg[1], pc->arg[0]);
 }
 
 /*
@@ -106,15 +105,11 @@ void		ft_live(t_info *info, t_chariot *pc)
 
 	pc->cycle_live++;
 	info->live_total++;
-	if (check_bit(info->verbose, 0) == 0)
-		printf("\t LIVE cycle [%d] CHARIOT [%d] live -> [%d] arg[0][%d]\n", info->cycle_total, pc->player, pc->cycle_live, pc->arg[0]);
+///	printf("\t LIVE cycle [%d] CHARIOT [%d] live -> [%d] arg[0][%d]\n", info->cycle_total, pc->player, pc->cycle_live, pc->arg[0]);
 	if ((play = ft_player_by_id(info->play, (pc->arg[0] * - 1))))
 	{
 		play->cycle_live = info->cycle_total;
-		if (check_bit(info->verbose, 0) != 0)
-			printf("Player %d (%s) is said to be alive\n", play->id, play->name);
-		else
-			printf("\t LIVE cycle [%d] PLAYER [%d] live -> [%d]\n", info->cycle_total, play->id, play->cycle_live);
+///		printf("\t LIVE cycle [%d] PLAYER [%d] live -> [%d]\n", info->cycle_total, play->id, play->cycle_live);
 //		printf("PLAYER [%d] live -> [%d]\n", play->id, play->cycle_live);
 	}
 }

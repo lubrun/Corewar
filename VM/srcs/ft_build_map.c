@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   ft_build_map.c                                   .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/28 14:06:07 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 15:24:15 by qbarrier    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_build_map.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/17 14:17:40 by qbarrier          #+#    #+#             */
+/*   Updated: 2020/02/17 16:07:17 by qbarrier         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/coreware.h"
@@ -34,29 +33,25 @@ int			ft_add_player_to_map(int index, t_info *info, int id,
 
 int			ft_build_map(t_info *info)
 {
-	unsigned char	*map;
 	int				index;
 	int				insert;
 
 	insert = info->nb_players - 1;
 	index = MEM_SIZE;
-	if (!(map = (malloc(sizeof(char) * MEM_SIZE + 1))))
-		return (0);
 	while (index >= 0)
 	{
 		if (index == (insert * (MEM_SIZE / info->nb_players)))
 		{
-			printf("PLAYER [%d] AT index [%d]\n", insert + 1, index);
-			ft_add_player_to_map(index, info, insert + 1, map);
+//			printf("PLAYER [%d] AT index [%d]\n", insert + 1, index);
+			ft_add_player_to_map(index, info, insert + 1, info->map);
 			insert = (insert > 0 ? insert - 1 : insert);
 		}
 		else
-			map[index] = 0;
+			info->map[index] = 0;
 		index--;
 	}
-	info->map = map;
 //	ft_display_map(info);
-	ft_display_chariot(info);
+//	ft_display_chariot(info);
 	ft_parcour_map(info, info->chariot);
 	return (1);
 }

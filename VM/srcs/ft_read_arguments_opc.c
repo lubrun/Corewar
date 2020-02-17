@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   ft_read_arguments_opc.c                          .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/29 18:41:56 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/07 18:30:33 by qbarrier    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_read_arguments_opc.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/17 14:19:06 by qbarrier          #+#    #+#             */
+/*   Updated: 2020/02/17 14:19:08 by qbarrier         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/coreware.h"
@@ -86,7 +85,7 @@ int			ft_read_arguments_opc(t_info *info, t_chariot *pc)
 //		}
 //		else
 			pc->arg[0] = ft_convert(info, &index, pc->jump);
-		printf("JUMP arg 0 == [%d]\n", pc->arg[0]);
+///		printf("JUMP arg 0 == [%d]\n", pc->arg[0]);
 	}
 	else 
 	{

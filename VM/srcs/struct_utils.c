@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   struct_utils.c                                   .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/24 14:06:33 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/10 17:55:34 by qbarrier    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   struct_utils.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/17 14:19:18 by qbarrier          #+#    #+#             */
+/*   Updated: 2020/02/17 16:10:36 by qbarrier         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/coreware.h"
@@ -47,7 +46,7 @@ t_chariot		*ft_new_chariot(int player, int pos, t_info *info)
 		new->start = info->chariot;
 	else
 		new->start = new;
-	printf("\tPOS ===== [%d]\n", new->pos);
+///	printf("\tPOS ===== [%d]\n", new->pos);
 	return (ft_new_chariot2(new));
 }
 
@@ -68,7 +67,7 @@ void			ft_addplayer(t_player **alst, t_player *new_player)
 
 t_player		*ft_new_player(t_player *player)
 {
-	if (!(player = malloc(sizeof(t_player))))
+	if (!(player = ft_memalloc(sizeof(t_player))))
 		return (NULL);
 	player->name = NULL;
 	player->comment = NULL;
@@ -84,11 +83,11 @@ t_info			*ft_new_info(t_info *info)
 	int index;
 
 	index = 0;
-	if (!(info = malloc(sizeof(t_info))))
+	if (!(info = ft_memalloc(sizeof(t_info))))
 		return (NULL);
-	if (!(info->preset_player = malloc(sizeof(char) * (MAX_PLAYERS + 1))))
+	if (!(info->preset_player = ft_memalloc(sizeof(char) * (MAX_PLAYERS + 1))))
 		return (NULL);
-	if (!(info->map = malloc(sizeof(unsigned char) * (MEM_SIZE + 1))))
+	if (!(info->map = ft_memalloc(sizeof(unsigned char) * (MEM_SIZE + 1))))
 		return (NULL);
 	while (index < MAX_PLAYERS)
 		info->preset_player[index++] = 0;

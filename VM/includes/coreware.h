@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 11:16:59 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/17 11:17:00 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/17 16:31:28 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,7 @@ void					ft_add_cast(t_info *info);
 **		ERROR
 */
 
+int						ft_close_error(int ret, char *str, int fd);
 int						ft_error(int ret, char *str);
 char					*ft_chars_error(char *ret, char str[2]);
 
@@ -210,6 +211,10 @@ unsigned int			get_number_verbose(char *line);
 unsigned int			ft_unsigned_atoi(char *line);
 short					check_bit(unsigned int var, short pos);
 
+/*
+**		FREE
+*/
 
+void					ft_free_all(t_info *info);
 
 #endif

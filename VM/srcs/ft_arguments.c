@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   ft_arguments.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qbarrier <qbarrier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/26 08:32:34 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/08 19:52:18 by lelajour         ###   ########.fr       */
+/*   Created: 2020/02/17 12:31:16 by qbarrier          #+#    #+#             */
+/*   Updated: 2020/02/17 12:31:18 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/coreware.h"
 
@@ -17,6 +16,7 @@ int		ft_arg_verbose(char **av, t_info *info, int index)
 {
 	char	*str;
 	char	*number;
+	int		num;
 
 	if (info->verbose != 0)
 		return (ft_error(0, "JUST ONE VERBOSE PLS\n"));
@@ -25,7 +25,10 @@ int		ft_arg_verbose(char **av, t_info *info, int index)
 		return (ft_error(0, "NEED NUM FOR VERBOSE ARG\n"));
 	else
 		number = av[index + 1];
-	info->verbose = get_number_verbose(number);
+	num = ft_atoi(number);
+	if (num <= 0 || num > 31)
+		return (ft_error(0, "BAD NUM FOR VERBOSE 1-31\n"));
+	info->verbose = num;
 	return (1);
 }
 

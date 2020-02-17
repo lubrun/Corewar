@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   struct_utils4.c                                  .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/02/05 15:32:33 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/10 18:24:46 by qbarrier    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   struct_utils4.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/17 14:19:31 by qbarrier          #+#    #+#             */
+/*   Updated: 2020/02/17 14:32:59 by qbarrier         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/coreware.h"
@@ -94,8 +93,8 @@ void		ft_del_chariot(t_info *info, t_chariot *pc)
 	t_chariot *start;
 	t_chariot *tmp;
 
-	printf("DEL CHARIOT ID [%d]\n", pc->player);
-	ft_display_chariot(info);
+///	printf("DEL CHARIOT ID [%d]\n", pc->player);
+//	ft_display_chariot(info);
 	start = info->chariot;
 	if (start == pc)
 	{
@@ -119,6 +118,6 @@ void		ft_del_chariot(t_info *info, t_chariot *pc)
 			}
 			start = start->next;
 		}
-		ft_display_chariot(info);
+//		ft_display_chariot(info);
 	}
 }

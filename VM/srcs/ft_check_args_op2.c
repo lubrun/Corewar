@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   ft_check_args_op2.c                              .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/29 13:56:57 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/10 17:56:25 by qbarrier    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_check_args_op2.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/17 14:17:56 by qbarrier          #+#    #+#             */
+/*   Updated: 2020/02/17 14:23:25 by qbarrier         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/coreware.h"
@@ -51,14 +50,11 @@ int		ft_check_arg_op_aff(int tab[4], t_chariot *pc)
 {
 	int index;
 
-	printf("PASS LD AFF\n");
+//	printf("PASS LD AFF\n");
 	index = 0;
 	if (tab[0] != 1)
-		return (ft_error(0, "BAD ARG FOR OP\n"));
-//	while (++index < 4)
-//		if (tab[index] != 0)
-//			return (ft_error(0, "TROP DE ARG POUR OP\n"));
-	printf("OK 16\n");
+		return (0);
+//	printf("OK 16\n");
 	return (ft_size_to_read(tab, 0, pc));
 }
 
@@ -68,14 +64,12 @@ int		ft_check_arg_op_aff(int tab[4], t_chariot *pc)
 
 int		ft_check_arg_op_sti(int tab[4], t_chariot *pc)
 {
-	printf("PASS LD STI\n");
+//	printf("PASS LD STI\n");
 	if (tab[1] < 1 || tab[1] > 3)
-		return (ft_error(0, "BAD ARG FOR OP\n"));
+		return (0);
 	if (tab[2] < 1 || tab[2] > 2 || tab[0] != 1)
-		return (ft_error(0, "BAD ARG FOR OP\n"));
-//	if (tab[3] != 0)
-//		return (ft_error(0, "TROP DE ARG POUR OP\n"));
-	printf("OK 11\n");
+		return (0);
+//	printf("OK 11\n");
 	return (ft_size_to_read(tab, 2, pc));
 }
 
@@ -85,14 +79,12 @@ int		ft_check_arg_op_sti(int tab[4], t_chariot *pc)
 
 int		ft_check_arg_op_ldi(int tab[4], t_chariot *pc)
 {
-	printf("PASS LD LDI\n");
+//	printf("PASS LD LDI\n");
 	if (tab[0] < 1 || tab[0] > 3)
-		return (ft_error(0, "BAD ARG FOR OP\n"));
+		return (0);
 	if (tab[1] < 1 || tab[1] > 2 || tab[2] != 1)
-		return (ft_error(0, "BAD ARG FOR OP\n"));
-//	if (tab[3] != 0)
-//		return (ft_error(0, "TROP DE ARG POUR OP\n"));
-	printf("OK 10 14\n");
+		return (0);
+//	printf("OK 10 14\n");
 	return (ft_size_to_read(tab, 2, pc));
 }
 
@@ -104,13 +96,10 @@ int		ft_check_arg_op_live(int tab[4], t_chariot *pc)
 {
 	int index;
 
-	printf("PASS LIVE\n");
+//	printf("PASS LIVE\n");
 	index = 0;
 	if (tab[0] != 2)
-		return (ft_error(0, "BAD ARG FOR OP\n"));
-//	while (++index < 4)
-//		if (tab[index] != 0)
-//			return (ft_error(0, "TROP DE ARG POUR OP\n"));
-	printf("OK 1\n");
+		return (0);
+//	printf("OK 1\n");
 	return (ft_size_to_read(tab, 2, pc));
 }

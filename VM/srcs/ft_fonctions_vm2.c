@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   ft_fonctions_vm2.c                               .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/30 19:14:08 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/17 10:49:15 by qbarrier         ###   ########lyon.fr   */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_fonctions_vm2.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/17 14:18:24 by qbarrier          #+#    #+#             */
+/*   Updated: 2020/02/17 14:18:25 by qbarrier         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/coreware.h"
@@ -36,7 +35,7 @@ void		ft_ldi(t_info *info, t_chariot *pc)
 	moove = (pc->pos - 2 + moove) % MEM_SIZE;
 	res = ft_read_at(info, moove);
 	pc->r[pc->arg[2] - 1] = res;
-	printf("LDI arg01 [%d][%d] r[%d] == [%d]\n", pc->arg[0], pc->arg[1], pc->arg[2] - 1, pc->r[pc->arg[2] - 1]);
+///	printf("LDI arg01 [%d][%d] r[%d] == [%d]\n", pc->arg[0], pc->arg[1], pc->arg[2] - 1, pc->r[pc->arg[2] - 1]);
 }
 
 /*
@@ -50,7 +49,7 @@ void	ft_zjmp(t_info *info, t_chariot *pc)
 	int	res;
 
 //	max = 0;//ft_pow(16, DIR_SIZE);
-	printf("JUMP arg[%d]max[]map[%d]carry[%d]\n", pc->arg[0]/*, max*/, info->map[pc->pos], pc->carry);
+///	printf("JUMP arg[%d]max[]map[%d]carry[%d]\n", pc->arg[0]/*, max*/, info->map[pc->pos], pc->carry);
 	res = (pc->arg[0]/* - max*/) % IDX_MOD;
 	if (pc->carry == 1)
 	{
@@ -58,8 +57,9 @@ void	ft_zjmp(t_info *info, t_chariot *pc)
 		pc->pos = (pc->pos - 1 + res) % MEM_SIZE;
 		if (pc->pos < 0)
 			pc->pos += MEM_SIZE;
-		printf("ARG 1 JUMP [%d][%d]\n", res, info->map[pc->pos]);
+//		printf("ARG 1 JUMP [%d][%d]\n", res, info->map[pc->pos]);
 	}
+	res = info->verbose;
 }
 
 /*
@@ -83,7 +83,7 @@ void	ft_xor(t_info *info, t_chariot *pc)
 		pc->carry = 1;
 	else
 		pc->carry = 0;
-	printf("XOR arg 0 1 [%d][%d], r[arg2]=[%d]\n", pc->arg[0], pc->arg[1], pc->r[pc->arg[2] - 1]);
+///	printf("XOR arg 0 1 [%d][%d], r[arg2]=[%d]\n", pc->arg[0], pc->arg[1], pc->r[pc->arg[2] - 1]);
 }
 
 /*
@@ -107,7 +107,7 @@ void	ft_or(t_info *info, t_chariot *pc)
 		pc->carry = 1;
 	else
 		pc->carry = 0;
-	printf("OR arg 0 1 [%d][%d], r[arg2]=[%d]\n", pc->arg[0], pc->arg[1], pc->r[pc->arg[2] - 1]);
+///	printf("OR arg 0 1 [%d][%d], r[arg2]=[%d]\n", pc->arg[0], pc->arg[1], pc->r[pc->arg[2] - 1]);
 }
 
 /*
@@ -131,5 +131,5 @@ void	ft_and(t_info *info, t_chariot *pc)
 		pc->carry = 1;
 	else
 		pc->carry = 0;
-	printf("AND arg 0 1 [%d][%d], r[arg2]=[%d]\n", pc->arg[0], pc->arg[1], pc->r[pc->arg[2] - 1]);
+///	printf("AND arg 0 1 [%d][%d], r[arg2]=[%d]\n", pc->arg[0], pc->arg[1], pc->r[pc->arg[2] - 1]);
 }
