@@ -6,7 +6,7 @@
 /*   By: lubrun <lubrun@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/05 12:40:06 by lubrun       #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 11:40:49 by qbarrier    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/11 11:46:09 by lubrun      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,7 +19,6 @@ int		ft_pow(int n, int pow)
 	int		res;
 	int		sign;
 
-	sign = 0;
 	if (pow == 0)
 		return (1);
 	else if (pow < 0)

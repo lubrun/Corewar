@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   ft_display.c                                     .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/26 09:38:21 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/10 18:19:35 by qbarrier    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_display.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/17 11:16:39 by qbarrier          #+#    #+#             */
+/*   Updated: 2020/02/17 11:16:42 by qbarrier         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/coreware.h"
@@ -18,7 +17,7 @@ void	ft_display_chariot(t_info *info)
 	t_chariot *pc;
 
 	pc = info->chariot;
-	while (pc)
+	while (pc != NULL)
 	{
 		printf("CHAR ID[%d] POS [%d]\t STARTID[%d]\n",
 				pc->player, pc->pos, pc->start->pos);

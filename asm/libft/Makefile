@@ -6,7 +6,7 @@
 #    By: lubrun <lubrun@student.le-101.fr>          +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/10/02 15:44:31 by lubrun       #+#   ##    ##    #+#        #
-#    Updated: 2020/01/22 21:24:29 by lubrun      ###    #+. /#+    ###.fr      #
+#    Updated: 2020/02/10 17:30:18 by lubrun      ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -25,6 +25,7 @@ SRC = ft_putchar.c \
 	  ft_toupper.c \
 	  ft_isprint.c \
 	  ft_isascii.c \
+	  ft_is_whitespace.c \
 	  ft_isalpha.c \
 	  ft_isdigit.c \
 	  ft_isalnum.c \

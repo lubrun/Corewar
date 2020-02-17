@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   coreware.h                                       .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/23 18:45:42 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/10 17:53:42 by qbarrier    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   coreware.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/17 11:16:59 by qbarrier          #+#    #+#             */
+/*   Updated: 2020/02/17 11:17:00 by qbarrier         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COREWARE_H
@@ -79,7 +78,7 @@ typedef struct			s_info
 	int					aff;
 	int					*intline;
 	int					nb_players;
-	int					verbose;
+	unsigned int		verbose;
 	int					cycle_total;
 	int					cycle_to_die;
 	int					max_check;
@@ -202,5 +201,15 @@ char					*ft_chars_error(char *ret, char str[2]);
 void					ft_display_chariot(t_info *info);
 void					ft_display_map(t_info *info);
 void					ft_display_play(t_player *play);
+
+/*
+**		VERBOSE
+*/
+
+unsigned int			get_number_verbose(char *line);
+unsigned int			ft_unsigned_atoi(char *line);
+short					check_bit(unsigned int var, short pos);
+
+
 
 #endif

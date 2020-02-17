@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   ft_lstlen.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: gmonacho <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: lubrun <lubrun@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/12 18:51:06 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2019/03/04 17:16:07 by lubrun      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/01/27 17:30:41 by lubrun      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,6 +28,5 @@ size_t	ft_lstlen(t_list **alst)
 		len++;
 		lst = lst->next;
 	}
-	printf("%f | %f --- %o | %o\n", lst, *alst, lst, *alst);
 	return (len);
 }

@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   ft_arguments.c                                   .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/26 08:32:34 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/29 19:41:43 by qbarrier    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_arguments.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbarrier <qbarrier@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/26 08:32:34 by qbarrier          #+#    #+#             */
+/*   Updated: 2020/02/08 19:52:18 by lelajour         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../includes/coreware.h"
 
@@ -17,7 +17,6 @@ int		ft_arg_verbose(char **av, t_info *info, int index)
 {
 	char	*str;
 	char	*number;
-	int		num;
 
 	if (info->verbose != 0)
 		return (ft_error(0, "JUST ONE VERBOSE PLS\n"));
@@ -26,10 +25,7 @@ int		ft_arg_verbose(char **av, t_info *info, int index)
 		return (ft_error(0, "NEED NUM FOR VERBOSE ARG\n"));
 	else
 		number = av[index + 1];
-	num = ft_atoi(number);
-	if (num <= 0 || num > 31)
-		return (ft_error(0, "BAD NUM FOR VERBOSE 1-31\n"));
-	info->verbose = num;
+	info->verbose = get_number_verbose(number);
 	return (1);
 }
 

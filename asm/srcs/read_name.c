@@ -6,7 +6,7 @@
 /*   By: lubrun <lubrun@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/22 21:04:28 by lubrun       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/23 16:53:11 by lubrun      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/10 16:34:14 by lubrun      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,10 +22,7 @@ static int  check_name_tag(char *str)
     while (*str && *str == ' ')
         str++;
     if (!*str || *str != '"')
-    {
-        write(1, "Token expected:.name \"[NAME]\"\n", 31);
-        return (0);
-    }
+        return (write_error(NULL, ft_strdup("Token expected:.name \"[NAME]\"\n"), 0, 0));
     return (str - tmp);
 }
 
@@ -40,15 +37,9 @@ static int  check_prog_name(char *str, char **name)
     while (str[index] && str[index] != '"')
         index++;
     if (str[index] != '"' || str[index + 1] != '\0')
-    {
-        write(1, "Token expected:.name \"[NAME]\"\n", 31);
-        return (0);
-    }
+        return (write_error(NULL, ft_strdup("Token expected:.name \"[NAME]\"\n"), 0, 0));
     if (index - tmp > PROG_NAME_LENGTH)
-    {
-        write(1, "Prog_name too long!\n", 21);
-        return (0);
-    }
+        return (write_error(NULL, ft_strdup("Prog_name too long!\n"), 0, 0));
     if (!(*name = ft_strsub(str, tmp, index - tmp)))
         return (0);
     return (1);
@@ -58,18 +49,14 @@ int         get_prog_name(t_file *file, char **str)
 {
     char    *name;
 
-    if (file->header->prog_name[0])
-    {
-        write(1, "Duplicated token .name\n", 24);
-        return (0);
-    }
+    if (file->header.prog_name[0])
+        return (write_error(NULL, ft_strdup("Duplicated token .name\n"), 0, 0));
     if (!check_prog_name(*str, &name))
-    {
-        write(1, "Prog_name bad format!\n", 23);
         return (0);
-    }
-    ft_memcpy(file->header->prog_name, name, ft_strlen(name));
-    ft_strdel(str);
+    ft_memcpy(file->header.prog_name, name, ft_strlen(name));
+	ft_strdel(str);
     ft_strdel(&name);
+    if (file->header.comment[0])
+        set_magic(file);
     return (1);
 }

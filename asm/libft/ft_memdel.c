@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   ft_memdel.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: lubrun <marvin@le-101.fr>                  +:+   +:    +:    +:+     */
+/*   By: lubrun <lubrun@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/04 10:32:05 by lubrun       #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/08 17:32:58 by lubrun      ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/06 04:08:41 by lubrun      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -15,7 +15,7 @@
 
 void	ft_memdel(void **ap)
 {
-	if (ap == NULL)
+	if (*ap == NULL)
 		return ;
 	free(*ap);
 	*ap = NULL;

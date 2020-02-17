@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   ft_fonctions_vm.c                                .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: qbarrier <marvin@le-101.fr>                +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/30 16:27:01 by qbarrier     #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/07 16:36:40 by qbarrier    ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_fonctions_vm.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: qbarrier <qbarrier@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/30 16:27:01 by qbarrier          #+#    #+#             */
+/*   Updated: 2020/02/09 18:10:36 by lelajour         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../includes/coreware.h"
 
@@ -106,11 +106,15 @@ void		ft_live(t_info *info, t_chariot *pc)
 
 	pc->cycle_live++;
 	info->live_total++;
-	printf("\t LIVE cycle [%d] CHARIOT [%d] live -> [%d] arg[0][%d]\n", info->cycle_total, pc->player, pc->cycle_live, pc->arg[0]);
+	if (check_bit(info->verbose, 0) == 0)
+		printf("\t LIVE cycle [%d] CHARIOT [%d] live -> [%d] arg[0][%d]\n", info->cycle_total, pc->player, pc->cycle_live, pc->arg[0]);
 	if ((play = ft_player_by_id(info->play, (pc->arg[0] * - 1))))
 	{
 		play->cycle_live = info->cycle_total;
-		printf("\t LIVE cycle [%d] PLAYER [%d] live -> [%d]\n", info->cycle_total, play->id, play->cycle_live);
+		if (check_bit(info->verbose, 0) != 0)
+			printf("Player %d (%s) is said to be alive\n", play->id, play->name);
+		else
+			printf("\t LIVE cycle [%d] PLAYER [%d] live -> [%d]\n", info->cycle_total, play->id, play->cycle_live);
 //		printf("PLAYER [%d] live -> [%d]\n", play->id, play->cycle_live);
 	}
 }

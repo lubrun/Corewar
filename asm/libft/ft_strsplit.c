@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   ft_strsplit.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: gmonacho <marvin@le-101.fr>                +:+   +:    +:    +:+     */
+/*   By: lubrun <lubrun@student.le-101.fr>          +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/03 16:57:12 by gmonacho     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/06 10:35:42 by gmonacho    ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/05 16:35:25 by lubrun      ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static int	ft_countword(const char *src, char c)
+static int	ft_countword(const char *src, const char *c)
 {
 	int		i;
 	int		cword;
@@ -25,19 +25,19 @@ static int	ft_countword(const char *src, char c)
 	cword = 0;
 	while (src[i])
 	{
-		if (src[i] == c)
+		if (ft_strchr(c, src[i]))
 			i++;
-		if (src[i] != c && src[i])
+		if (src[i] && !ft_strchr(c, src[i]))
 		{
 			cword++;
-			while (src[i] != c && src[i])
+			while (src[i] && !ft_strchr(c, src[i]))
 				i++;
 		}
 	}
 	return (cword);
 }
 
-static char	*ft_getnextword(const char *s, char c)
+static char	*ft_getnextword(const char *s, const char *c)
 {
 	char	*dst;
 	size_t	len;
@@ -45,7 +45,7 @@ static char	*ft_getnextword(const char *s, char c)
 
 	i = 0;
 	len = 0;
-	while (s[i] != c && s[i])
+	while (!ft_strchr(c, s[i]) && s[i])
 	{
 		len++;
 		i++;
@@ -54,7 +54,7 @@ static char	*ft_getnextword(const char *s, char c)
 		return (NULL);
 	dst[len] = '\0';
 	i = 0;
-	while (s[i] != c && s[i])
+	while (!ft_strchr(c, s[i]) && s[i])
 	{
 		dst[i] = s[i];
 		i++;
@@ -62,7 +62,7 @@ static char	*ft_getnextword(const char *s, char c)
 	return (dst);
 }
 
-char		**ft_strsplit(const char *s, char c)
+char		**ft_strsplit(const char *s, char *c)
 {
 	char	**split;
 	int		is;
@@ -76,12 +76,12 @@ char		**ft_strsplit(const char *s, char c)
 	i = 0;
 	while (*s)
 	{
-		if (*s == c && *s)
+		if (*s && ft_strchr(c, *s))
 			s++;
-		if (*s != c && *s)
+		if (*s && !ft_strchr(c, *s))
 		{
 			split[is++] = ft_getnextword(s, c);
-			while (*s != c && *s)
+			while (*s && !ft_strchr(c, *s))
 				s++;
 		}
 	}
