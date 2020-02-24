@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:19:31 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/17 14:32:59 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 19:30:55 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,6 @@ void		ft_del_chariot(t_info *info, t_chariot *pc)
 	t_chariot *start;
 	t_chariot *tmp;
 
-///	printf("DEL CHARIOT ID [%d]\n", pc->player);
-//	ft_display_chariot(info);
 	start = info->chariot;
 	if (start == pc)
 	{
@@ -118,6 +116,5 @@ void		ft_del_chariot(t_info *info, t_chariot *pc)
 			}
 			start = start->next;
 		}
-//		ft_display_chariot(info);
 	}
 }

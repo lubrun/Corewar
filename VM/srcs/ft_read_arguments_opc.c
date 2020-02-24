@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:19:06 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/17 14:19:08 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 19:29:41 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,23 +46,17 @@ int			ft_convert(t_info *info, int *index, int size)
 	max = ft_pow(256, ((size * 2) - 2));
 	if (size == 4 || size == 1)
 		max = 4294967295;
-//	printf("MAX == [%u]\n", max);
-
-//	printf("");	// si j'enleve le printf, je n'ai plus les meme valeure ...
 	res = 0;
 	while (size > 0)
 	{
 		index_modulo = (*index) % MEM_SIZE;
-//		printf("\tJUMP arg info->map[%d|%d][%d]\n", *index, index_modulo, info->map[index_modulo]);
 		res = res + ((ft_pow(16, ((size * 2) - 2))) * (info->map[index_modulo]));
 		size--;
 		(*index)++;
 	}
 	(*index) = (*index) % MEM_SIZE;
-//	printf("\tMAX RES === [%d][%u]\n", res, res);
 	if ((int)res > (int)(max / 2))
 		res = res - max;
-//	printf("\tMAX RES === [%d][%d]\n", res, res);
 	return (res);
 }
 
@@ -77,16 +71,7 @@ int			ft_read_arguments_opc(t_info *info, t_chariot *pc)
 
 	index = pc->pos;
 	if (!pc->opc)
-	{
-//		printf("JUMP arg 0 == [%d] info->map[pc->pos] =[%d], pc->jump {%d]\n", pc->arg[0], info->map[pc->pos], pc->jump);
-//		if (pc->op == 9)
-//		{
-//			pc->arg[0] = ft_convert_for_jump(info, index);
-//		}
-//		else
-			pc->arg[0] = ft_convert(info, &index, pc->jump);
-///		printf("JUMP arg 0 == [%d]\n", pc->arg[0]);
-	}
+		pc->arg[0] = ft_convert(info, &index, pc->jump);
 	else 
 	{
 		if (pc->tab_jump[0] != 0)

@@ -6,7 +6,7 @@
 /*   By: lelajour <lelajour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:27:05 by lelajour          #+#    #+#             */
-/*   Updated: 2020/02/09 18:12:16 by lelajour         ###   ########.fr       */
+/*   Updated: 2020/02/24 19:31:50 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ unsigned int	ft_unsigned_atoi(char *line)
 	unsigned long	num;
 
 	i = 0;
-	num = 0;
+	num = 0;//////////////
 	while (line[i] >= 48 && line[i] <= 57)
 		num = (num * 10) + (line[i++] - '0');
 	if (check_bit(num, 0) != 0)

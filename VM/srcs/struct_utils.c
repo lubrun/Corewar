@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:19:18 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/17 16:10:36 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 19:30:24 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ t_chariot		*ft_new_chariot(int player, int pos, t_info *info)
 		new->start = info->chariot;
 	else
 		new->start = new;
-///	printf("\tPOS ===== [%d]\n", new->pos);
 	return (ft_new_chariot2(new));
 }
 

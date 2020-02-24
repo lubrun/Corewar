@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:18:55 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/17 15:12:57 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 19:28:50 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,8 +129,7 @@ int			ft_parsing(t_info *info, int num)
 	player->id = num;
 	if (!ft_check_header(info->line) ||
 			!ft_check_name(info->intline, player) ||
-			!ft_check_code_size(info->intline, player) ||
-			!ft_check_comment(info->intline, player))
+			!ft_check_code_size(info->intline, player) || !ft_check_comment(info->intline, player))
 		return (ft_error(0, "FT_PARSING ERROR\n"));
 	ft_addplayer(&info->play, player);
 	ft_parsing_code(info, player);
