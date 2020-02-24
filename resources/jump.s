@@ -1,6 +1,5 @@
 .name "JUMP"
-.comment "TESTS JUMP"
+.comment ""
 
-l2:		ld %0, r2
-
-live:	zjmp %:live
+	ld %-2, r1
+	live %-1

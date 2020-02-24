@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:19:11 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/17 16:31:29 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 19:50:54 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ char		*ft_make_file_str(t_info *info, int *line, int len)
 {
 	int		index;
 	int		len_str;
-//	char	*str;
 	char	*lltoa;
 
 	index = -1;
@@ -58,9 +57,10 @@ char		*ft_make_file_str(t_info *info, int *line, int len)
 		}
 		else
 			ft_strcat(info->line, lltoa);
-		free(lltoa);///
+		free(lltoa);
 	}
-	if ((ft_strlen(info->line) / 2) < (8 + PROG_NAME_LENGTH + COMMENT_LENGTH + 13))
+	if ((ft_strlen(info->line) / 2) < (8 + PROG_NAME_LENGTH +
+				COMMENT_LENGTH + 13))
 		return (ft_chars_error(NULL, "CODE TROP COURT\n"));
 	return (info->line);
 }
@@ -68,7 +68,6 @@ char		*ft_make_file_str(t_info *info, int *line, int len)
 int			ft_open(char *file, t_info *info, int num)
 {
 	int		fd;
-//	int		*line;
 	int		len;
 	int		index;
 	int		res;
@@ -84,9 +83,8 @@ int			ft_open(char *file, t_info *info, int num)
 		index++;
 	if (res == -1)
 		return (ft_close_error(0, "BAD FILE\n", fd));
-	index = -1;/////////a virer ?
+	index = -1;
 	ft_make_file_str(info, info->intline, len);
-//	info->intline = info->intline;
 	if (!info->line || !info->intline)
 		return (ft_close_error(0, "NO LINE \n", fd));
 	close(fd);
@@ -106,7 +104,6 @@ int			main(int ac, char **av)
 	}
 	info = NULL;
 	info = ft_new_info(info);
-///	printf("ARG START\n");
 	if (!ft_arguments(ac, av, info))
 	{
 		ft_free_all(info);

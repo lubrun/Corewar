@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:18:55 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/17 15:12:57 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 19:45:37 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int			ft_check_name(int *tab, t_player *play)
 
 int			ft_check_header(char *str)
 {
-	int index;
+	int		index;
 	char	*lltoa;
 
 	lltoa = ft_lltoa_base(COREWAR_EXEC_MAGIC, 16);

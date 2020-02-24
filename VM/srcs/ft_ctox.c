@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:18:02 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/17 14:18:03 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 19:28:22 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ unsigned char		ft_xtoc(char str[2])
 			num += ((str[index] - 87) * hex);
 		else
 		{
-			printf("\t\t ERROR XTOC\n");
+			ft_printf("\t\t ERROR XTOC\n");
 			return (0);
 		}
 		index++;

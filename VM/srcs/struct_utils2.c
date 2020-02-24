@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:19:22 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/17 14:22:09 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 19:56:03 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void		ft_write_on_map(t_info *info, int value, int start, int size)
 	while (size)
 	{
 		info->map[start] = (val / rest);
-///		printf("MAP ==  [%d]/[%d]=[%d]map[%d][%x]\n", val, rest, val / rest, start, info->map[start]);
 		val = (unsigned int)val % rest;
 		rest /= 256;
 		size--;
@@ -59,6 +58,7 @@ t_chariot	*ft_new_chariot2(t_chariot *pc)
 
 void		ft_add_fonction_to_info(t_info *info)
 {
+	info->aff = 0;
 	info->fonction_check[0] = ft_check_arg_op_live;
 	info->fonction_check[1] = ft_check_arg_op_ld;
 	info->fonction_check[2] = ft_check_arg_op_st;
@@ -79,16 +79,12 @@ void		ft_add_fonction_to_info(t_info *info)
 	ft_add_cast(info);
 }
 
-//////////////// VIRER LES FT_ERROR ET PRINTF LA ET DANS ft_check_args_op
-
 int			ft_opcode(int opc, int op, t_info *info, t_chariot *pc)
 {
 	int		tab[4];
 	int		index;
 
 	index = -1;
-//	if ((((opc % 64) % 16) % 4) != 0)
-//		return (ft_error(0, "BAD OPC LAST BINARY NOT EMPTY\n"));
 	if (op < 1 || op > 16)
 		return (0);
 	tab[0] = opc >> 6;
@@ -98,16 +94,12 @@ int			ft_opcode(int opc, int op, t_info *info, t_chariot *pc)
 	while (++index < 3)
 	{
 		pc->type_arg[index] = tab[index];
-//		printf("\tp[%d]MAP OP [%d]OPC[%d] type[%d] == [%d]\n", pc->player, op, opc, index, pc->type_arg[index]);
 	}
 	if ((pc->jump = info->fonction_check[op - 1](tab, pc)) == 0)
 	{
 		pc->jump = ft_new_jump(tab, pc);
-///		printf("BUG FOR OP [%d] OPC [%d] JUMP [%d]\n", pc->op, opc, pc->jump);
-///		printf("MAP type [[[%d]]]\n", pc->type_arg[0]);
 		return (0);
 	}
-///	printf("MAP type [[[%d]]]\n", pc->type_arg[0]);
 	return (1);
 }
 

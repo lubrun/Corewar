@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 12:31:16 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/17 12:31:18 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 19:38:20 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ int		ft_arg_dump(char **av, t_info *info, int index)
 	return (1);
 }
 
-//// PENSER A MALLOC EN CAS D'ERREUR.
-
 int		ft_put_number_player(int index, char **av, t_info *info)
 {
 	int	number;
@@ -74,6 +72,17 @@ int		ft_put_number_player(int index, char **av, t_info *info)
 	return (2);
 }
 
+int		ft_args_adv(int index, char **av, t_info *info)
+{
+	if (!ft_strcmp(av[index], "-v") &&
+			!ft_arg_verbose(av, info, index))
+		return (ft_error(0, "VERBOSE ERROR\n"));
+	else if (ft_strcmp(av[index], "-v") && ft_strcmp(av[index], "-a")
+			&& !ft_arg_dump(av, info, index))
+		return (ft_error(0, "DUMP ERROR\n"));
+	return (1);
+}
+
 int		ft_arguments(int ac, char **av, t_info *info)
 {
 	int	index;
@@ -87,17 +96,17 @@ int		ft_arguments(int ac, char **av, t_info *info)
 				|| !ft_strcmp(av[index], "-v"))
 		{
 			count--;
-			if (!ft_strcmp(av[index], "-v") && !ft_arg_verbose(av, info, index))
-				return (ft_error(0, "VERBOSE ERROR\n"));
-			if (ft_strcmp(av[index], "-v") && !ft_arg_dump(av, info, index))
-				return (ft_error(0, "DUMP ERROR\n"));
+			if (ft_args_adv(index, av, info) == 0)
+				return (0);
 			index += 1;
 		}
 		else if (ft_strcmp(av[index], "-n") == 0)
 			index += ft_put_number_player(index + 1, av, info);
-		else if (!ft_open(av[index], info, 0))
+		else if (ft_strcmp(av[index], "-a") && !ft_open(av[index], info, 0))
 			return (ft_error(0, "BAD FILE 2\n"));
-		if (++count > MAX_PLAYERS)
+		else if (!ft_strcmp(av[index], "-a"))
+			info->aff = 1;
+		else if (++count > MAX_PLAYERS)
 			return (ft_error(0, "TOO MANY ARGS\n"));
 	}
 	return (1);

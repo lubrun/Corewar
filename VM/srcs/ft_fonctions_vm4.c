@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:18:40 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/17 14:18:41 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 16:38:04 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@
 void		ft_aff(t_info *info, t_chariot *pc)
 {
 	if (info->aff == 1)
-		ft_putchar((char)pc->arg[0]);
+	{
+		ft_putstr("Aff: ");
+		ft_putchar((char)pc->r[pc->arg[0] - 1]);
+		ft_putchar('\n');
+	}
 }
 
 /*
