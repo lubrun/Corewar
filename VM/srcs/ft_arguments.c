@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 12:31:16 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/24 19:09:47 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 19:38:20 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ int		ft_arg_dump(char **av, t_info *info, int index)
 	return (1);
 }
 
-//// PENSER A MALLOC EN CAS D'ERREUR.
-
 int		ft_put_number_player(int index, char **av, t_info *info)
 {
 	int	number;
@@ -76,12 +74,12 @@ int		ft_put_number_player(int index, char **av, t_info *info)
 
 int		ft_args_adv(int index, char **av, t_info *info)
 {
-			if (!ft_strcmp(av[index], "-v") &&
-					!ft_arg_verbose(av, info, index))
-				return (ft_error(0, "VERBOSE ERROR\n"));
-			else if (ft_strcmp(av[index], "-v") && ft_strcmp(av[index], "-a")
-					&& !ft_arg_dump(av, info, index))
-				return (ft_error(0, "DUMP ERROR\n"));
+	if (!ft_strcmp(av[index], "-v") &&
+			!ft_arg_verbose(av, info, index))
+		return (ft_error(0, "VERBOSE ERROR\n"));
+	else if (ft_strcmp(av[index], "-v") && ft_strcmp(av[index], "-a")
+			&& !ft_arg_dump(av, info, index))
+		return (ft_error(0, "DUMP ERROR\n"));
 	return (1);
 }
 

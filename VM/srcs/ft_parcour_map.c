@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 12:33:06 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/24 19:23:38 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 19:44:26 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,6 @@ int		ft_tempo_cast(t_info *info, t_chariot *pc, int op)
 
 /*
 ** Faire avancer les chariots chacun son tour
-**
-**
-**
 ** Conditions d'arret : dump arrive a terme || tous les CHARIOTS sont morts.
 */
 
@@ -105,10 +102,7 @@ int		ft_parcour_map(t_info *info, t_chariot *pc)
 			pc = pc->next;
 		}
 		if (ft_check_cycle_to_die(info) == 0)
-		{
-			ft_winner(info, info->play);
-			return (0);
-		}
+			return (ft_winner(info, info->play));
 	}
 	ft_display_map(info);
 	return (1);

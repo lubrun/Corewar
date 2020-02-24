@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:18:24 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/24 19:22:40 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 19:55:14 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ void		ft_ldi(t_info *info, t_chariot *pc)
 	if (pc->type_arg[0] == 1)
 		pc->arg[0] = pc->r[pc->arg[0] - 1];
 	else if (pc->type_arg[0] == 3)
-		pc->arg[0] = ft_read_at(info, (pc->pos - 2 + (pc->arg[0] % IDX_MOD)) % MEM_SIZE);
+		pc->arg[0] = ft_read_at(info, (pc->pos - 2 + (pc->arg[0] % IDX_MOD))
+				% MEM_SIZE);
 	if (pc->type_arg[1] == 1)
-		pc->arg[1] = pc->r[pc->arg[1] - 1];	
+		pc->arg[1] = pc->r[pc->arg[1] - 1];
 	else if (pc->type_arg[1] == 3)
-		pc->arg[1] = ft_read_at(info, (pc->pos - 2 + (pc->arg[1] % IDX_MOD)) % MEM_SIZE);
+		pc->arg[1] = ft_read_at(info, (pc->pos - 2 + (pc->arg[1] % IDX_MOD))
+				% MEM_SIZE);
 	moove = (pc->arg[0] + pc->arg[1]) % IDX_MOD;
 	moove = (pc->pos - 2 + moove) % MEM_SIZE;
 	res = ft_read_at(info, moove);
@@ -41,7 +43,7 @@ void		ft_ldi(t_info *info, t_chariot *pc)
 ** Zjump renvoi le pc->pos a une position, OP 9
 */
 
-void	ft_zjmp(t_info *info, t_chariot *pc)
+void		ft_zjmp(t_info *info, t_chariot *pc)
 {
 	int	res;
 
@@ -60,7 +62,7 @@ void	ft_zjmp(t_info *info, t_chariot *pc)
 **	Comparation en bits "^" op 8
 */
 
-void	ft_xor(t_info *info, t_chariot *pc)
+void		ft_xor(t_info *info, t_chariot *pc)
 {
 	int	norme;
 
@@ -68,11 +70,13 @@ void	ft_xor(t_info *info, t_chariot *pc)
 	if (pc->type_arg[0] == 1)
 		pc->arg[0] = pc->r[pc->arg[0] - 1];
 	else if (pc->type_arg[0] == 3)
-		pc->arg[0] = ft_read_at(info, (pc->pos - 2 + (pc->arg[0] % IDX_MOD)) % MEM_SIZE);
+		pc->arg[0] = ft_read_at(info, (pc->pos - 2 + (pc->arg[0] % IDX_MOD))
+				% MEM_SIZE);
 	if (pc->type_arg[1] == 1)
 		pc->arg[1] = pc->r[pc->arg[1] - 1];
 	else if (pc->type_arg[1] == 3)
-		pc->arg[1] = ft_read_at(info, (pc->pos - 2 + (pc->arg[1] % IDX_MOD)) % MEM_SIZE);
+		pc->arg[1] = ft_read_at(info, (pc->pos - 2 + (pc->arg[1] % IDX_MOD))
+				% MEM_SIZE);
 	if ((pc->r[pc->arg[2] - 1] = pc->arg[0] ^ pc->arg[1]) == 0)
 		pc->carry = 1;
 	else
@@ -83,7 +87,7 @@ void	ft_xor(t_info *info, t_chariot *pc)
 **	Comparation en bits "|" op 7
 */
 
-void	ft_or(t_info *info, t_chariot *pc)
+void		ft_or(t_info *info, t_chariot *pc)
 {
 	int	norme;
 
@@ -91,11 +95,13 @@ void	ft_or(t_info *info, t_chariot *pc)
 	if (pc->type_arg[0] == 1)
 		pc->arg[0] = pc->r[pc->arg[0] - 1];
 	else if (pc->type_arg[0] == 3)
-		pc->arg[0] = ft_read_at(info, (pc->pos - 2 + (pc->arg[0] % IDX_MOD)) % MEM_SIZE);
+		pc->arg[0] = ft_read_at(info, (pc->pos - 2 + (pc->arg[0] % IDX_MOD))
+				% MEM_SIZE);
 	if (pc->type_arg[1] == 1)
 		pc->arg[1] = pc->r[pc->arg[1] - 1];
 	else if (pc->type_arg[1] == 3)
-		pc->arg[1] = ft_read_at(info, (pc->pos - 2 + (pc->arg[1] % IDX_MOD)) % MEM_SIZE);
+		pc->arg[1] = ft_read_at(info, (pc->pos - 2 + (pc->arg[1] % IDX_MOD))
+				% MEM_SIZE);
 	if ((pc->r[pc->arg[2] - 1] = pc->arg[0] | pc->arg[1]) == 0)
 		pc->carry = 1;
 	else
@@ -106,7 +112,7 @@ void	ft_or(t_info *info, t_chariot *pc)
 **	Comparation en bits "&" op 6
 */
 
-void	ft_and(t_info *info, t_chariot *pc)
+void		ft_and(t_info *info, t_chariot *pc)
 {
 	int	norme;
 
@@ -114,11 +120,13 @@ void	ft_and(t_info *info, t_chariot *pc)
 	if (pc->type_arg[0] == 1)
 		pc->arg[0] = pc->r[pc->arg[0] - 1];
 	else if (pc->type_arg[0] == 3)
-		pc->arg[0] = ft_read_at(info, (pc->pos - 2 + (pc->arg[0] % IDX_MOD)) % MEM_SIZE);
+		pc->arg[0] = ft_read_at(info, (pc->pos - 2 + (pc->arg[0] % IDX_MOD))
+				% MEM_SIZE);
 	if (pc->type_arg[1] == 1)
 		pc->arg[1] = pc->r[pc->arg[1] - 1];
 	else if (pc->type_arg[1] == 3)
-		pc->arg[1] = ft_read_at(info, (pc->pos - 2 + (pc->arg[1] % IDX_MOD)) % MEM_SIZE);
+		pc->arg[1] = ft_read_at(info, (pc->pos - 2 + (pc->arg[1] % IDX_MOD))
+				% MEM_SIZE);
 	if ((pc->r[pc->arg[2] - 1] = pc->arg[0] & pc->arg[1]) == 0)
 		pc->carry = 1;
 	else

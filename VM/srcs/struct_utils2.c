@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:19:22 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/24 19:30:42 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 19:56:03 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ t_chariot	*ft_new_chariot2(t_chariot *pc)
 
 void		ft_add_fonction_to_info(t_info *info)
 {
+	info->aff = 0;
 	info->fonction_check[0] = ft_check_arg_op_live;
 	info->fonction_check[1] = ft_check_arg_op_ld;
 	info->fonction_check[2] = ft_check_arg_op_st;
@@ -77,8 +78,6 @@ void		ft_add_fonction_to_info(t_info *info)
 	ft_add_vm_fonction(info);
 	ft_add_cast(info);
 }
-
-//////////////// VIRER LES FT_ERROR ET PRINTF LA ET DANS ft_check_args_op
 
 int			ft_opcode(int opc, int op, t_info *info, t_chariot *pc)
 {

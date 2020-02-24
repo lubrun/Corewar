@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:19:06 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/24 19:29:41 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 19:49:03 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ int			ft_check_register(t_chariot *pc)
 
 /*
 **	CONVERTI SUR SIZE OCTET LA VALEUR EX EN DEC ET LA STOCK DANS ARG
-**	SI ON LIT 2 octets il faut imaginer qu'ils sont signe et qu'il peuvent etre negatif
-**	D'ou la variable max qui permet de savoir si on depasse sa moitie, on devient negatif
+**	SI ON LIT 2 octets il faut imaginer qu'ils sont signe et qu'il
+**	peuvent etre negatif D'ou la variable max qui permet de savoir
+**	si on depasse sa moitie, on devient negatif
 */
 
 int			ft_convert(t_info *info, int *index, int size)
@@ -50,7 +51,8 @@ int			ft_convert(t_info *info, int *index, int size)
 	while (size > 0)
 	{
 		index_modulo = (*index) % MEM_SIZE;
-		res = res + ((ft_pow(16, ((size * 2) - 2))) * (info->map[index_modulo]));
+		res = res + ((ft_pow(16, ((size * 2) - 2))) *
+				(info->map[index_modulo]));
 		size--;
 		(*index)++;
 	}
@@ -61,8 +63,9 @@ int			ft_convert(t_info *info, int *index, int size)
 }
 
 /*
-**	Recuperer les Arguments avec l'opc, checker les registres, envoyer dans la fonction
-*	|| revenir et faire un saut de chariot->jump octet sur le pointeur du chariot.
+**	Recuperer les Arguments avec l'opc, checker les registres,
+**	envoyer dans la fonction || revenir et faire un saut de chariot->jump
+**	octet sur le pointeur du chariot.
 */
 
 int			ft_read_arguments_opc(t_info *info, t_chariot *pc)
@@ -72,7 +75,7 @@ int			ft_read_arguments_opc(t_info *info, t_chariot *pc)
 	index = pc->pos;
 	if (!pc->opc)
 		pc->arg[0] = ft_convert(info, &index, pc->jump);
-	else 
+	else
 	{
 		if (pc->tab_jump[0] != 0)
 			pc->arg[0] = ft_convert(info, &index, pc->tab_jump[0]);

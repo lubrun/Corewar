@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:18:18 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/24 19:22:21 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 19:39:32 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ void		ft_st(t_info *info, t_chariot *pc)
 	else
 	{
 		moove = (pc->arg[1]) % IDX_MOD;
-		ft_write_on_map(info, pc->arg[0], (moove + pc->pos - 2) % MEM_SIZE, REG_SIZE);
+		ft_write_on_map(info, pc->arg[0], (moove + pc->pos - 2)
+				% MEM_SIZE, REG_SIZE);
 	}
 }
 
@@ -77,7 +78,8 @@ void		ft_ld(t_info *info, t_chariot *pc)
 
 	verbose = info->verbose;
 	if (pc->type_arg[0] == 3)
-		pc->arg[0] = ft_read_at(info, (pc->pos - 2 + (pc->arg[0] % IDX_MOD)) % MEM_SIZE);
+		pc->arg[0] = ft_read_at(info, (pc->pos - 2 + (pc->arg[0] % IDX_MOD))
+				% MEM_SIZE);
 	if (pc->arg[0] == 0)
 		pc->carry = 1;
 	else
@@ -90,13 +92,14 @@ void		ft_ld(t_info *info, t_chariot *pc)
 **	Si arg[0] correspond a un joueur mais en negatif (-1) le joueur 1
 **	sera en vie a cet instantOP 1
 */
+
 void		ft_live(t_info *info, t_chariot *pc)
 {
 	t_player *play;
 
 	pc->cycle_live++;
 	info->live_total++;
-	if ((play = ft_player_by_id(info->play, (pc->arg[0] * - 1))))
+	if ((play = ft_player_by_id(info->play, (pc->arg[0] * -1))))
 	{
 		play->cycle_live = info->cycle_total;
 	}

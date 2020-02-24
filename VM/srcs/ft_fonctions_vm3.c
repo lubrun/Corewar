@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:18:35 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/24 19:23:07 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 19:41:24 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void		ft_lfork(t_info *info, t_chariot *pc)
 	ft_pc_cpy(new, pc);
 	ft_add_first_chariot(&info->chariot, new);
 }
+
 /*
 **	Ecrit dans le r[arg2] la valeur a l'adresse r[arg0] + r[arg1] OP 14
 **	on utilise IDX_MOD pour chercher l'IND
@@ -42,11 +43,13 @@ void		ft_lldi(t_info *info, t_chariot *pc)
 	if (pc->type_arg[0] == 1)
 		pc->arg[0] = pc->r[pc->arg[0] - 1];
 	else if (pc->type_arg[0] == 3)
-		pc->arg[0] = ft_read_at(info, (pc->pos - 2 + (pc->arg[0] % IDX_MOD)) % MEM_SIZE);
+		pc->arg[0] = ft_read_at(info, (pc->pos - 2 + (pc->arg[0] % IDX_MOD))
+				% MEM_SIZE);
 	if (pc->type_arg[1] == 1)
-		pc->arg[1] = pc->r[pc->arg[1] - 1];	
+		pc->arg[1] = pc->r[pc->arg[1] - 1];
 	else if (pc->type_arg[1] == 3)
-		pc->arg[1] = ft_read_at(info, (pc->pos - 2 + (pc->arg[1] % IDX_MOD)) % MEM_SIZE);
+		pc->arg[1] = ft_read_at(info, (pc->pos - 2 + (pc->arg[1] % IDX_MOD))
+				% MEM_SIZE);
 	moove = (pc->arg[0] + pc->arg[1]);
 	moove = (pc->pos - 2 + moove) % MEM_SIZE;
 	pc->r[pc->arg[2] - 1] = ft_read_at(info, moove);
@@ -55,8 +58,10 @@ void		ft_lldi(t_info *info, t_chariot *pc)
 	else
 		pc->carry = 0;
 }
+
 /*
-**	Ecrit arg[1] dans le registre r[arg[0] - 1] mais sans idx (cf ft_indirect_arg) OP 13
+**	Ecrit arg[1] dans le registre r[arg[0] - 1]
+**	mais sans idx (cf ft_indirect_arg) OP 13
 */
 
 void		ft_lld(t_info *info, t_chariot *pc)
@@ -74,7 +79,8 @@ void		ft_lld(t_info *info, t_chariot *pc)
 }
 
 /*
-** Creait un nouveau PC copie de l'actuel a la position pos + (arg[0] % IDX) OP 12
+** Creait un nouveau PC copie de l'actuel a la position pos +
+**	(arg[0] % IDX) OP 12
 */
 
 void		ft_fork(t_info *info, t_chariot *pc)
@@ -107,7 +113,8 @@ void		ft_sti(t_info *info, t_chariot *pc)
 		if (pc->type_arg[index] == 1)
 			pc->arg[index] = pc->r[pc->arg[index] - 1];
 		else if (pc->type_arg[index] == 3)
-			pc->arg[index] = ft_read_at(info, (pc->pos - 2 + (pc->arg[index] % IDX_MOD)) % MEM_SIZE);
+			pc->arg[index] = ft_read_at(info, (pc->pos - 2 + (pc->arg[index]
+							% IDX_MOD)) % MEM_SIZE);
 		index++;
 	}
 	val = pc->arg[0];

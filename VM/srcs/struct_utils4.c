@@ -6,16 +6,16 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:19:31 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/24 19:30:55 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/24 19:54:53 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/coreware.h"
 
-void		ft_winner(t_info *info, t_player *play)
+int			ft_winner(t_info *info, t_player *play)
 {
-	int res;
-	t_player *winner;
+	int			res;
+	t_player	*winner;
 
 	res = 0;
 	winner = play;
@@ -30,6 +30,7 @@ void		ft_winner(t_info *info, t_player *play)
 	}
 	printf("Contestant %d, \"%s\", has won !\n", winner->id, winner->name);
 	res = info->verbose;
+	return (0);
 }
 
 void		ft_swap_player(t_player *play1, t_player *play2)
@@ -112,7 +113,7 @@ void		ft_del_chariot(t_info *info, t_chariot *pc)
 					tmp = NULL;
 				ft_free_chariot(pc);
 				if ((start->next = tmp) == NULL)
-					break;
+					break ;
 			}
 			start = start->next;
 		}
