@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_utils4.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: qbarrier <qbarrier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:19:31 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/24 19:54:53 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/25 15:36:00 by lelajour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int			ft_winner(t_info *info, t_player *play)
 		}
 		play = play->next;
 	}
-	printf("Contestant %d, \"%s\", has won !\n", winner->id, winner->name);
+	ft_printf("Contestant %d, \"%s\", has won !\n", winner->id, winner->name);
 	res = info->verbose;
 	return (0);
 }
@@ -95,6 +95,9 @@ void		ft_del_chariot(t_info *info, t_chariot *pc)
 	t_chariot *tmp;
 
 	start = info->chariot;
+	if (check_bit(info->verbose, 3))
+		ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n", pc->player,
+		info->cycle_total, info->ctd);
 	if (start == pc)
 	{
 		tmp = start->next;

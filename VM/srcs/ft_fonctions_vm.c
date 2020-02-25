@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fonctions_vm.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: qbarrier <qbarrier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:18:18 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/24 19:39:32 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/25 15:34:45 by lelajour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void		ft_ld(t_info *info, t_chariot *pc)
 	int verbose;
 
 	verbose = info->verbose;
+	ft_printf("yayyyyy\n\n");
 	if (pc->type_arg[0] == 3)
 		pc->arg[0] = ft_read_at(info, (pc->pos - 2 + (pc->arg[0] % IDX_MOD))
 				% MEM_SIZE);
@@ -101,6 +102,9 @@ void		ft_live(t_info *info, t_chariot *pc)
 	info->live_total++;
 	if ((play = ft_player_by_id(info->play, (pc->arg[0] * -1))))
 	{
+		if (check_bit(info->verbose, 0) != 0)
+			ft_printf("Player %d (%s) is said to be alive\n", pc->player,
+		ft_find_player_name(pc->player, info));
 		play->cycle_live = info->cycle_total;
 	}
 }
