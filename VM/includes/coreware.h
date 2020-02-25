@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 11:16:59 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/17 16:31:28 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/25 19:10:46 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define COREWARE_H
 
 # include "op.h"
+# include "../../printf/include/printf.h"
 # include <fcntl.h>
 # include <stdio.h>
 
@@ -133,7 +134,7 @@ int						ft_check_arg_op_live(int tab[4], t_chariot *pc);
 **	ALGO
 */
 
-void					ft_winner(t_info *info, t_player *play);
+int						ft_winner(t_info *info, t_player *play);
 int						ft_read_arguments_opc(t_info *info, t_chariot *pc);
 int						ft_parcour_map(t_info *info, t_chariot *pc);
 int						ft_opcode(int opc, int op, t_info *info,
@@ -166,6 +167,7 @@ void					ft_live(t_info *info, t_chariot *pc);
 
 void					ft_tri_player(t_info *info);
 void					ft_del_chariot(t_info *info, t_chariot *pc);
+void					ft_del_chariot_first(t_info *info, t_chariot *pc);
 t_chariot				*ft_pc_cpy(t_chariot *dest, t_chariot *source);
 int						ft_read_at(t_info *info, int index);
 int						ft_indirect_arg(t_info *info, t_chariot *pc, int arg);
@@ -176,7 +178,8 @@ unsigned char			ft_xtoc(char str[2]);
 int						ft_xtoi(char str[2]);
 char					*ft_itox(int num, char str[2]);
 char					*ft_ctox(unsigned char c, char str[2]);
-void					ft_add_first_chariot(t_chariot **alst, t_chariot *new_chariot);
+void					ft_add_first_chariot(t_chariot **alst,
+		t_chariot *new_chariot);
 void					ft_addchariot(t_chariot **alst, t_chariot *new_chariot);
 void					ft_addplayer(t_player **alst, t_player *new_player);
 t_chariot				*ft_new_chariot(int player, int pos, t_info *info);
@@ -215,6 +218,7 @@ short					check_bit(unsigned int var, short pos);
 **		FREE
 */
 
+void					ft_free_chariot(t_chariot *pc);
 void					ft_free_all(t_info *info);
 
 #endif
