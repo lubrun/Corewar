@@ -1,14 +1,14 @@
 # **************************************************************************** #
-#                                                           LE - /             #
-#                                                               /              #
-#    Makefile                                         .::    .:/ .      .::    #
-#                                                  +:+:+   +:    +:  +:+:+     #
-#    By: lubrun <lubrun@student.le-101.fr>          +:+   +:    +:    +:+      #
-#                                                  #+#   #+    #+    #+#       #
-#    Created: 2018/10/02 15:44:31 by lubrun       #+#   ##    ##    #+#        #
-#    Updated: 2020/02/10 17:30:18 by lubrun      ###    #+. /#+    ###.fr      #
-#                                                          /                   #
-#                                                         /                    #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: lubrun <lubrun@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/10/02 15:44:31 by lubrun            #+#    #+#              #
+#    Updated: 2020/02/25 12:20:57 by lelajour         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 # **************************************************************************** #
 
 NAME = libft.a
@@ -113,16 +113,16 @@ HEADER = libft.h
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar rc $(NAME) $(OBJS)
-	ranlib $(NAME)
+	@ar rc $(NAME) $(OBJS)
+	@ranlib $(NAME)
 
 %.o : %.c
-	gcc -Wall -Wextra -Werror -g -c -I./ $^
+	@gcc -Wall -Wextra -Werror -g -c -I./ $^
 
 clean:
-	rm -f $(OBJS)
+	@rm -f $(OBJS)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_display.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: qbarrier <qbarrier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:18:08 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/24 19:43:01 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/25 15:38:21 by lelajour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_display_chariot(t_info *info)
 	pc = info->chariot;
 	while (pc)
 	{
-		printf("CHAR ID[%d] POS [%d]\t STARTID[%d]\n",
+		ft_printf("CHAR ID[%d] POS [%d]\t STARTID[%d]\n",
 				pc->player, pc->pos, pc->start->pos);
 		pc = pc->next;
 	}
@@ -40,16 +40,16 @@ void	ft_print_octet(unsigned char *str, int size)
 			tmp = c / 16;
 			c = c % 16;
 			if (tmp >= 10)
-				printf("%c", (tmp + 87));
+				ft_printf("%c", (tmp + 87));
 			else
-				printf("%c", (tmp + 48));
+				ft_printf("%c", (tmp + 48));
 		}
 		else
-			printf("0");
+			ft_printf("0");
 		if (c >= 10)
-			printf("%c", (c + 87));
+			ft_printf("%c", (c + 87));
 		else
-			printf("%c", (c + 48));
+			ft_printf("%c", (c + 48));
 		index++;
 	}
 }
@@ -67,18 +67,18 @@ void	ft_print_map(t_info *info, unsigned char *str, int size, int index)
 			tmp = c / 16;
 			c = c % 16;
 			if (tmp >= 10)
-				printf("%c", (tmp + 87));
+				ft_printf("%c", (tmp + 87));
 			else
-				printf("%c", (tmp + 48));
+				ft_printf("%c", (tmp + 48));
 		}
 		else
-			printf("0");
+			ft_printf("0");
 		if (c >= 10)
-			printf("%c ", (c + 87));
+			ft_printf("%c ", (c + 87));
 		else
-			printf("%c ", (c + 48));
+			ft_printf("%c ", (c + 48));
 		if ((index + 1) % info->dump_size == 0 && index > 0)
-			printf("\n");
+			ft_printf("\n");
 	}
 }
 
@@ -93,9 +93,9 @@ void	ft_display_play(t_player *play)
 
 	index = 0;
 	if (play->id == 1)
-		printf("Introducing contestants...\n");
+		ft_printf("Introducing contestants...\n");
 	if (play->next)
 		ft_display_play(play->next);
-	printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n",
+	ft_printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n",
 			play->id, play->code_size, play->name, play->comment);
 }

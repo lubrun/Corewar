@@ -7,8 +7,7 @@
     padding: 20px
 }
 
-.body div {
-    
+.shadow {
     -webkit-box-shadow: -2px 2px 16px 0px rgba(230,28,119,1);
     -moz-box-shadow: -2px 2px 16px 0px rgba(230,28,119,1);
     box-shadow: -2px 2px 16px 0px rgba(230,28,119,1);
@@ -27,5 +26,9 @@
 .visuInfo {
     margin-top: 40px;
     width: 100%;
-    height : 20vh
+    height : 20vh;
+    display: inline-block;
+    background-color: blue;
+    align-items: center;
+    justify-content: center;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parcour_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: qbarrier <qbarrier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 12:33:06 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/24 20:21:41 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/25 19:17:14 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ int		ft_check_cycle_to_die(t_info *info)
 		info->cycle_to_die = CYCLE_TO_DIE - info->delta;
 		info->max_check++;
 	}
+	if (check_bit(info->verbose, 1) != 0)
+		ft_printf("Cycle to die is now %d\n", info->cycle_to_die);
+	info->ctd = info->cycle_to_die;
 	info->live_total = 0;
 	return (1);
 }
@@ -87,6 +90,8 @@ int		ft_parcour_map(t_info *info, t_chariot *pc)
 	{
 		info->cycle_total++;
 		pc = info->chariot;
+		if (check_bit(info->verbose, 1) != 0)
+			ft_printf("It is now cycle %d\n", info->cycle_total);
 		while (pc)
 		{
 			if (pc->op)
