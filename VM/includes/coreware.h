@@ -6,7 +6,7 @@
 /*   By: qbarrier <qbarrier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 11:16:59 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/25 19:18:56 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 11:59:44 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,6 @@ typedef struct			s_chariot
 	struct s_chariot	*start;
 }						t_chariot;
 
-typedef struct			s_op
-{
-	char				*name;
-	int					number_args;
-	int					type_arg[3];
-	int					id;
-	int					cast;
-	char				*def;
-	int					opc;
-	int					long_dir;
-}						t_op;
-
 typedef struct			s_player
 {
 	int					id;
@@ -78,7 +66,7 @@ typedef struct			s_info
 	int					tab_cast[16];
 	char				*line;
 	int					aff;
-    int                 ctd;
+	int					ctd;
 	int					*intline;
 	int					nb_players;
 	unsigned int		verbose;
@@ -91,7 +79,17 @@ typedef struct			s_info
 	int					dump_cycle;
 }						t_info;
 
-t_op					ft_op_tab[17];
+typedef struct			s_op
+{
+	char				name[5];
+	int					number_args;
+	char				params_type[3];
+	int					id;
+	int					cycles;
+	char				description[50];
+	int					acb;
+	int					label_size;
+}						t_op;
 
 /*
 **		PARSING ARGUMENTS
@@ -136,7 +134,7 @@ int						ft_check_arg_op_live(int tab[4], t_chariot *pc);
 **	ALGO
 */
 
-int 					ft_winner(t_info *info, t_player *play);
+int						ft_winner(t_info *info, t_player *play);
 int						ft_read_arguments_opc(t_info *info, t_chariot *pc);
 int						ft_parcour_map(t_info *info, t_chariot *pc);
 int						ft_opcode(int opc, int op, t_info *info,
@@ -167,6 +165,7 @@ void					ft_live(t_info *info, t_chariot *pc);
 **		UTILS
 */
 
+t_op					g_op_tab[17];
 void					ft_tri_player(t_info *info);
 void					ft_del_chariot(t_info *info, t_chariot *pc);
 void					ft_del_chariot_first(t_info *info, t_chariot *pc);
@@ -215,7 +214,7 @@ void					ft_display_play(t_player *play);
 unsigned int			get_number_verbose(char *line);
 unsigned int			ft_unsigned_atoi(char *line);
 short					check_bit(unsigned int var, short pos);
-char                   *ft_find_player_name(int player, t_info *info);
+char					*ft_find_player_name(int player, t_info *info);
 
 /*
 **		FREE

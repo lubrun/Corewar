@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:17:56 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/24 19:38:03 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/26 11:59:46 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		ft_size_to_read(int tab[4], int direct, t_chariot *pc)
 	int		octal;
 	t_op	*op_tab;
 
-	op_tab = ft_op_tab;
+	op_tab = g_op_tab;
 	octal = 0;
 	index = -1;
 	while (++index < op_tab[pc->op - 1].number_args)
