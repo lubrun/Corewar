@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   coreware.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: qbarrier <qbarrier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/27 17:07:05 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/27 17:07:43 by qbarrier         ###   ########lyon.fr   */
+/*   Created: 2020/02/17 11:16:59 by qbarrier          #+#    #+#             */
+/*   Updated: 2020/02/27 17:20:07 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define COREWARE_H
 
 # include "op.h"
+# include "../../libftprintf/ft_printf.h"
 # include <fcntl.h>
 # include <stdio.h>
 
@@ -29,6 +30,7 @@ typedef struct			s_chariot
 	int					cycle_live;
 	int					cast;
 	int					carry;
+	int					pross;
 	int					player;
 	char				op;
 	char				opc;
@@ -40,18 +42,6 @@ typedef struct			s_chariot
 	struct s_chariot	*next;
 	struct s_chariot	*start;
 }						t_chariot;
-
-typedef struct			s_op
-{
-	char				*name;
-	int					number_args;
-	int					type_arg[3];
-	int					id;
-	int					cast;
-	char				*def;
-	int					opc;
-	int					long_dir;
-}						t_op;
 
 typedef struct			s_player
 {
@@ -76,6 +66,7 @@ typedef struct			s_info
 	int					tab_cast[16];
 	char				*line;
 	int					aff;
+	int					ctd;
 	int					*intline;
 	int					nb_players;
 	unsigned int		verbose;
@@ -87,6 +78,18 @@ typedef struct			s_info
 	int					dump_size;
 	int					dump_cycle;
 }						t_info;
+
+typedef struct			s_op
+{
+	char				*name;
+	int					number_args;
+	int					type_arg[3];
+	int					id;
+	int					cast;
+	char				*def;
+	int					opc;
+	int					long_dir;
+}						t_op;
 
 t_op					g_ft_op_tab[17];
 
@@ -167,6 +170,7 @@ void					ft_live(t_info *info, t_chariot *pc);
 void					ft_del_chariot_first(t_info *info, t_chariot *pc);
 void					ft_tri_player(t_info *info);
 void					ft_del_chariot(t_info *info, t_chariot *pc);
+void					ft_del_chariot_first(t_info *info, t_chariot *pc);
 t_chariot				*ft_pc_cpy(t_chariot *dest, t_chariot *source);
 int						ft_read_at(t_info *info, int index);
 int						ft_indirect_arg(t_info *info, t_chariot *pc, int arg);
@@ -212,6 +216,7 @@ void					ft_display_play(t_player *play);
 unsigned int			get_number_verbose(char *line);
 unsigned int			ft_unsigned_atoi(char *line);
 short					check_bit(unsigned int var, short pos);
+char					*ft_find_player_name(int player, t_info *info);
 
 /*
 **		FREE

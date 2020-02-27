@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import '../css/body.css'
-import GradientButton from 'react-linear-gradient-button';
+import Player from './Player'
 
 class Body extends Component {
 
   render() {
     return (
         <div className="body , center">
-            <div className="visu">
+            <div className="shadow , visu">
                 ok
             </div>
-            <div className="visuInfo">
-                wee
+            <div className="shadow , visuInfo">
+                <Player />
+                <Player />
+                <Player />
+                <Player />
             </div>
       </div>
     );

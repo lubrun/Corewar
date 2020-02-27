@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:18:24 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/27 16:51:50 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/27 17:16:33 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_zjmp(t_info *info, t_chariot *pc)
 **	Comparation en bits "^" op 8
 */
 
-void	ft_xor(t_info *info, t_chariot *pc)
+void		ft_xor(t_info *info, t_chariot *pc)
 {
 	int	norme;
 
@@ -87,7 +87,7 @@ void	ft_xor(t_info *info, t_chariot *pc)
 **	Comparation en bits "|" op 7
 */
 
-void	ft_or(t_info *info, t_chariot *pc)
+void		ft_or(t_info *info, t_chariot *pc)
 {
 	int	norme;
 
@@ -112,7 +112,7 @@ void	ft_or(t_info *info, t_chariot *pc)
 **	Comparation en bits "&" op 6
 */
 
-void	ft_and(t_info *info, t_chariot *pc)
+void		ft_and(t_info *info, t_chariot *pc)
 {
 	int	norme;
 

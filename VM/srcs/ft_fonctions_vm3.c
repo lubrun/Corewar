@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:18:35 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/27 16:51:36 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/27 17:16:40 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,11 @@ void		ft_lldi(t_info *info, t_chariot *pc)
 
 /*
 **	Ecrit arg[1] dans le registre r[arg[0] - 1]
+<<<<<<< HEAD
 ** mais sans idx (cf ft_indirect_arg) OP 13
+=======
+**	mais sans idx (cf ft_indirect_arg) OP 13
+>>>>>>> 586c8a1272bbf52acf080d8790129603c6d4d89e
 */
 
 void		ft_lld(t_info *info, t_chariot *pc)
@@ -80,7 +84,11 @@ void		ft_lld(t_info *info, t_chariot *pc)
 
 /*
 ** Creait un nouveau PC copie de l'actuel a la position pos +
+<<<<<<< HEAD
 ** (arg[0] % IDX) OP 12
+=======
+**	(arg[0] % IDX) OP 12
+>>>>>>> 586c8a1272bbf52acf080d8790129603c6d4d89e
 */
 
 void		ft_fork(t_info *info, t_chariot *pc)

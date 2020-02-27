@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:19:22 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/27 16:56:36 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/27 17:18:19 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ void		ft_add_fonction_to_info(t_info *info)
 	info->fonction_check[13] = ft_check_arg_op_ldi;
 	info->fonction_check[14] = ft_check_arg_op_jf;
 	info->fonction_check[15] = ft_check_arg_op_aff;
+	info->ctd = CYCLE_TO_DIE;
 	ft_add_vm_fonction(info);
 	ft_add_cast(info);
 }

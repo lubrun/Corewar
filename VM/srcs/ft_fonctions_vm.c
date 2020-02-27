@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:18:18 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/27 16:49:49 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/27 17:26:14 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,9 @@ void		ft_live(t_info *info, t_chariot *pc)
 	info->live_total++;
 	if ((play = ft_player_by_id(info->play, (pc->arg[0] * -1))))
 	{
+		if (check_bit(info->verbose, 0) != 0)
+			printf("Player %d (%s) is said to be alive\n", pc->player,
+		ft_find_player_name(pc->player, info));
 		play->cycle_live = info->cycle_total;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: lelajour <lelajour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/08 15:27:05 by lelajour          #+#    #+#             */
-/*   Updated: 2020/02/09 18:12:16 by lelajour         ###   ########.fr       */
+/*   Updated: 2020/02/27 17:29:10 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,16 @@ unsigned int	get_number_verbose(char *line)
 short		check_bit(unsigned int var, short pos)
 {
 	return (var & (1 << pos));
+}
+
+char            *ft_find_player_name(int player, t_info *info)
+{
+	int        i;
+	t_player    *tmp;
+
+	i = 0;
+	tmp = info->play;
+	while (++i < player)
+		tmp = tmp->next;
+	return (tmp->name);
 }

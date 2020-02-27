@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:19:06 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/27 16:55:02 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/27 17:27:07 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,7 @@ int			ft_read_arguments_opc(t_info *info, t_chariot *pc)
 
 	index = pc->pos;
 	if (!pc->opc)
-	{
 		pc->arg[0] = ft_convert(info, &index, pc->jump);
-	}
 	else
 	{
 		if (pc->tab_jump[0] != 0)

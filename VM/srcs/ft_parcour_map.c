@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parcour_map.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: qbarrier <qbarrier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 12:33:06 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/27 16:52:47 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/27 17:26:29 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,6 @@ int		ft_tempo_cast(t_info *info, t_chariot *pc, int op)
 
 /*
 ** Faire avancer les chariots chacun son tour
-**
-**
-**
 ** Conditions d'arret : dump arrive a terme || tous les CHARIOTS sont morts.
 */
 
@@ -90,6 +87,8 @@ int		ft_parcour_map(t_info *info, t_chariot *pc)
 	{
 		info->cycle_total++;
 		pc = info->chariot;
+		if (check_bit(info->verbose, 1) != 0)
+			printf("It is now cycle %d\n", info->cycle_total);
 		while (pc)
 		{
 			if (pc->op)

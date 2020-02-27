@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_utils4.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: qbarrier <qbarrier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:19:31 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/27 17:04:36 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/27 17:26:41 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,30 +35,28 @@ int			ft_winner(t_info *info, t_player *play)
 
 void		ft_swap_player(t_player *play1, t_player *play2)
 {
-	int				swap_id;
+	int				swap_int;
 	unsigned char	*swap_code;
-	char			*swap_name;
-	char			*swap_comment;
-	int				swap_code_size;
+	char			*swap_char;
 
-	swap_id = play1->id;
-	swap_code = play1->code;
-	swap_name = play1->name;
-	swap_comment = play1->comment;
-	swap_code_size = play1->code_size;
+	swap_int = play1->id;
 	play1->id = play2->id;
+	play2->id = swap_int;
+	swap_code = play1->code;
 	play1->code = play2->code;
-	play1->name = play2->name;
-	play1->comment = play2->comment;
-	play1->code_size = play2->code_size;
-	play2->id = swap_id;
 	play2->code = swap_code;
-	play2->name = swap_name;
-	play2->comment = swap_comment;
-	play2->code_size = swap_code_size;
-	swap_id = play1->mapped;
+	swap_char = play1->name;
+	play1->name = play2->name;
+	play2->name = swap_char;
+	swap_char = play1->comment;
+	play1->comment = play2->comment;
+	play2->comment = swap_char;
+	swap_int = play1->code_size;
+	play1->code_size = play2->code_size;
+	play2->code_size = swap_int;
+	swap_int = play1->mapped;
 	play1->mapped = play2->mapped;
-	play2->mapped = swap_id;
+	play2->mapped = swap_int;
 }
 
 void		ft_tri_player(t_info *info)

@@ -1,14 +1,14 @@
 # **************************************************************************** #
-#                                                           LE - /             #
-#                                                               /              #
-#    Makefile                                         .::    .:/ .      .::    #
-#                                                  +:+:+   +:    +:  +:+:+     #
-#    By: lubrun <lubrun@student.le-101.fr>          +:+   +:    +:    +:+      #
-#                                                  #+#   #+    #+    #+#       #
-#    Created: 2018/12/14 02:04:28 by lubrun       #+#   ##    ##    #+#        #
-#    Updated: 2020/02/10 15:20:50 by lubrun      ###    #+. /#+    ###.fr      #
-#                                                          /                   #
-#                                                         /                    #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: lubrun <lubrun@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/12/14 02:04:28 by lubrun            #+#    #+#              #
+#    Updated: 2020/02/25 12:17:08 by lelajour         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 # **************************************************************************** #
 
 NAME = asm
@@ -23,7 +23,7 @@ SRCS = 	srcs/main.c \
 		srcs/op_utils.c \
 		srcs/byte_utils.c \
 		srcs/write_error.c \
-		srcs/write.c 
+		srcs/write.c
 
 OBJ = $(SRCS:%.c=%.o)
 
@@ -36,21 +36,21 @@ LIBFT = libft/libft.a
 all: $(LIBFT) $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ)
-	gcc $(CFLAGS) $^ -o $@
+	@gcc $(CFLAGS) $^ -o $@
 
 %.o : %.c includes/asm.h
-	gcc $(CFLAGS) -c $< -o $@
+	@gcc $(CFLAGS) -c $< -o $@
 
 $(LIBFT):
-	make -C libft/
+	@make -C libft/
 
 clean:
-	make clean -C libft/
-	rm -rf $(OBJ)
+	@make clean -C libft/
+	@rm -rf $(OBJ)
 
 fclean: clean
-	make fclean -C libft/
-	rm -rf $(NAME)
+	@make fclean -C libft/
+	@rm -rf $(NAME)
 
 re:	fclean all
 
