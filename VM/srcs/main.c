@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:19:11 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/27 17:17:47 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/27 20:39:52 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,7 @@ int			ft_open(char *file, t_info *info, int num)
 	if (!info->line || !info->intline)
 		return (ft_close_error(0, "NO LINE \n", fd));
 	close(fd);
-	ft_parsing(info, num);
-	return (1);
+	return (ft_parsing(info, num));
 }
 
 int			main(int ac, char **av)
