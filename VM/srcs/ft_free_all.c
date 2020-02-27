@@ -6,11 +6,19 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:25:19 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/17 16:31:31 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/27 17:01:53 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/coreware.h"
+
+void		ft_free_chariot(t_chariot *pc)
+{
+	pc->next = NULL;
+	pc->start = NULL;
+	free(pc->r);
+	free(pc);
+}
 
 void		ft_free_pc(t_chariot *pc)
 {

@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:19:27 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/17 14:19:28 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/27 16:44:22 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ int			ft_read_at(t_info *info, int index)
 **	PERMET DE LIRE 4 OCTET A pc->OP pos + ARG
 */
 
-//		VERIFIER SI ON STOCK LES IND EN UNSIGNED OU PAS
 int			ft_indirect_arg(t_info *info, t_chariot *pc, int arg)
 {
 	int	res;

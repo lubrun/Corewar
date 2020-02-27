@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:19:01 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/17 14:46:56 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/27 16:42:03 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int			ft_check_code_size(int *tab, t_player *play)
 		index++;
 		exposant = (exposant / 256);
 	}
-//	printf("SIZE == [%d]\n",play->code_size);
 	if (play->code_size > CHAMP_MAX_SIZE)
 		return (0);
 	return (1);
@@ -50,7 +49,7 @@ int			ft_parsing_code(t_info *info, t_player *play)
 	int	start;
 
 	start = 0;
-	index = (PROG_NAME_LENGTH + COMMENT_LENGTH + 16) * 2;//2192
+	index = (PROG_NAME_LENGTH + COMMENT_LENGTH + 16) * 2;
 	len = (int)ft_strlen(&info->line[index]);
 	if (len != (play->code_size * 2))
 		return (ft_error(0, "CODE DU CHAMP INVALIDE\n"));

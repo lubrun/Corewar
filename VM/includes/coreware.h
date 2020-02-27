@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/17 11:16:59 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/17 16:31:28 by qbarrier         ###   ########lyon.fr   */
+/*   Created: 2020/02/27 17:07:05 by qbarrier          #+#    #+#             */
+/*   Updated: 2020/02/27 17:07:43 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ typedef struct			s_info
 	int					dump_cycle;
 }						t_info;
 
-t_op					ft_op_tab[17];
+t_op					g_ft_op_tab[17];
 
 /*
 **		PARSING ARGUMENTS
@@ -133,7 +133,7 @@ int						ft_check_arg_op_live(int tab[4], t_chariot *pc);
 **	ALGO
 */
 
-void					ft_winner(t_info *info, t_player *play);
+int						ft_winner(t_info *info, t_player *play);
 int						ft_read_arguments_opc(t_info *info, t_chariot *pc);
 int						ft_parcour_map(t_info *info, t_chariot *pc);
 int						ft_opcode(int opc, int op, t_info *info,
@@ -164,6 +164,7 @@ void					ft_live(t_info *info, t_chariot *pc);
 **		UTILS
 */
 
+void					ft_del_chariot_first(t_info *info, t_chariot *pc);
 void					ft_tri_player(t_info *info);
 void					ft_del_chariot(t_info *info, t_chariot *pc);
 t_chariot				*ft_pc_cpy(t_chariot *dest, t_chariot *source);
@@ -176,7 +177,8 @@ unsigned char			ft_xtoc(char str[2]);
 int						ft_xtoi(char str[2]);
 char					*ft_itox(int num, char str[2]);
 char					*ft_ctox(unsigned char c, char str[2]);
-void					ft_add_first_chariot(t_chariot **alst, t_chariot *new_chariot);
+void					ft_add_first_chariot(t_chariot **alst,
+		t_chariot *new_chariot);
 void					ft_addchariot(t_chariot **alst, t_chariot *new_chariot);
 void					ft_addplayer(t_player **alst, t_player *new_player);
 t_chariot				*ft_new_chariot(int player, int pos, t_info *info);
@@ -215,6 +217,7 @@ short					check_bit(unsigned int var, short pos);
 **		FREE
 */
 
+void					ft_free_chariot(t_chariot *pc);
 void					ft_free_all(t_info *info);
 
 #endif

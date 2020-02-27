@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:19:06 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/17 14:19:08 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/27 16:55:02 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ int			ft_check_register(t_chariot *pc)
 
 /*
 **	CONVERTI SUR SIZE OCTET LA VALEUR EX EN DEC ET LA STOCK DANS ARG
-**	SI ON LIT 2 octets il faut imaginer qu'ils sont signe et qu'il peuvent etre negatif
-**	D'ou la variable max qui permet de savoir si on depasse sa moitie, on devient negatif
+**	SI ON LIT 2 octets il faut imaginer qu'ils sont signe et qu'il
+** peuvent etre negatif D'ou la variable max qui permet de savoir si on
+** depasse sa moitie, on devient negatif
 */
 
 int			ft_convert(t_info *info, int *index, int size)
@@ -46,29 +47,25 @@ int			ft_convert(t_info *info, int *index, int size)
 	max = ft_pow(256, ((size * 2) - 2));
 	if (size == 4 || size == 1)
 		max = 4294967295;
-//	printf("MAX == [%u]\n", max);
-
-//	printf("");	// si j'enleve le printf, je n'ai plus les meme valeure ...
 	res = 0;
 	while (size > 0)
 	{
 		index_modulo = (*index) % MEM_SIZE;
-//		printf("\tJUMP arg info->map[%d|%d][%d]\n", *index, index_modulo, info->map[index_modulo]);
-		res = res + ((ft_pow(16, ((size * 2) - 2))) * (info->map[index_modulo]));
+		res = res + ((ft_pow(16, ((size * 2) - 2))) *
+				(info->map[index_modulo]));
 		size--;
 		(*index)++;
 	}
 	(*index) = (*index) % MEM_SIZE;
-//	printf("\tMAX RES === [%d][%u]\n", res, res);
 	if ((int)res > (int)(max / 2))
 		res = res - max;
-//	printf("\tMAX RES === [%d][%d]\n", res, res);
 	return (res);
 }
 
 /*
-**	Recuperer les Arguments avec l'opc, checker les registres, envoyer dans la fonction
-*	|| revenir et faire un saut de chariot->jump octet sur le pointeur du chariot.
+**	Recuperer les Arguments avec l'opc, checker les registres,
+** envoyer dans la fonction || revenir et faire un saut de chariot->jump
+** octet sur le pointeur du chariot.
 */
 
 int			ft_read_arguments_opc(t_info *info, t_chariot *pc)
@@ -78,16 +75,9 @@ int			ft_read_arguments_opc(t_info *info, t_chariot *pc)
 	index = pc->pos;
 	if (!pc->opc)
 	{
-//		printf("JUMP arg 0 == [%d] info->map[pc->pos] =[%d], pc->jump {%d]\n", pc->arg[0], info->map[pc->pos], pc->jump);
-//		if (pc->op == 9)
-//		{
-//			pc->arg[0] = ft_convert_for_jump(info, index);
-//		}
-//		else
-			pc->arg[0] = ft_convert(info, &index, pc->jump);
-///		printf("JUMP arg 0 == [%d]\n", pc->arg[0]);
+		pc->arg[0] = ft_convert(info, &index, pc->jump);
 	}
-	else 
+	else
 	{
 		if (pc->tab_jump[0] != 0)
 			pc->arg[0] = ft_convert(info, &index, pc->tab_jump[0]);

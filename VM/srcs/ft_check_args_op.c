@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:17:51 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/17 14:22:55 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/27 16:38:02 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,12 @@ int		ft_check_arg_op_bits(int tab[4], t_chariot *pc)
 {
 	int index;
 
-//	printf("PASS AND OR XOR\n");
 	index = -1;
 	while (++index < 2)
 		if (tab[index] <= 0 || tab[index] > 3)
 			return (0);
 	if (tab[2] != 1)
 		return (0);
-//	printf("OK 6 7 8\n");
 	return (ft_size_to_read(tab, 4, pc));
 }
 
@@ -39,12 +37,10 @@ int		ft_check_arg_op_addsub(int tab[4], t_chariot *pc)
 {
 	int index;
 
-//	printf("PASS ADD SUB\n");
 	index = -1;
 	while (++index < 3)
 		if (tab[index] != 1)
 			return (0);
-//	printf("OK 4 5\n");
 	return (ft_size_to_read(tab, 0, pc));
 }
 
@@ -56,11 +52,9 @@ int		ft_check_arg_op_st(int tab[4], t_chariot *pc)
 {
 	int index;
 
-//	printf("PASS ST\n");
 	index = 1;
 	if (tab[0] != 1 || (tab[1] != 1 && tab[1] != 3))
 		return (0);
-//	printf("OK 3\n");
 	return (ft_size_to_read(tab, 0, pc));
 }
 
@@ -72,11 +66,9 @@ int		ft_check_arg_op_ld(int tab[4], t_chariot *pc)
 {
 	int index;
 
-//	printf("PASS LD LLD\n");
 	index = 1;
 	if (tab[0] <= 1 || tab[1] != 1)
 		return (0);
-//	printf("OK 2 13\n");
 	return (ft_size_to_read(tab, 4, pc));
 }
 
@@ -88,10 +80,8 @@ int		ft_check_arg_op_jf(int tab[4], t_chariot *pc)
 {
 	int index;
 
-//	printf("PASS JUMP FORKS\n");
 	index = 0;
 	if (tab[0] != 2)
 		return (0);
-//	printf("OK 9 12 15\n");
 	return (ft_size_to_read(tab, 4, pc));
 }

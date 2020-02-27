@@ -6,16 +6,16 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:19:31 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/17 14:32:59 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/27 17:04:36 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/coreware.h"
 
-void		ft_winner(t_info *info, t_player *play)
+int			ft_winner(t_info *info, t_player *play)
 {
-	int res;
-	t_player *winner;
+	int			res;
+	t_player	*winner;
 
 	res = 0;
 	winner = play;
@@ -30,6 +30,7 @@ void		ft_winner(t_info *info, t_player *play)
 	}
 	printf("Contestant %d, \"%s\", has won !\n", winner->id, winner->name);
 	res = info->verbose;
+	return (0);
 }
 
 void		ft_swap_player(t_player *play1, t_player *play2)
@@ -80,28 +81,17 @@ void		ft_tri_player(t_info *info)
 	}
 }
 
-void		ft_free_chariot(t_chariot *pc)
-{
-	pc->next = NULL;
-	pc->start = NULL;
-	free(pc->r);
-	free(pc);
-}
-
 void		ft_del_chariot(t_info *info, t_chariot *pc)
 {
 	t_chariot *start;
 	t_chariot *tmp;
 
-///	printf("DEL CHARIOT ID [%d]\n", pc->player);
-//	ft_display_chariot(info);
 	start = info->chariot;
+	if (check_bit(info->verbose, 3))
+		printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
+				pc->player, info->cycle_total, info->cycle_to_die);
 	if (start == pc)
-	{
-		tmp = start->next;
-		ft_free_chariot(pc);
-		info->chariot = tmp;
-	}
+		ft_del_chariot_first(info, pc);
 	else
 	{
 		while (start->next)
@@ -114,10 +104,9 @@ void		ft_del_chariot(t_info *info, t_chariot *pc)
 					tmp = NULL;
 				ft_free_chariot(pc);
 				if ((start->next = tmp) == NULL)
-					break;
+					break ;
 			}
 			start = start->next;
 		}
-//		ft_display_chariot(info);
 	}
 }

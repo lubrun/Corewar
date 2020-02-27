@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:18:08 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/17 14:42:17 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/27 16:49:16 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,11 @@ void	ft_print_octet(unsigned char *str, int size)
 	}
 }
 
-void	ft_print_map(t_info *info, unsigned char *str, int size)
+void	ft_print_map(t_info *info, unsigned char *str, int size, int index)
 {
-	int				index;
 	unsigned char	c;
 	unsigned char	tmp;
 
-	index = -1;
 	while (++index < size)
 	{
 		c = str[index];
@@ -86,7 +84,7 @@ void	ft_print_map(t_info *info, unsigned char *str, int size)
 
 void	ft_display_map(t_info *info)
 {
-	ft_print_map(info, info->map, MEM_SIZE);
+	ft_print_map(info, info->map, MEM_SIZE, -1);
 }
 
 void	ft_display_play(t_player *play)
@@ -98,5 +96,6 @@ void	ft_display_play(t_player *play)
 		printf("Introducing contestants...\n");
 	if (play->next)
 		ft_display_play(play->next);
-	printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n", play->id, play->code_size, play->name, play->comment);
+	printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n", play->id,
+			play->code_size, play->name, play->comment);
 }

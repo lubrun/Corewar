@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:19:18 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/17 16:10:36 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/27 16:56:15 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,13 @@ t_chariot		*ft_new_chariot(int player, int pos, t_info *info)
 	new->cast = 0;
 	new->cycle_live = 0;
 	new->jump = 0;
-	new->r[index++] = player * - 1;
+	new->r[index++] = player * -1;
 	while (index++ < REG_NUMBER)
 		new->r[index] = 0;
 	if (info->chariot)
 		new->start = info->chariot;
 	else
 		new->start = new;
-///	printf("\tPOS ===== [%d]\n", new->pos);
 	return (ft_new_chariot2(new));
 }
 
@@ -95,7 +94,6 @@ t_info			*ft_new_info(t_info *info)
 	info->verbose = 0;
 	info->dump_cycle = -1;
 	info->dump_size = 0;
-	info->aff = 0;
 	info->live_total = 0;
 	info->cycle_to_die = CYCLE_TO_DIE;
 	info->max_check = 0;

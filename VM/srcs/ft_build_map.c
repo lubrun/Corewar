@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:17:40 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/17 16:07:17 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/27 16:37:35 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ int			ft_add_player_to_map(int index, t_info *info, int id,
 	while (index_play < play->code_size)
 	{
 		map[index + index_play] = play->code[index_play];
-//		printf("C[%d]I[%d]\n", map[index + index_play],
-//		play->code[index_play]);
 		index_play++;
 	}
 	return (play->code_size);
@@ -42,7 +40,6 @@ int			ft_build_map(t_info *info)
 	{
 		if (index == (insert * (MEM_SIZE / info->nb_players)))
 		{
-//			printf("PLAYER [%d] AT index [%d]\n", insert + 1, index);
 			ft_add_player_to_map(index, info, insert + 1, info->map);
 			insert = (insert > 0 ? insert - 1 : insert);
 		}
@@ -50,8 +47,6 @@ int			ft_build_map(t_info *info)
 			info->map[index] = 0;
 		index--;
 	}
-//	ft_display_map(info);
-//	ft_display_chariot(info);
 	ft_parcour_map(info, info->chariot);
 	return (1);
 }
