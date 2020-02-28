@@ -6,7 +6,7 @@
 /*   By: lubrun <lubrun@student.le-101.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 14:34:57 by lubrun            #+#    #+#             */
-/*   Updated: 2020/02/25 14:43:28 by lubrun           ###   ########lyon.fr   */
+/*   Updated: 2020/02/28 20:45:37 by lubrun           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,7 @@ int         new_label(t_file *file, char *label)
     t_label		*tmp;
 
 	if (label_exist(file, &new, label))
-	{
-		// ft_strdel(&label);
 		return (1);
-	}
 	if (!label || !(new = ft_memalloc(sizeof(t_label))))
 	{
 		ft_strdel(&label);
@@ -100,6 +97,5 @@ int         new_label(t_file *file, char *label)
     }
     else
         file->label = new;
-	// ft_strdel(&label);
     return (1);
 }

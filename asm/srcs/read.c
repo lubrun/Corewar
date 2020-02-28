@@ -6,7 +6,7 @@
 /*   By: lubrun <lubrun@student.le-101.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 10:40:32 by lubrun            #+#    #+#             */
-/*   Updated: 2020/02/28 19:36:15 by lubrun           ###   ########lyon.fr   */
+/*   Updated: 2020/02/28 20:11:07 by lubrun           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,25 @@ void		set_magic(t_file *file)
 	int		magic;
 
 	magic = COREWAR_EXEC_MAGIC;
-	swap_four((unsigned int *)&(magic)); 
+	swap_four((unsigned int *)&(magic));
 	file->header.magic = magic;
+}
+
+static int	is_valid_line(t_file *file, char **trim)
+{
+	if ((!ft_strncmp(*trim, NAME_CMD_STRING, 5) &&
+	!get_prog_name(file, trim)) || (*trim &&
+	!ft_strncmp(*trim, COMMENT_CMD_STRING, 8) && !get_comment(file, trim)))
+	{
+		ft_strdel(trim);
+		return (0);
+	}
+	if (!file->header.magic && *trim)
+	{
+		ft_strdel(trim);
+		return (write_error(file, ft_strdup("Incorrect header\n"), 0, 0));
+	}
+	return (1);
 }
 
 int			parse_header(t_file *file)
@@ -83,17 +100,8 @@ int			parse_header(t_file *file)
 		file->current_line++;
 		if (!ft_is_empty_line(trim) && *trim != COMMENT_CHAR)
 		{
-			if ((!ft_strncmp(trim, NAME_CMD_STRING, 5) && !get_prog_name(file, &trim)) ||
-					(trim && !ft_strncmp(trim, COMMENT_CMD_STRING, 8) && !get_comment(file, &trim)))
-			{
-				ft_strdel(&trim);
+			if (!is_valid_line(file, &trim))
 				return (0);
-			}
-			if (!file->header.magic && trim)
-			{
-				ft_strdel(&trim);
-				return (write_error(file, ft_strdup("Incorrect header\n"), 0, 0));
-			}
 		}
 		ft_strdel(&trim);
 		ft_strdel(&str);
