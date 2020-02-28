@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   read_name.c                                      .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: lubrun <lubrun@student.le-101.fr>          +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/22 21:04:28 by lubrun       #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/10 16:34:14 by lubrun      ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   read_name.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lubrun <lubrun@student.le-101.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/22 21:04:28 by lubrun            #+#    #+#             */
+/*   Updated: 2020/02/25 14:43:15 by lubrun           ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
@@ -19,7 +18,7 @@ static int  check_name_tag(char *str)
 
     tmp = str;
     str += 5;
-    while (*str && *str == ' ')
+    while (*str && (*str == ' ' || *str == '\t'))
         str++;
     if (!*str || *str != '"')
         return (write_error(NULL, ft_strdup("Token expected:.name \"[NAME]\"\n"), 0, 0));

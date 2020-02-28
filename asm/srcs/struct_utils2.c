@@ -1,39 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   byte_utils.c                                       :+:      :+:    :+:   */
+/*   struct_utils2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lubrun <lubrun@student.le-101.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/25 14:24:15 by lubrun            #+#    #+#             */
-/*   Updated: 2020/02/25 14:49:11 by lubrun           ###   ########lyon.fr   */
+/*   Created: 2020/02/24 14:32:53 by lubrun            #+#    #+#             */
+/*   Updated: 2020/02/25 20:40:04 by lubrun           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static void		swap_one(unsigned char *a, unsigned char *b)
+static void free_label(t_label *label)
 {
-	unsigned char	tmp;
-
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
+    t_label *to_free;
+    
+    while (label)
+    {
+        ft_strdel(&label->name);
+        to_free = label;
+        label = label->next;
+        free(to_free);
+    }
 }
 
-void			swap_two(unsigned short int *swap)
+void        free_file(t_file *file)
 {
-	unsigned char	*new;
-
-	new = (unsigned char *)swap;
-	swap_one(new, new + 1);
-}
-
-void			swap_four(unsigned int *swap)
-{
-	unsigned char	*new;
-
-	new = (unsigned char *)swap;
-	swap_one(new, new + 3);
-	swap_one(new + 1, new + 2);
+    free_label(file->label);
+    ft_strdel(&file->file_name);
+    free(file);
 }

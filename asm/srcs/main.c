@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   main.c                                           .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: lubrun <lubrun@student.le-101.fr>          +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/16 21:46:31 by lubrun       #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/06 01:31:06 by lubrun      ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lubrun <lubrun@student.le-101.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/16 21:46:31 by lubrun            #+#    #+#             */
+/*   Updated: 2020/02/25 20:44:22 by lubrun           ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
@@ -41,12 +40,13 @@ static t_option     parse_option(int ac, char **av)
     return ((t_option){0, -1, -1});
 }
 
-static t_option     print_error(int code)
+static t_option     print_error(int code, char *name)
 {
     if (code == 0)
         write(1, "syntax error: ./asm [file.s][file1.s]...\noption:\n\t-a\tFor verbose\n", 66);
     else if (code == 1)
         write(1, "Can't write output file\n", 24);
+	unlink(name);
     return ((t_option){0, -1, 1});
 }
 
@@ -82,11 +82,12 @@ static int      parse_file(int ac, char **av, t_option opt)
 	    ft_bzero(file, sizeof(t_file));
 		if (!is_asm_file(av[index]) || (file->fd = open(av[index], O_RDONLY)) == -1 ||
 			!(file->file_name = ft_strdup(av[index])))
-            return (print_error(1).count);
+            return (print_error(1, get_output_name(av[index])).count);
         if (!parse_header(file) || !parse_op(file) ||
 			!write_file(file))
-            return (print_error(file->error).count);
+            return (print_error(file->error, get_output_name(av[index])).count);
 		index++;
+        free_file(file);
     }
     return (1);
 }

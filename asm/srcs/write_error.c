@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   write_error.c                                    .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: lubrun <lubrun@student.le-101.fr>          +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/02/05 00:30:13 by lubrun       #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/12 23:24:30 by lubrun      ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   write_error.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lubrun <lubrun@student.le-101.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/05 00:30:13 by lubrun            #+#    #+#             */
+/*   Updated: 2020/02/25 14:50:14 by lubrun           ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
+
 
 #include "asm.h"
 
@@ -63,7 +63,7 @@ int         check_error(t_file *file)
         return (write_error(file, ft_strdup("No instruction in file !\n"), 0, 0));
 	if (file->size > CHAMP_MAX_SIZE)
 		return (write_error(file, ft_strdup("Champ size too long !\n"), 0, 0));
-	if (!check_label_use(file))
+    if (!check_label_use(file))
 		return (0);
 	return (1);
 }
