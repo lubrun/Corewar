@@ -6,7 +6,7 @@
 #    By: lubrun <lubrun@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/02 15:44:31 by lubrun            #+#    #+#              #
-#    Updated: 2020/02/25 12:20:57 by lelajour         ###   ########.fr        #
+#    Updated: 2020/02/29 01:51:52 by lelajour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 # **************************************************************************** #
@@ -116,7 +116,8 @@ $(NAME): $(OBJS)
 	@ar rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
 
-%.o : %.c
+%.o : %.c $(HEADER)
+	@echo "bonjjour libft"
 	@gcc -Wall -Wextra -Werror -g -c -I./ $^
 
 clean:

@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   byte_utils.c                                     .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: lubrun <lubrun@student.le-101.fr>          +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/29 09:18:25 by lubrun       #+#   ##    ##    #+#       */
-/*   Updated: 2020/01/29 09:18:36 by lubrun      ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   byte_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lubrun <lubrun@student.le-101.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/25 14:24:15 by lubrun            #+#    #+#             */
+/*   Updated: 2020/02/25 14:49:11 by lubrun           ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
@@ -21,6 +20,7 @@ static void		swap_one(unsigned char *a, unsigned char *b)
 	*a = *b;
 	*b = tmp;
 }
+
 void			swap_two(unsigned short int *swap)
 {
 	unsigned char	*new;

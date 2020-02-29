@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   write.c                                          .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: lubrun <lubrun@student.le-101.fr>          +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/28 07:10:13 by lubrun       #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/09 21:33:10 by lubrun      ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   write.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lubrun <lubrun@student.le-101.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/28 07:10:13 by lubrun            #+#    #+#             */
+/*   Updated: 2020/02/25 20:45:56 by lubrun           ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
@@ -28,7 +27,7 @@ unsigned long	handle_label(t_file *file, t_op op, char *param, t_arg_type type)
 	return (0);
 }
 
-void    		write_dir_ind(t_file *file, t_op op, char *param, t_arg_type type)
+int				write_dir_ind(t_file *file, t_op op, char *param, t_arg_type type)
 {
 	unsigned long	value;
 	
@@ -39,6 +38,12 @@ void    		write_dir_ind(t_file *file, t_op op, char *param, t_arg_type type)
 	else
 		value = (unsigned long)ft_atoull(param) % ((!op.label_size && type == T_DIR) ?
 		((long)UINT32_MAX + 1) : ((long)UINT16_MAX + 1));
+	if (*param != LABEL_CHAR && ((*param == '-' &&
+		ft_atoll(param) < (long long)INT32_MIN) || (ft_atoll(param) > UINT32_MAX)))
+	{	
+		return (write_error(file,
+		ft_strdup("Parameter value must be between INT32_MIN and UINT32_MAX\n"), 0, 0));
+	}
 	(!op.label_size && type == T_DIR) ? swap_four((unsigned int *)&value) :
 	swap_two((unsigned short int *)&value);
 	ft_memcpy(&file->bytes[file->size % CHAMP_MAX_SIZE], &value, (op.label_size == 1 ||
@@ -47,18 +52,14 @@ void    		write_dir_ind(t_file *file, t_op op, char *param, t_arg_type type)
 		file->size += DIR_SIZE;
 	else
 		file->size += IND_SIZE;
+	return (1);
 }
 
-static char		*get_output_name(char *name)
+char			*get_output_name(char *name)
 {
 	char	*output_name;
-	int		index;
-
-	index = 0;
-	while (name[index] && name[index] != '.')
-		index++;
-	++index;
-	if (!(output_name = ft_strsub(name, 0, index)))
+	
+	if (!(output_name = ft_strsub(name, 0, ft_strrchr(name, '.')  - name + 1)))
 		return (NULL);
 	if (!(output_name = ft_strjoin(output_name, "cor", 1)))
 		return (NULL);
@@ -83,5 +84,6 @@ int				write_file(t_file *file)
 	write(1, "File created: ", 14);
 	write(1, output_name, ft_strlen(output_name));
 	write(1, "\n", 1);
+	ft_strdel(&output_name);
 	return (1);
 }
