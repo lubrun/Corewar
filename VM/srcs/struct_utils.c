@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:19:18 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/27 17:18:14 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/29 20:26:15 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,29 @@ t_chariot		*ft_new_chariot(int player, int pos, t_info *info)
 {
 	t_chariot	*new;
 	int			index;
+	static int	pross;
 
+	if (pross > 150000)
+		ft_exit_free_error("Too Many Pross For Computer", info);
 	index = 0;
 	if (!(new = malloc(sizeof(t_chariot))))
 		return (NULL);
 	if (!(new->r = malloc(sizeof(int) * (REG_NUMBER + 1))))
 		return (NULL);
+	if (++pross > info->nb_players)
+		new->pross = pross;
+	else
+		new->pross = player;
 	new->next = NULL;
-	new->player = player;
 	new->pos = pos;
-	new->carry = 0;
-	new->cast = 0;
 	new->cycle_live = 0;
+	new->last_live = 0;
+	new->carry = 0;
 	new->jump = 0;
 	new->r[index++] = player * -1;
 	while (index++ < REG_NUMBER)
 		new->r[index] = 0;
-	if (info->chariot)
-		new->start = info->chariot;
-	else
-		new->start = new;
-	return (ft_new_chariot2(new));
+	return (ft_new_chariot2(new, player));
 }
 
 void			ft_addplayer(t_player **alst, t_player *new_player)

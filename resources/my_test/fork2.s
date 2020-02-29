@@ -1,14 +1,14 @@
 .name "FORK2"
 .comment "TESTS FORK2"
 
-l1:		ld %1409286144, r10
+l1:		ld %0, r10
 		fork %:l2
 		st r1, 6
 		live %42
 		and %0, %0, r5
-and:	ld %0, r14
+		ld %0, r14
 		st r10, 0
-		and %3, %3, r5
+and:	and %3, %3, r5
 		and %4, %4, r5
 		and %0, %0, r5
 jump:	zjmp %:l1

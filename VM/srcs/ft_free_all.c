@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:25:19 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/27 17:16:48 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/29 20:14:33 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void		ft_free_chariot(t_chariot *pc)
 {
 	pc->next = NULL;
-	pc->start = NULL;
 	free(pc->r);
 	free(pc);
 }

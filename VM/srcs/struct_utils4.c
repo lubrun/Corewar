@@ -6,7 +6,7 @@
 /*   By: qbarrier <qbarrier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:19:31 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/27 17:26:41 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/29 20:25:26 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,9 @@ void		ft_del_chariot(t_info *info, t_chariot *pc)
 	t_chariot *tmp;
 
 	start = info->chariot;
-	if (check_bit(info->verbose, 3))
-		printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
-				pc->player, info->cycle_total, info->cycle_to_die);
-	if (start == pc)
+	if (start && pc && start == pc)
 		ft_del_chariot_first(info, pc);
-	else
+	else if (pc)
 	{
 		while (start->next)
 		{

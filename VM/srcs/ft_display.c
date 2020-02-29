@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:18:08 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/27 17:25:57 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/29 20:36:29 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	ft_display_chariot(t_info *info)
 	pc = info->chariot;
 	while (pc)
 	{
-		printf("CHAR ID[%d] POS [%d]\t STARTID[%d]\n",
-				pc->player, pc->pos, pc->start->pos);
+		printf("CHAR ID[%d] POS [%d]\n",
+				pc->player, pc->pos);
 		pc = pc->next;
 	}
 }
@@ -82,9 +82,10 @@ void	ft_print_map(t_info *info, unsigned char *str, int size, int index)
 	}
 }
 
-void	ft_display_map(t_info *info)
+int		ft_display_map(t_info *info)
 {
 	ft_print_map(info, info->map, MEM_SIZE, -1);
+	return (1);
 }
 
 void	ft_display_play(t_player *play)

@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:19:22 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/27 17:18:19 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/29 20:27:03 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void		ft_write_on_map(t_info *info, int value, int start, int size)
 
 	val = value;
 	rest = 1;
+	start = start % MEM_SIZE;
 	swap_size = size;
 	if (start < 0)
 		start += MEM_SIZE;
@@ -35,7 +36,7 @@ void		ft_write_on_map(t_info *info, int value, int start, int size)
 	}
 }
 
-t_chariot	*ft_new_chariot2(t_chariot *pc)
+t_chariot	*ft_new_chariot2(t_chariot *pc, int player)
 {
 	int	index;
 
@@ -47,6 +48,8 @@ t_chariot	*ft_new_chariot2(t_chariot *pc)
 		if (index < 3)
 			pc->arg[index] = 0;
 	}
+	pc->player = player;
+	pc->cast = 0;
 	pc->op = 0;
 	pc->opc = 0;
 	return (pc);

@@ -6,7 +6,7 @@
 /*   By: qbarrier <qbarrier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 11:16:59 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/27 17:20:07 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/29 20:35:59 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 
 typedef struct			s_chariot
 {
+	int					last_live;
 	int					*r;
 	int					cycle_live;
 	int					cast;
@@ -40,7 +41,6 @@ typedef struct			s_chariot
 	int					arg[3];
 	int					pos;
 	struct s_chariot	*next;
-	struct s_chariot	*start;
 }						t_chariot;
 
 typedef struct			s_player
@@ -186,7 +186,7 @@ void					ft_add_first_chariot(t_chariot **alst,
 void					ft_addchariot(t_chariot **alst, t_chariot *new_chariot);
 void					ft_addplayer(t_player **alst, t_player *new_player);
 t_chariot				*ft_new_chariot(int player, int pos, t_info *info);
-t_chariot				*ft_new_chariot2(t_chariot *pc);
+t_chariot				*ft_new_chariot2(t_chariot *pc, int player);
 t_player				*ft_new_player(t_player *player);
 t_info					*ft_new_info(t_info *info);
 void					ft_add_vm_fonction(t_info *info);
@@ -197,6 +197,7 @@ void					ft_add_cast(t_info *info);
 **		ERROR
 */
 
+void					ft_exit_free_error(char *txt, t_info *info);
 int						ft_close_error(int ret, char *str, int fd);
 int						ft_error(int ret, char *str);
 char					*ft_chars_error(char *ret, char str[2]);
@@ -206,7 +207,7 @@ char					*ft_chars_error(char *ret, char str[2]);
 */
 
 void					ft_display_chariot(t_info *info);
-void					ft_display_map(t_info *info);
+int						ft_display_map(t_info *info);
 void					ft_display_play(t_player *play);
 
 /*

@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:18:18 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/27 17:26:14 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/29 20:11:24 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void		ft_st(t_info *info, t_chariot *pc)
 	}
 	else
 	{
-		moove = (pc->arg[1]) % IDX_MOD;
+		moove = ((pc->arg[1]) % IDX_MOD) % MEM_SIZE;
 		ft_write_on_map(info, pc->arg[0], (moove + pc->pos - 2) %
 				MEM_SIZE, REG_SIZE);
 	}
@@ -98,12 +98,13 @@ void		ft_live(t_info *info, t_chariot *pc)
 	t_player *play;
 
 	pc->cycle_live++;
+	pc->last_live = 0;
 	info->live_total++;
 	if ((play = ft_player_by_id(info->play, (pc->arg[0] * -1))))
 	{
 		if (check_bit(info->verbose, 0) != 0)
-			printf("Player %d (%s) is said to be alive\n", pc->player,
-		ft_find_player_name(pc->player, info));
+			printf("Player %d (%s) is said to be alive\n", play->id,
+		play->name);
 		play->cycle_live = info->cycle_total;
 	}
 }

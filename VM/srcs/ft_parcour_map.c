@@ -6,7 +6,7 @@
 /*   By: qbarrier <qbarrier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 12:33:06 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/27 17:26:29 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/29 20:36:36 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,28 @@
 
 int		ft_check_alive(t_info *info, t_chariot *pc)
 {
+	t_chariot	*test;
+
+	if (!pc)
+		return (0);
+	if (pc->last_live >= (CYCLE_TO_DIE - info->delta) && pc
+			&& check_bit(info->verbose, 3))
+		printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
+					pc->pross, pc->last_live, CYCLE_TO_DIE - info->delta);
 	if (pc->next)
-		if (ft_check_alive(info, pc->next) == 0)
+	{
+		test = pc->next;
+		if (ft_check_alive(info, test) == 0)
 			return (0);
-	if (pc->cycle_live == 0 || info->cycle_to_die < 0)
+	}
+	if (pc->last_live >= (CYCLE_TO_DIE - info->delta))
 		ft_del_chariot(info, pc);
 	else
 		pc->cycle_live = 0;
 	if (info->chariot == NULL)
+	{
 		return (0);
+	}
 	return (1);
 }
 
@@ -62,7 +75,7 @@ int		ft_tempo_cast(t_info *info, t_chariot *pc, int op)
 		pc->opc = info->map[pc->pos];
 		if (!ft_opcode(info->map[pc->pos], op, info, pc))
 		{
-			ft_new_chariot2(pc);
+			ft_new_chariot2(pc, pc->player);
 			return (pc->pos + pc->jump + 1);
 		}
 		pc->pos = (pc->pos + 1) % MEM_SIZE;
@@ -72,7 +85,7 @@ int		ft_tempo_cast(t_info *info, t_chariot *pc, int op)
 	else
 		pc->jump = 2;
 	ft_read_arguments_opc(info, pc);
-	ft_new_chariot2(pc);
+	ft_new_chariot2(pc, pc->player);
 	return (pc->pos + pc->jump);
 }
 
@@ -91,6 +104,7 @@ int		ft_parcour_map(t_info *info, t_chariot *pc)
 			printf("It is now cycle %d\n", info->cycle_total);
 		while (pc)
 		{
+			pc->last_live++;
 			if (pc->op)
 				pc->pos = (ft_tempo_cast(info, pc, pc->op) % MEM_SIZE);
 			else if (info->map[pc->pos] >= 0x01 && info->map[pc->pos] <= 0x10)
@@ -106,6 +120,5 @@ int		ft_parcour_map(t_info *info, t_chariot *pc)
 		if (ft_check_cycle_to_die(info) == 0)
 			return (ft_winner(info, info->play));
 	}
-	ft_display_map(info);
-	return (1);
+	return (ft_display_map(info));
 }

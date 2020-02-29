@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:18:35 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/27 17:16:40 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/29 20:12:34 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void		ft_lfork(t_info *info, t_chariot *pc)
 	int			moove;
 	t_chariot	*new;
 
-	moove = (pc->pos - 1 + (pc->arg[0]));
+	moove = (pc->pos - 1 + (pc->arg[0])) % MEM_SIZE;
 	if (moove < 0)
 		moove += MEM_SIZE;
 	new = ft_new_chariot(pc->player, moove, info);
@@ -52,6 +52,8 @@ void		ft_lldi(t_info *info, t_chariot *pc)
 				% MEM_SIZE);
 	moove = (pc->arg[0] + pc->arg[1]);
 	moove = (pc->pos - 2 + moove) % MEM_SIZE;
+	if (moove < 0)
+		moove += MEM_SIZE;
 	pc->r[pc->arg[2] - 1] = ft_read_at(info, moove);
 	if (pc->r[pc->arg[2] - 1] == 0)
 		pc->carry = 1;
@@ -61,11 +63,7 @@ void		ft_lldi(t_info *info, t_chariot *pc)
 
 /*
 **	Ecrit arg[1] dans le registre r[arg[0] - 1]
-<<<<<<< HEAD
 ** mais sans idx (cf ft_indirect_arg) OP 13
-=======
-**	mais sans idx (cf ft_indirect_arg) OP 13
->>>>>>> 586c8a1272bbf52acf080d8790129603c6d4d89e
 */
 
 void		ft_lld(t_info *info, t_chariot *pc)
@@ -84,11 +82,7 @@ void		ft_lld(t_info *info, t_chariot *pc)
 
 /*
 ** Creait un nouveau PC copie de l'actuel a la position pos +
-<<<<<<< HEAD
 ** (arg[0] % IDX) OP 12
-=======
-**	(arg[0] % IDX) OP 12
->>>>>>> 586c8a1272bbf52acf080d8790129603c6d4d89e
 */
 
 void		ft_fork(t_info *info, t_chariot *pc)
@@ -96,7 +90,7 @@ void		ft_fork(t_info *info, t_chariot *pc)
 	int			moove;
 	t_chariot	*new;
 
-	moove = (pc->pos - 1 + (pc->arg[0] % IDX_MOD) % MEM_SIZE);
+	moove = (pc->pos - 1 + (pc->arg[0] % IDX_MOD)) % MEM_SIZE;
 	if (moove < 0)
 		moove += MEM_SIZE;
 	new = ft_new_chariot(pc->player, moove, info);
@@ -114,19 +108,23 @@ void		ft_sti(t_info *info, t_chariot *pc)
 	int	moove;
 	int	val;
 	int	index;
+	int	reg;
 
+	reg = pc->arg[0];
 	index = 0;
 	while (index < 3)
 	{
 		if (pc->type_arg[index] == 1)
 			pc->arg[index] = pc->r[pc->arg[index] - 1];
 		else if (pc->type_arg[index] == 3)
-			pc->arg[index] = ft_read_at(info, (pc->pos - 2 + (pc->arg[index]
-							% IDX_MOD)) % MEM_SIZE);
+			pc->arg[index] = ft_read_at(info,
+					(pc->pos - 2 + (pc->arg[index] % IDX_MOD)) % MEM_SIZE);
 		index++;
 	}
 	val = pc->arg[0];
 	moove = (pc->arg[1] + pc->arg[2]) % IDX_MOD;
-	moove += (pc->pos - 2) % MEM_SIZE;
+	moove = (moove + (pc->pos - 2)) % MEM_SIZE;
+	if (moove < 0)
+		moove += MEM_SIZE;
 	ft_write_on_map(info, val, moove, REG_SIZE);
 }

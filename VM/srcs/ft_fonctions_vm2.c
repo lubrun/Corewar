@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:18:24 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/27 17:16:33 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/29 20:13:07 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 **	Ecrit dans le r[arg2] la valeur a l'adresse r[arg0] + r[arg1] OP 10
 */
 
-void	ft_ldi(t_info *info, t_chariot *pc)
+void		ft_ldi(t_info *info, t_chariot *pc)
 {
-	int verbose;
-	int res;
-	int moove;
+	int	verbose;
+	int	res;
+	int	moove;
 
 	verbose = info->verbose;
 	if (pc->type_arg[0] == 1)
@@ -43,7 +43,7 @@ void	ft_ldi(t_info *info, t_chariot *pc)
 ** Zjump renvoi le pc->pos a une position, OP 9
 */
 
-void	ft_zjmp(t_info *info, t_chariot *pc)
+void		ft_zjmp(t_info *info, t_chariot *pc)
 {
 	int	res;
 

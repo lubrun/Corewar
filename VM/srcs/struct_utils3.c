@@ -6,7 +6,7 @@
 /*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:19:27 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/27 17:18:25 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/02/29 20:17:28 by qbarrier         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_chariot	*ft_pc_cpy(t_chariot *dest, t_chariot *source)
 
 	index = 0;
 	dest->carry = source->carry;
+	dest->last_live = source->last_live;
 	dest->cycle_live = source->cycle_live;
 	while (index < REG_NUMBER)
 	{
@@ -70,6 +71,7 @@ int			ft_read_at(t_info *info, int index)
 	int	res;
 	int size;
 
+	index = index % MEM_SIZE;
 	if (index < 0)
 		index += MEM_SIZE;
 	size = REG_SIZE;
@@ -102,6 +104,8 @@ int			ft_indirect_arg(t_info *info, t_chariot *pc, int arg)
 		idx = 1;
 	size = REG_SIZE;
 	index = (pc->pos - 2 + (arg % idx)) % MEM_SIZE;
+	if (index < 0)
+		index += MEM_SIZE;
 	res = 0;
 	while (size > 0)
 	{
