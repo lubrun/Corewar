@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubrun <lubrun@student.le-101.fr>          +#+  +:+       +#+        */
+/*   By: lubrun <lubrun@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 14:34:57 by lubrun            #+#    #+#             */
-/*   Updated: 2020/02/28 20:45:37 by lubrun           ###   ########lyon.fr   */
+/*   Updated: 2020/02/29 01:38:00 by lelajour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,12 @@ void		fill_label(t_file *file, t_label *label)
 	while (index < label->use_count)
 	{
 		value = (unsigned long)(label->byte_def - label->opc_index[index]) %
-		((label->use_size[index] == 2) ? (long)UINT16_MAX + 1 : (long)UINT32_MAX + 1);
+		((label->use_size[index] == 2) ? (long)UINT16_MAX + 1 :
+		(long)UINT32_MAX + 1);
 		(label->use_size[index] == 2) ? swap_two((unsigned short int *)&value) :
 		swap_four((unsigned int *)&value);
-		ft_memcpy(&file->bytes[label->byte_use[index] % CHAMP_MAX_SIZE], &value, label->use_size[index]);
+		ft_memcpy(&file->bytes[label->byte_use[index] % CHAMP_MAX_SIZE],
+			&value, label->use_size[index]);
 		index++;
 	}
 }
@@ -67,35 +69,35 @@ static int	label_exist(t_file *file, t_label **new, char *label)
 	if ((*new = get_label_by_name(file->label, label, 1)))
 	{
 		ft_strdel(&label);
-    	(*new)->byte_def = file->size;
+		(*new)->byte_def = file->size;
 		fill_label(file, *new);
 		return (1);
 	}
 	return (0);
 }
 
-int         new_label(t_file *file, char *label)
+int			new_label(t_file *file, char *label)
 {
-    t_label		*new;
-    t_label		*tmp;
+	t_label		*new;
+	t_label		*tmp;
 
 	if (label_exist(file, &new, label))
 		return (1);
 	if (!label || !(new = ft_memalloc(sizeof(t_label))))
 	{
 		ft_strdel(&label);
-        return (0);
+		return (0);
 	}
 	ft_bzero(new, sizeof(new));
-    new->byte_def = file->size;
+	new->byte_def = file->size;
 	new->name = ft_strdup(label);
-    if (file->label)
-    {
-        tmp = file->label;
-        file->label = new;
-        new->next = tmp;
-    }
-    else
-        file->label = new;
-    return (1);
+	if (file->label)
+	{
+		tmp = file->label;
+		file->label = new;
+		new->next = tmp;
+	}
+	else
+		file->label = new;
+	return (1);
 }
