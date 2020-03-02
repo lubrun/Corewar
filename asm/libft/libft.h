@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   libft.h                                          .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: lubrun <lubrun@student.le-101.fr>          +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/02 15:26:08 by lubrun       #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/27 17:21:59 by qbarrier         ###   ########lyon.fr   */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lubrun <lubrun@student.le-101.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/02 15:26:08 by lubrun            #+#    #+#             */
+/*   Updated: 2020/02/26 20:00:10 by lubrun           ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 
@@ -61,6 +60,7 @@ void				ft_swap(int *a, int *b);
 int					get_next_line(const int fd, char **line);
 int					ft_strcmp(char const *s1, char const *s2);
 int					ft_memcmp(const void *str1, const void *str2, size_t n);
+int					ft_str_is_whitespace(char *str);
 int					ft_strncmp(char const *s1, char const *s2, size_t size);
 int					ft_strequ(char const *s1, char const *s2);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
@@ -87,10 +87,11 @@ int					ft_get_min(int a, int b);
 int					ft_count_char(char *str, char c);
 int					*ft_newint_tab(int size, int value);
 int					**ft_newint_2dtab(int y, int x, int value);
+long long			ft_atoll(char *str);
 unsigned long long	ft_atoull(char *str);
 size_t				ft_strlen(char const *str);
 size_t				ft_strlcat(char *dest, char const *src, size_t size);
-size_t				ft_lstlen(t_list **alst);
+size_t				ft_lstlen(t_list *lst);
 size_t				ft_tablen(void **tab);
 size_t				ft_inttablen(int *tab, int limit);
 size_t				ft_tablenstr(char **tab);

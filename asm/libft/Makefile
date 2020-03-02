@@ -3,13 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lubrun <lubrun@student.42.fr>              +#+  +:+       +#+         #
+#    By: lubrun <lubrun@student.le-101.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/02 15:44:31 by lubrun            #+#    #+#              #
-#    Updated: 2020/02/29 01:51:52 by lelajour         ###   ########.fr        #
+#    Updated: 2020/02/26 20:00:19 by lubrun           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
-# **************************************************************************** #
+
 
 NAME = libft.a
 
@@ -25,6 +25,7 @@ SRC = ft_putchar.c \
 	  ft_toupper.c \
 	  ft_isprint.c \
 	  ft_isascii.c \
+	  ft_str_is_whitespace.c \
 	  ft_is_whitespace.c \
 	  ft_isalpha.c \
 	  ft_isdigit.c \
@@ -92,6 +93,7 @@ SRC = ft_putchar.c \
 	  ft_lltoa_base.c \
 	  ft_str_toupper.c \
 	  ft_atoull.c \
+	  ft_atoll.c \
 	  ft_fillnewstr.c \
 	  ft_newint_tab.c \
 	  ft_newcoord.c \
@@ -113,17 +115,16 @@ HEADER = libft.h
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@ar rc $(NAME) $(OBJS)
-	@ranlib $(NAME)
+	ar rc $(NAME) $(OBJS)
+	ranlib $(NAME)
 
-%.o : %.c $(HEADER)
-	@echo "bonjjour libft"
-	@gcc -Wall -Wextra -Werror -g -c -I./ $^
+%.o : %.c
+	gcc -Wall -Wextra -Werror -g -c -I./ $^
 
 clean:
-	@rm -f $(OBJS)
+	rm -f $(OBJS)
 
 fclean: clean
-	@rm -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all

@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct_utils2.c                                    :+:      :+:    :+:   */
+/*   ft_atoll.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lubrun <lubrun@student.le-101.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/24 14:32:53 by lubrun            #+#    #+#             */
-/*   Updated: 2020/02/29 20:36:40 by lubrun           ###   ########lyon.fr   */
+/*   Created: 2018/12/12 20:59:57 by lubrun            #+#    #+#             */
+/*   Updated: 2020/02/25 18:46:04 by lubrun           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "libft.h"
 
-static void	free_label(t_label *label)
+long long	ft_atoll(char *str)
 {
-	t_label *to_free;
+	long long int	res;
+	int				sign;
 
-	while (label)
-	{
-		ft_strdel(&label->name);
-		to_free = label;
-		label = label->next;
-		free(to_free);
-	}
-}
-
-void		free_file(t_file *file)
-{
-	free_label(file->label);
-	ft_strdel(&file->file_name);
-	free(file);
+	res = 0;
+	while (ft_is_whitespace(*str))
+		str++;
+	sign = (*str == '-' ? -1 : 1);
+	*str == '-' || *str == '+' ? str++ : str;
+	while (ft_isdigit(*str))
+		res = (res * 10) + (*str++ - '0');
+	// ft_putnbr(res);
+	// ft_putendl("");
+	return (res * sign);
 }

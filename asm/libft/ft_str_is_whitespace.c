@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct_utils2.c                                    :+:      :+:    :+:   */
+/*   ft_str_is_whitespace.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lubrun <lubrun@student.le-101.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/24 14:32:53 by lubrun            #+#    #+#             */
-/*   Updated: 2020/02/29 20:36:40 by lubrun           ###   ########lyon.fr   */
+/*   Created: 2020/02/26 19:57:30 by lubrun            #+#    #+#             */
+/*   Updated: 2020/02/26 19:59:30 by lubrun           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "libft.h"
 
-static void	free_label(t_label *label)
+int		ft_str_is_whitespace(char *str)
 {
-	t_label *to_free;
-
-	while (label)
-	{
-		ft_strdel(&label->name);
-		to_free = label;
-		label = label->next;
-		free(to_free);
-	}
-}
-
-void		free_file(t_file *file)
-{
-	free_label(file->label);
-	ft_strdel(&file->file_name);
-	free(file);
+	while (ft_is_whitespace(*str))
+		str++;
+	if (!*str)
+		return (1);
+	return (0);
 }

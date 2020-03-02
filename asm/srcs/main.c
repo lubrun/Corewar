@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubrun <lubrun@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lubrun <lubrun@student.le-101.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 21:46:31 by lubrun            #+#    #+#             */
-/*   Updated: 2020/02/29 01:44:50 by lelajour         ###   ########.fr       */
+/*   Updated: 2020/02/29 20:36:17 by lubrun           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static int	parse_file(int ac, char **av)
 	return (1);
 }
 
-int				main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	if (!parse_arg(ac, av) || !parse_file(ac, av))
 		return (0);
