@@ -6,7 +6,7 @@
 /*   By: lubrun <lubrun@student.le-101.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 14:34:57 by lubrun            #+#    #+#             */
-/*   Updated: 2020/02/29 20:36:43 by lubrun           ###   ########lyon.fr   */
+/*   Updated: 2020/03/03 19:59:13 by lubrun           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int			new_label_use(t_file *file, char *name, int size)
 
 	if (!(label = get_label_by_name(file->label, name, 1)))
 	{
-		if (!(new_label(file, name)))
+		if (!(new_label(file, name, 0)))
 			return (0);
 		file->label->byte_def = -1;
 		label = file->label;
@@ -64,11 +64,11 @@ void		fill_label(t_file *file, t_label *label)
 	}
 }
 
-static int	label_exist(t_file *file, t_label **new, char *label)
+static int	label_exist(t_file *file, t_label **new, char **label)
 {
-	if ((*new = get_label_by_name(file->label, label, 1)))
+	if ((*new = get_label_by_name(file->label, *label, 1)))
 	{
-		ft_strdel(&label);
+		ft_strdel(label);
 		(*new)->byte_def = file->size;
 		fill_label(file, *new);
 		return (1);
@@ -76,12 +76,12 @@ static int	label_exist(t_file *file, t_label **new, char *label)
 	return (0);
 }
 
-int			new_label(t_file *file, char *label)
+int			new_label(t_file *file, char *label, int free)
 {
 	t_label		*new;
 	t_label		*tmp;
 
-	if (label_exist(file, &new, label))
+	if (label_exist(file, &new, &label))
 		return (1);
 	if (!label || !(new = ft_memalloc(sizeof(t_label))))
 	{
@@ -99,5 +99,7 @@ int			new_label(t_file *file, char *label)
 	}
 	else
 		file->label = new;
+	if (free)
+		ft_strdel(&label);
 	return (1);
 }

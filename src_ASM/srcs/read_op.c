@@ -6,7 +6,7 @@
 /*   By: lubrun <lubrun@student.le-101.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 14:35:25 by lubrun            #+#    #+#             */
-/*   Updated: 2020/02/29 20:46:19 by lubrun           ###   ########lyon.fr   */
+/*   Updated: 2020/03/03 19:58:05 by lubrun           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,12 @@ static int	check_param(t_file *file, t_op op, char **param)
 			return (0);
 		if (!(trim = ft_strtrim(param[index])))
 			return (-1);
-		if (!(type = get_param_type(trim, op, index)))
+		if (!(type = get_param_type(trim, op, index)) ||
+			!write_param(file, op, trim, type))
+		{
+			ft_strdel(&trim);
 			return (0);
-		if (!write_param(file, op, trim, type))
-			return (0);
+		}
 		index++;
 		ft_strdel(&trim);
 	}
@@ -93,7 +95,7 @@ int			is_label(t_file *file, char *str, int *index)
 		*index = save;
 		return (0);
 	}
-	if (!new_label(file, ft_strsub(sub, save, *index)))
+	if (!new_label(file, ft_strsub(sub, save, *index), 1))
 		return (-1);
 	(*index)++;
 	while (sub[*index] && (sub[*index] == ' ' || sub[*index] == '\t'))

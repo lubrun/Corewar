@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lelajour <lelajour@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: lubrun <lubrun@student.le-101.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 20:51:37 by lubrun            #+#    #+#             */
-/*   Updated: 2020/03/03 16:20:41 by lelajour         ###   ########lyon.fr   */
+/*   Updated: 2020/03/03 19:57:24 by lubrun           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int					get_comment(t_file *file, char **str);
 int					is_label(t_file *file, char *str, int *index);
 int					is_valid_op(t_file *file, t_op *op, char *str, int label);
 int					is_op(t_file *file, char *str, int label);
-int					new_label(t_file *file, char *label);
+int					new_label(t_file *file, char *label, int free);
 int					write_file(t_file *file);
 int					new_label_use(t_file *file, char *name, int size);
 int					check_error(t_file *file);

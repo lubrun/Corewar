@@ -6,7 +6,7 @@
 /*   By: lubrun <lubrun@student.le-101.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 23:13:01 by lubrun            #+#    #+#             */
-/*   Updated: 2020/02/28 19:33:54 by lubrun           ###   ########lyon.fr   */
+/*   Updated: 2020/03/03 19:58:56 by lubrun           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ int			is_valid_reg(char *param)
 	reg = ft_atoi(param + 1);
 	if (reg > 0 && reg <= REG_NUMBER)
 		return (1);
-	return (0);
+	return (write_error(NULL,
+		ft_strdup("Register must be between 1 and 16\n"), 0, 0));
 }
 
 int			is_valid_dir(char *param)

@@ -6,7 +6,7 @@
 /*   By: lubrun <lubrun@student.le-101.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 14:32:53 by lubrun            #+#    #+#             */
-/*   Updated: 2020/02/29 20:36:40 by lubrun           ###   ########lyon.fr   */
+/*   Updated: 2020/03/03 19:30:12 by lubrun           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ static void	free_label(t_label *label)
 
 void		free_file(t_file *file)
 {
-	free_label(file->label);
-	ft_strdel(&file->file_name);
-	free(file);
+	if (file)
+	{
+		free_label(file->label);
+		ft_strdel(&file->file_name);
+		free(file);
+	}
 }
