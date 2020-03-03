@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lubrun <lubrun@student.le-101.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:18:55 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/27 17:17:19 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/03/03 20:15:37 by lubrun           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,10 @@ int			ft_parsing(t_info *info, int num)
 			!ft_check_name(info->intline, player) ||
 			!ft_check_code_size(info->intline, player) ||
 			!ft_check_comment(info->intline, player))
-		return (ft_error(0, "FT_PARSING ERROR\n"));
+			{
+				info->play = player;
+				return (ft_error(0, "FT_PARSING ERROR\n"));
+			}
 	ft_addplayer(&info->play, player);
 	ft_parsing_code(info, player);
 	return (1);

@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   ft_is_whitespace.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubrun <lubrun@student.le-101.fr>          +#+  +:+       +#+        */
+/*   By: kabouama <kabouama@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 17:28:56 by lubrun            #+#    #+#             */
-/*   Updated: 2020/02/25 18:47:52 by lubrun           ###   ########lyon.fr   */
+/*   Updated: 2020/03/03 19:09:18 by kabouama         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 int		ft_is_whitespace(char c)
 {

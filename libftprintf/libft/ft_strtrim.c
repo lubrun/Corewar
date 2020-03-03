@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   ft_strtrim.c                                     .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: lubrun <lubrun@student.le-101.fr>          +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/04 14:08:47 by lubrun       #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/24 12:57:32 by lubrun      ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kabouama <kabouama@student.le-101.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/10/04 14:08:47 by lubrun            #+#    #+#             */
+/*   Updated: 2020/03/03 19:33:07 by kabouama         ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
@@ -17,6 +16,7 @@ static char	*ft_malloclen(char const *s, int index, int j)
 {
 	int		len;
 	char	*res;
+
 	res = NULL;
 	len = 0;
 	while (s[index])
@@ -38,11 +38,13 @@ static char	*ft_malloclen(char const *s, int index, int j)
 	res[len] = '\0';
 	return (res);
 }
+
 char		*ft_strtrim(char const *s)
 {
 	int		index;
 	int		j;
 	char	*res;
+
 	res = NULL;
 	j = 0;
 	index = 0;

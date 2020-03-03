@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: qbarrier <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lubrun <lubrun@student.le-101.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:19:18 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/02/29 20:26:15 by qbarrier         ###   ########lyon.fr   */
+/*   Updated: 2020/03/03 20:15:02 by lubrun           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ t_info			*ft_new_info(t_info *info)
 	index = 0;
 	if (!(info = ft_memalloc(sizeof(t_info))))
 		return (NULL);
-	if (!(info->preset_player = ft_memalloc(sizeof(char) * (MAX_PLAYERS + 1))))
+	if (!(info->preset_player = ft_memalloc(sizeof(int) * (MAX_PLAYERS + 1))))
 		return (NULL);
 	if (!(info->map = ft_memalloc(sizeof(unsigned char) * (MEM_SIZE + 1))))
 		return (NULL);

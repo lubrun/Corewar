@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lelajour <lelajour@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: lubrun <lubrun@student.le-101.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/02 15:26:08 by lubrun            #+#    #+#             */
-/*   Updated: 2020/03/03 17:32:02 by lelajour         ###   ########lyon.fr   */
+/*   Updated: 2020/03/03 20:23:07 by lubrun           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef LIBFT_H
 # define LIBFT_H

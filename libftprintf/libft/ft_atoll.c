@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoll.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lubrun <lubrun@student.le-101.fr>          +#+  +:+       +#+        */
+/*   By: kabouama <kabouama@student.le-101.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 20:59:57 by lubrun            #+#    #+#             */
-/*   Updated: 2020/02/25 18:46:04 by lubrun           ###   ########lyon.fr   */
+/*   Updated: 2020/03/03 19:06:58 by kabouama         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,5 @@ long long	ft_atoll(char *str)
 	*str == '-' || *str == '+' ? str++ : str;
 	while (ft_isdigit(*str))
 		res = (res * 10) + (*str++ - '0');
-	// ft_putnbr(res);
-	// ft_putendl("");
 	return (res * sign);
 }

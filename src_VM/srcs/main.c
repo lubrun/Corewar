@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lelajour <lelajour@student.le-101.fr>      +#+  +:+       +#+        */
+/*   By: lubrun <lubrun@student.le-101.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 14:19:11 by qbarrier          #+#    #+#             */
-/*   Updated: 2020/03/03 16:44:47 by lelajour         ###   ########lyon.fr   */
+/*   Updated: 2020/03/03 20:14:25 by lubrun           ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/coreware.h"
-
-int						ft_arguments(int ac, char **av, t_info *info);
 
 int			ft_number_player(t_info *info)
 {
