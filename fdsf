@@ -1,0 +1,23 @@
+L_OBJ_PATH = libft/obj/
+L_OBJ_NAME = $(L_SRC_NAME:.c=.o)
+	L_SRC = $(addprefix $(L_SRC_PATH),$(L_SRC_NAME))
+	L_OBJ = $(addprefix $(L_OBJ_PATH),$(L_OBJ_NAME))
+all: $(NAME)
+$(NAME) : $(OBJ) $(L_OBJ)
+	@echo "\033[32mCompilation  \t\t==> \tDONE\033[0m"
+	@ar rc $@ $^
+	@ranlib $@
+	@echo "\033[32mlem_in  \t\t==> \tDONE\033[0m"
+	@$(CC) $(CFLAGS) $^ -o ./lem-in $(NAME)
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+	@$(CC) $(CFLAGS) $(HEAD) -o $@ -c $<
+$(L_OBJ_PATH)%.o: $(L_SRC_PATH)%.c
+	@$(CC) $(CFLAGS) $(L_HEAD) -o $@ -c $<
+clean:
+	@rm -f $(OBJ) $(L_OBJ)
+	@echo "\033[32mSuppression .o \t\t==> \tDONE"
+fclean: clean
+	@rm -f $(NAME) $(L_NAME) ./lem-in
+	@echo "\033[32mSuppression .o + .a \t==> \tDONE"
+re: fclean all
+.PHONY: all, clean, fclean, re
